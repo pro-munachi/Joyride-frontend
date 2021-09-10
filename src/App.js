@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Route, BrowserRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PrimarySearchAppBar from './components/navbar'
 import axios from 'axios'
+
+import Login from './pages/login'
+import Signup from './pages/signup'
 
 function App() {
   const [user, setUser] = useState([])
@@ -18,16 +23,13 @@ function App() {
   }, [])
 
   return (
-    <div className='App'>
+    <BrowserRouter>
       <PrimarySearchAppBar />
-      {user.map((use) => (
-        <div key={use._id}>
-          <h1>{use.displayName}</h1>
-          <img src={use.profilePic} />
-          <p>{use.roles}</p>
-        </div>
-      ))}
-    </div>
+      <div>
+        <Route path='/' exact component={Login} />
+        <Route path='/signup' component={Signup} />
+      </div>
+    </BrowserRouter>
   )
 }
 
