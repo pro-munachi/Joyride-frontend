@@ -1,33 +1,21 @@
-import { useEffect, useState } from 'react'
 import { Route, BrowserRouter } from 'react-router-dom'
-import { withRouter } from 'react-router-dom'
-import PrimarySearchAppBar from './components/navbar'
-import axios from 'axios'
 
+import Dashboard from './pages/dashboard'
 import Login from './pages/login'
 import Signup from './pages/signup'
+import Forgot from './pages/ForgotPassword'
+import Reset from './pages/ResetPassword'
 
 function App() {
-  const [user, setUser] = useState([])
-
-  useEffect(() => {
-    axios
-      .get('http://kidsio.herokuapp.com/users')
-      .then((res) => {
-        setUser(res.data)
-        console.log(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
   return (
     <BrowserRouter>
-      <PrimarySearchAppBar />
       <div>
-        <Route path='/' exact component={Login} />
-        <Route path='/signup' component={Signup} />
+        <Route path='/auth/login' exact component={Login} />
+        <Route path='/auth/signup' component={Signup} />
+        <Route path='/auth/reset-password/:token' component={Reset} />
+        <Route path='/auth/forgot-password' component={Forgot} />
+        <Route path='/' component={Dashboard} exact />
+        <Route path='/dashboard' component={Dashboard} exact />
       </div>
     </BrowserRouter>
   )

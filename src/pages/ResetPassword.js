@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
-import { useHistory, NavLink } from 'react-router-dom'
+import { useHistory, NavLink, useLocation, useParams } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import '../style/login.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -33,51 +33,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Signup = () => {
+const Reset = () => {
   const History = useHistory()
 
   const classes = useStyles()
   // create state variables for each input
-  const [displayName, setDisplayName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [mode, setMode] = useState('password')
+
+  let { token } = useParams()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
+
+    console.log(token)
+
     const data = {
-      displayName: displayName,
-      email: email,
       password: password,
-      passwordCheck: confirmPassword,
+      token: token,
     }
     console.log(data)
 
-    const headers = {}
+    const headers = {
+      'Custom-Header': 'xxxx-xxxx-xxxx-xxxx',
+    }
     axios
-      .post('https://kidsio.herokuapp.com/users/register', data, headers)
+      .post('https://kidsio.herokuapp.com/users/reset', data, headers)
       .then((res) => {
         setLoading(false)
         console.log(res.data)
         if (res.data.hasError === false) {
-          setDisplayName('')
-          setEmail('')
-          setPassword('')
-          setConfirmPassword('')
-          localStorage.setItem('token', res.data.token)
-          localStorage.setItem('name', res.data.displayName)
-          localStorage.setItem('id', res.data._id)
-          localStorage.setItem('email', res.data.email)
-          localStorage.setItem('pic', res.data.profilePic)
-          console.log(res.data)
-          History.push('/')
+          toast.success('login successful')
+          History.push('/auth/login')
           toast.success('login successful')
         } else {
           console.log(data.error)
-          toast.error(res.data.message)
+          toast.error(res.data.error)
         }
       })
       .catch((err) => {
@@ -99,29 +93,7 @@ const Signup = () => {
       <div className='img'></div>
       <div className='form'>
         <form className={classes.root} onSubmit={handleSubmit}>
-          <h2>Signup</h2>
-          <label className='label'>
-            Name
-            <input
-              type='text'
-              required
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              className='input'
-              placeholder='Name'
-            />
-          </label>
-          <label className='label'>
-            Email
-            <input
-              type='email'
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className='input'
-              placeholder='Email'
-            />
-          </label>
+          <h2>Reset Password</h2>
           <label className='label'>
             Password
             <input
@@ -139,7 +111,7 @@ const Signup = () => {
             )}
           </label>
           <label className='label'>
-            Password
+            Confirm Password
             <input
               type={mode}
               required
@@ -155,12 +127,6 @@ const Signup = () => {
             )}
           </label>
           <ToastContainer />
-          <div className='write'>
-            <NavLink to='/auth/login' className='link'>
-              Login
-            </NavLink>
-          </div>
-
           <div>
             <button className='button' disabled={loading}>
               {loading ? <CircularIndeterminate /> : 'Submit'}
@@ -172,4 +138,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Reset

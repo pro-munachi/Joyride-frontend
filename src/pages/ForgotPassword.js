@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useHistory, NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
@@ -33,45 +31,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Login = () => {
+const Forgot = () => {
   const History = useHistory()
 
   const classes = useStyles()
   // create state variables for each input
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [mode, setMode] = useState('password')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setLoading(true)
     const data = {
       email: email,
-      password: password,
     }
     console.log(data)
-
-    const headers = {
-      'Custom-Header': 'xxxx-xxxx-xxxx-xxxx',
-    }
     axios
-      .post('https://kidsio.herokuapp.com/users/login', data, headers)
+      .post('http://kidsio.herokuapp.com/users/forgot', data)
       .then((res) => {
+        console.log(res.data)
         setLoading(false)
-        console.log(res.data.hasError)
         if (res.data.hasError === false) {
           setEmail('')
-          setPassword('')
-          localStorage.setItem('token', res.data.token)
-          localStorage.setItem('name', res.data.displayName)
-          localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
-          History.push('/')
-          toast.success('login successful')
+          toast.success(res.data.message)
         } else {
-          console.log(data.error)
-          toast.error(res.data.error)
+          toast.error(res.data.message)
         }
       })
       .catch((err) => {
@@ -80,20 +64,12 @@ const Login = () => {
       })
   }
 
-  const handleClick = () => {
-    if (mode === 'password') {
-      setMode('text')
-    } else {
-      setMode('password')
-    }
-  }
-
   return (
     <div className='container'>
       <div className='img'></div>
       <div className='form'>
         <form className={classes.root} onSubmit={handleSubmit}>
-          <h2>Login</h2>
+          <h2>Forgot Password</h2>
           <label className='label'>
             Email
             <input
@@ -105,34 +81,14 @@ const Login = () => {
               placeholder='Email'
             />
           </label>
-          <label className='label'>
-            Password
-            <input
-              type={mode}
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className='input'
-              placeholder='Password'
-            />
-            {mode === 'password' ? (
-              <VisibilityIcon className='icon' onClick={handleClick} />
-            ) : (
-              <VisibilityOff className='icon' onClick={handleClick} />
-            )}
-          </label>
-          <ToastContainer />
           <div className='write'>
-            <NavLink to='/auth/forgot-password' className='link'>
-              Forgot password?
-            </NavLink>
-            <NavLink to='/auth/signup' className='link'>
-              Sign up
+            <NavLink to='/auth/login' className='link'>
+              Login
             </NavLink>
           </div>
-
+          <ToastContainer />
           <div>
-            <button className='button' disabled={loading}>
+            <button className='button'>
               {loading ? <CircularIndeterminate /> : 'Submit'}
             </button>
           </div>
@@ -142,4 +98,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Forgot
