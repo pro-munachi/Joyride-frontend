@@ -19,6 +19,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import { NavLink } from 'react-router-dom'
+import ControlledAccordions from './accordion'
 
 const drawerWidth = 240
 
@@ -89,10 +90,11 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
+        <ControlledAccordions />
         {[
           { name: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
-          { name: 'Settings', icon: <SettingsIcon />, link: '/login' },
-          { name: 'Logout', icon: <ExitToAppIcon />, link: '/signup' },
+          { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
+          { name: 'Logout', icon: <ExitToAppIcon />, link: '/auth/signup' },
         ].map((text, index) => (
           <ListItem
             button
@@ -127,7 +129,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            {localStorage.getItem('name')}
+            {localStorage.getItem('email')}
           </Typography>
         </Toolbar>
       </AppBar>
