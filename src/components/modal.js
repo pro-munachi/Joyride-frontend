@@ -6,6 +6,9 @@ import Fade from '@material-ui/core/Fade'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import Button from '@material-ui/core/Button'
+
+import '../style/modal.css'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -54,7 +57,20 @@ export default function Modals(props) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>{props.children}</div>
+          <div className='paper'>
+            <div className='modal-header'>
+              <div className='modal-body'>
+                <div className='modal-text'>
+                  <h3>{props.text}</h3>
+                  <p>{props.secondaryText}</p>
+                </div>
+                <div className='modal-button'>
+                  <button onClick={handleClose}>X</button>
+                </div>
+              </div>
+            </div>
+            <div>{props.children}</div>
+          </div>
         </Fade>
       </Modal>
     </div>

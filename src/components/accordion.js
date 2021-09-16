@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import { NavLink } from 'react-router-dom'
 
+import ChangePassword from './ChangePassword'
 import Modals from './modal'
 
 const useStyles = makeStyles((theme) => ({
@@ -80,12 +81,14 @@ export default function ControlledAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.details}>
-            <Modals head={'Change Password'}>
+            <Modals
+              head={'Change Password'}
+              text={'Change Password'}
+              secondaryText={'Fill details to change your password'}
+            >
               <List>
                 <ListItem>
-                  <ListItemText>
-                    <h3>Change Password</h3>
-                  </ListItemText>
+                  <ChangePassword />
                 </ListItem>
               </List>
             </Modals>
