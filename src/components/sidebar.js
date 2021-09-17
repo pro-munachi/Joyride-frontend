@@ -88,6 +88,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      {localStorage.getItem('name')}
       <Divider />
       <List>
         <ControlledAccordions />

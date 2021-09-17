@@ -1,20 +1,24 @@
 import axios from 'axios'
 import { React, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { ToastContainer, toast } from 'react-toastify'
 
 import '../style/changepassword.css'
+import CircularIndeterminate from '../components/loader'
 
 const ChangePassword = () => {
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [mode, setMode] = useState('password')
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    setLoading(false)
+    setLoading(true)
     const data = {
       password: password,
       newPassword: newPassword,
@@ -30,60 +34,87 @@ const ChangePassword = () => {
         headers: headers,
       })
       .then((res) => {
+        setLoading(false)
         console.log(res.data)
         if (res.data.hasError === false) {
-          setLoading(true)
+          setPassword('')
+          setNewPassword('')
+          setConfirmPassword('')
           toast.success(res.data.message)
         } else {
           toast.error(res.data.message)
         }
       })
       .catch((err) => {
-        console.log('eweee')
+        setLoading(true)
+        toast.error('sorry something went wrong')
       })
 
     console.log('muna')
   }
 
+  const modeChange = () => {
+    if (mode === 'password') {
+      setMode('text')
+    } else {
+      setMode('password')
+    }
+  }
+
   return (
     <div className='containers'>
       <form onSubmit={handleSubmit} className='forms'>
-        <label className='label'>
-          Old Password
+        <label className='form-label'>
+          Current Password
           <input
-            type='password'
+            type={mode}
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className='input'
             placeholder='Old Password'
           />
+          {mode === 'password' ? (
+            <VisibilityIcon className='change-icon' onClick={modeChange} />
+          ) : (
+            <VisibilityOff className='change-icon' onClick={modeChange} />
+          )}
         </label>
-        <label className='label'>
+        <label className='form-label'>
           New Password
           <input
-            type='password'
+            type={mode}
             required
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             className='input'
             placeholder='New Password'
           />
+          {mode === 'password' ? (
+            <VisibilityIcon className='change-icon' onClick={modeChange} />
+          ) : (
+            <VisibilityOff className='change-icon' onClick={modeChange} />
+          )}
         </label>
-        <label className='label'>
+        <label className='form-label'>
           Confirm New Password
           <input
-            type='password'
+            type={mode}
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className='input'
             placeholder='Confirm New Password'
           />
+          {mode === 'password' ? (
+            <VisibilityIcon className='change-icon' onClick={modeChange} />
+          ) : (
+            <VisibilityOff className='change-icon' onClick={modeChange} />
+          )}
         </label>
         <ToastContainer />
-        <div>
-          <button className='button'>Submit</button>
+        <div className='change-button'>
+          <button disabled={loading}>{loading ? 'loader...' : 'Submit'}</button>
         </div>
       </form>
     </div>

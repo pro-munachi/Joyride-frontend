@@ -67,6 +67,7 @@ const Login = () => {
           localStorage.setItem('name', res.data.displayName)
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
+          localStorage.setItem('pic', res.data.profilePic)
           History.push('/')
           toast.success('login successful')
         } else {

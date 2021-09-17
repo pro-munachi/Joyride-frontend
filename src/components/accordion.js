@@ -12,8 +12,9 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import { NavLink } from 'react-router-dom'
 
-import ChangePassword from './ChangePassword'
+import ChangePassword from '../pages/ChangePassword'
 import Modals from './modal'
+import '../style/accordion.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,9 +42,14 @@ const useStyles = makeStyles((theme) => ({
     border: 'none',
     width: '100%',
   },
+  accord: {
+    color: 'white',
+    paddingTop: 0,
+  },
   details: {
     color: 'white',
     padding: '0 0',
+    paddingTop: 0,
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -79,7 +85,7 @@ export default function ControlledAccordions() {
             Settings
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.accord}>
           <Typography className={classes.details}>
             <Modals
               head={'Change Password'}

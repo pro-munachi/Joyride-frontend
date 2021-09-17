@@ -64,9 +64,9 @@ export default function Modals(props) {
                   <h3>{props.text}</h3>
                   <p>{props.secondaryText}</p>
                 </div>
-                <div className='modal-button'>
+                <span className='modal-button'>
                   <button onClick={handleClose}>X</button>
-                </div>
+                </span>
               </div>
             </div>
             <div>{props.children}</div>
