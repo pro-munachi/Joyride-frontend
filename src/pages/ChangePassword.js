@@ -18,7 +18,6 @@ const ChangePassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    setLoading(true)
     const data = {
       password: password,
       newPassword: newPassword,
@@ -28,29 +27,33 @@ const ChangePassword = () => {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
+    if (newPassword === confirmPassword) {
+      setLoading(true)
+      axios
+        .post('http://kidsio.herokuapp.com/users/change', data, {
+          headers: headers,
+        })
+        .then((res) => {
+          setLoading(false)
+          console.log(res.data)
+          if (res.data.hasError === false) {
+            setPassword('')
+            setNewPassword('')
+            setConfirmPassword('')
+            toast.success(res.data.message)
+          } else {
+            toast.error(res.data.message)
+          }
+        })
+        .catch((err) => {
+          setLoading(true)
+          toast.error('sorry something went wrong')
+        })
 
-    axios
-      .post('http://kidsio.herokuapp.com/users/change', data, {
-        headers: headers,
-      })
-      .then((res) => {
-        setLoading(false)
-        console.log(res.data)
-        if (res.data.hasError === false) {
-          setPassword('')
-          setNewPassword('')
-          setConfirmPassword('')
-          toast.success(res.data.message)
-        } else {
-          toast.error(res.data.message)
-        }
-      })
-      .catch((err) => {
-        setLoading(true)
-        toast.error('sorry something went wrong')
-      })
-
-    console.log('muna')
+      console.log('muna')
+    } else {
+      toast.error('New password must match Confirm password')
+    }
   }
 
   const modeChange = () => {
@@ -114,7 +117,9 @@ const ChangePassword = () => {
         </label>
         <ToastContainer />
         <div className='change-button'>
-          <button disabled={loading}>{loading ? 'loader...' : 'Submit'}</button>
+          <button disabled={loading}>
+            {loading ? <CircularIndeterminate /> : 'Submit'}
+          </button>
         </div>
       </form>
     </div>

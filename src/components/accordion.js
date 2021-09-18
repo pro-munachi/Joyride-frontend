@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[0],
   },
   heading: {
-    fontSize: theme.typography.pxToRem(18),
+    fontSize: theme.typography.pxToRem(17),
     color: 'white',
     width: '85%',
     display: 'flex',

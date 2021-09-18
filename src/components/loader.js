@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   circle: {
-    color: '#05386b',
+    color: 'white',
   },
 }))
 

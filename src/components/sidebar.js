@@ -20,6 +20,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import { NavLink } from 'react-router-dom'
 import ControlledAccordions from './accordion'
+import '../style/sidebar.css'
 
 const drawerWidth = 240
 
@@ -49,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     '&.active': {
       background: '#379683',
     },
+  },
+
+  name: {
+    fontSize: theme.typography.pxToRem(14),
   },
 
   icon: {
@@ -88,6 +93,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <img alt='profile photo' src={localStorage.getItem('pic')} />
       {localStorage.getItem('name')}
       <Divider />
       <List>
@@ -105,7 +111,7 @@ function ResponsiveDrawer(props) {
             className={classes.button}
           >
             <ListItemIcon className={classes.icon}>{text.icon}</ListItemIcon>
-            <ListItemText primary={text.name} />
+            <ListItemText primary={text.name} className={classes.name} />
           </ListItem>
         ))}
       </List>
