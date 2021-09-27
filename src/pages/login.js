@@ -50,7 +50,6 @@ const Login = () => {
       email: email,
       password: password,
     }
-    console.log(data)
 
     const headers = {
       'Custom-Header': 'xxxx-xxxx-xxxx-xxxx',
@@ -59,7 +58,6 @@ const Login = () => {
       .post('https://kidsio.herokuapp.com/users/login', data, headers)
       .then((res) => {
         setLoading(false)
-        console.log(res.data.hasError)
         if (res.data.hasError === false) {
           setEmail('')
           setPassword('')
