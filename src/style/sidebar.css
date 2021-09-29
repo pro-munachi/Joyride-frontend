@@ -1,3 +1,15 @@
 .MuiTypography-body1 {
   font-size: 0.8rem;
 }
+
+.side-header {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  border: black 1px solid;
+  width: 100%;
+}
+
+.side-icon {
+  color: black;
+}

@@ -20,6 +20,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import { NavLink } from 'react-router-dom'
 import ControlledAccordions from './accordion'
+import BasicMenu from './dropdown'
 import '../style/sidebar.css'
 
 const drawerWidth = 240
@@ -135,8 +136,9 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' noWrap>
+          <Typography variant='h6' noWrap className='side-header'>
             {localStorage.getItem('email')}
+            <BasicMenu />
           </Typography>
         </Toolbar>
       </AppBar>
