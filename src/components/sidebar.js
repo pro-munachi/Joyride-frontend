@@ -22,6 +22,7 @@ import { NavLink } from 'react-router-dom'
 import ControlledAccordions from './accordion'
 import BasicMenu from './dropdown'
 import '../style/sidebar.css'
+import logo from '../images/cover.png'
 
 const drawerWidth = 240
 
@@ -94,8 +95,12 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <img alt='profile photo' src={localStorage.getItem('pic')} />
-      {localStorage.getItem('name')}
+      <div className='side-image'>
+        <img alt='profile photo' src={localStorage.getItem('pic')} />
+      </div>
+      <div className='user-name'>
+        <p>{localStorage.getItem('name')}</p>
+      </div>
       <Divider />
       <List>
         <ControlledAccordions />
@@ -137,7 +142,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap className='side-header'>
-            {localStorage.getItem('email')}
+            <img src={logo} alt='logo' className='logo' />
             <BasicMenu />
           </Typography>
         </Toolbar>
