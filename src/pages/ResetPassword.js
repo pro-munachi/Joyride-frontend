@@ -49,13 +49,10 @@ const Reset = () => {
     e.preventDefault()
     setLoading(true)
 
-    console.log(token)
-
     const data = {
       password: password,
       token: token,
     }
-    console.log(data)
 
     const headers = {
       'Custom-Header': 'xxxx-xxxx-xxxx-xxxx',
@@ -64,13 +61,11 @@ const Reset = () => {
       .post('https://kidsio.herokuapp.com/users/reset', data, headers)
       .then((res) => {
         setLoading(false)
-        console.log(res.data)
         if (res.data.hasError === false) {
           toast.success('login successful')
           History.push('/auth/login')
           toast.success('login successful')
         } else {
-          console.log(data.error)
           toast.error(res.data.error)
         }
       })

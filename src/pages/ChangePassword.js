@@ -35,7 +35,6 @@ const ChangePassword = () => {
         })
         .then((res) => {
           setLoading(false)
-          console.log(res.data)
           if (res.data.hasError === false) {
             setPassword('')
             setNewPassword('')
@@ -49,8 +48,6 @@ const ChangePassword = () => {
           setLoading(true)
           toast.error('sorry something went wrong')
         })
-
-      console.log('muna')
     } else {
       toast.error('New password must match Confirm password')
     }

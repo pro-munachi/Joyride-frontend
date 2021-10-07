@@ -54,14 +54,12 @@ const Signup = () => {
       password: password,
       passwordCheck: confirmPassword,
     }
-    console.log(data)
 
     const headers = {}
     axios
       .post('https://kidsio.herokuapp.com/users/register', data, headers)
       .then((res) => {
         setLoading(false)
-        console.log(res.data)
         if (res.data.hasError === false) {
           setDisplayName('')
           setEmail('')
@@ -72,11 +70,9 @@ const Signup = () => {
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('pic', res.data.profilePic)
-          console.log(res.data)
           History.push('/')
           toast.success('login successful')
         } else {
-          console.log(data.error)
           toast.error(res.data.message)
         }
       })

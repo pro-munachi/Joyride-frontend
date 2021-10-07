@@ -9,6 +9,10 @@
   flex-direction: column;
 }
 
+.form-containers form h2 {
+  text-align: center;
+}
+
 .form-containers form label {
   text-align: left;
   display: flex;
@@ -33,6 +37,21 @@
   margin: 9px auto;
   height: 25px;
   border-radius: 5px;
-  border: 1px solid black;
-  background: transparent;
+  border: 1px solid white;
+  color: white;
+  background-color: #05386b;
+}
+
+.form-containers form div {
+  width: 50%;
+  margin: 7px auto;
+}
+
+.form-containers form div button {
+  width: 100%;
+  height: 50px;
+  background-color: #05386b;
+  color: white;
+  border: none;
+  font-size: 16px;
 }

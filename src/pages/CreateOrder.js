@@ -25,7 +25,6 @@ const CreateOrder = () => {
       name: name,
       price: price,
     })
-
     console.log(items)
   }
 
@@ -52,20 +51,25 @@ const CreateOrder = () => {
       })
       .then((res) => {
         setLoading(false)
-        console.log(res.data)
+        setPrice('')
+        setName('')
+        setShippingPrice('')
+        setTaxPrice('')
+        setAddressFrom('')
+        setAddressTo('')
+        setPaymentMethod('')
+        toast.success('Your order has been created successfully')
       })
       .catch((err) => {
         setLoading(false)
         toast.error('sorry something went wrong')
       })
-
-    console.log('muna')
   }
 
   return (
     <div className='form-containers'>
       <form onSubmit={handleSubmit}>
-        <h2>Signup</h2>
+        <h2>Create Orders</h2>
         <label>
           Address From
           <input
@@ -141,11 +145,9 @@ const CreateOrder = () => {
         </label>
 
         <ToastContainer />
-        <div className='write'>div</div>
-
         <div>
-          <button className='button' disabled={loading}>
-            {loading ? <CircularIndeterminate /> : 'Submit'}
+          <button disabled={loading}>
+            {loading ? <CircularIndeterminate /> : 'Create Order'}
           </button>
         </div>
       </form>

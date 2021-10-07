@@ -31,15 +31,8 @@ export default function BasicMenu() {
       })
       .then((res) => {
         setNotification(res.data.notify)
-
-        // let notify = notification
-        // let reverseNotification = notify.reverse()
-        // console.log(reverseNotification)
-        // setNotification(reverseNotification)
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch((err) => {})
   }, [])
 
   const handleClose = () => {
@@ -57,11 +50,9 @@ export default function BasicMenu() {
       })
       .then((res) => {
         let notif = notification
-        console.log(res.data)
         for (let i = 0; i < notif.length; i++) {
           if (notif[i]._id === id) {
             notif[i].isSeen = true
-            console.log(notif)
           }
         }
         setNotification(notif)
@@ -78,9 +69,7 @@ export default function BasicMenu() {
       .get('https://kidsio.herokuapp.com/notifications/updateUsers', {
         headers: headers,
       })
-      .then((res) => {
-        console.log(res.data)
-      })
+      .then((res) => {})
   }
 
   return (

@@ -69,7 +69,6 @@ const Login = () => {
           History.push('/')
           toast.success('login successful')
         } else {
-          console.log(data.error)
           toast.error(res.data.error)
         }
       })

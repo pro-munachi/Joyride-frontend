@@ -44,11 +44,9 @@ const Forgot = () => {
     const data = {
       email: email,
     }
-    console.log(data)
     axios
       .post('http://kidsio.herokuapp.com/users/forgot', data)
       .then((res) => {
-        console.log(res.data)
         setLoading(false)
         if (res.data.hasError === false) {
           setEmail('')
