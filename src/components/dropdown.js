@@ -31,6 +31,14 @@ export default function BasicMenu() {
       })
       .then((res) => {
         setNotification(res.data.notify)
+
+        // let notify = notification
+        // let reverseNotification = notify.reverse()
+        // console.log(reverseNotification)
+        // setNotification(reverseNotification)
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }, [])
 

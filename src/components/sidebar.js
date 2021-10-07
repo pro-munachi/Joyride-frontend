@@ -23,6 +23,8 @@ import ControlledAccordions from './accordion'
 import BasicMenu from './dropdown'
 import '../style/sidebar.css'
 import logo from '../images/cover.png'
+import Modals from './modal'
+import CreateOrder from '../pages/CreateOrder'
 
 const drawerWidth = 240
 
@@ -104,6 +106,13 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         <ControlledAccordions />
+        <Modals
+          head={'Create Order'}
+          text={'Create an order'}
+          secondaryText={'Fill details to change your password'}
+        >
+          <CreateOrder />
+        </Modals>
         {[
           { name: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
           { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
