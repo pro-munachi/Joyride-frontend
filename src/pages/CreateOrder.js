@@ -63,84 +63,79 @@ const CreateOrder = () => {
   }
 
   return (
-    <div className='containers'>
-      <form className='forms' onSubmit={handleSubmit}>
+    <div className='form-containers'>
+      <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
-        <label className='label'>
+        <label>
           Address From
           <input
             type='text'
             required
             value={addressFrom}
             onChange={(e) => setAddressFrom(e.target.value)}
-            className='input'
             placeholder='Address From'
           />
         </label>
-        <label className='label'>
+        <label>
           Address To
           <input
             type='text'
             required
             value={addressTo}
             onChange={(e) => setAddressTo(e.target.value)}
-            className='input'
             placeholder='Address To'
           />
         </label>
-        <label className='label'>
+        <label>
           Payment Method
           <input
             type='text'
             required
             value={paymentMethod}
             onChange={(e) => setPaymentMethod(e.target.value)}
-            className='input'
             placeholder='Payment Method'
           />
         </label>
-        <label className='label'>
+        <label>
           Name
           <input
             type='text'
             required
-            className='input'
             placeholder='Name'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <label className='label'>
+        <label>
           Price
           <input
             type='number'
             required
-            className='input'
             placeholder='Price'
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
         </label>
-        <button onClick={onclick}>Add</button>
-        <label className='label'>
+        <button onClick={onclick} className='add-order'>
+          Add
+        </button>
+        <label>
           Shipping Price
           <input
             type='number'
             required
             value={shippingPrice}
             onChange={(e) => setShippingPrice(e.target.value)}
-            className='input'
             placeholder='Shipping Price'
           />
         </label>
-        <label className='label'>
+        <label>
           Tax Price
           <input
             type='number'
             required
             value={taxPrice}
             onChange={(e) => setTaxPrice(e.target.value)}
-            className='input'
             placeholder='Tax Price'
           />
         </label>
