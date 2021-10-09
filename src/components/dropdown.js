@@ -6,8 +6,10 @@ import MenuItem from '@mui/material/MenuItem'
 import Divider from '@material-ui/core/Divider'
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
 import MessageIcon from '@mui/icons-material/Message'
+import { ToastContainer, toast } from 'react-toastify'
 
 import '../style/sidebar.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -69,7 +71,9 @@ export default function BasicMenu() {
       .get('https://kidsio.herokuapp.com/notifications/updateUsers', {
         headers: headers,
       })
-      .then((res) => {})
+      .then((res) => {
+        toast.success('All notifications have been marked as read')
+      })
   }
 
   return (
@@ -112,6 +116,7 @@ export default function BasicMenu() {
             </MenuItem>
           )
         })}
+        <ToastContainer />
       </Menu>
     </div>
   )

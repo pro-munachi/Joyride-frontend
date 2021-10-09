@@ -143,14 +143,13 @@ const CreateOrder = () => {
             placeholder='Tax Price'
           />
         </label>
-
-        <ToastContainer />
         <div>
           <button disabled={loading}>
             {loading ? <CircularIndeterminate /> : 'Create Order'}
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   )
 }
