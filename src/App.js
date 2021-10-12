@@ -15,8 +15,8 @@ function App() {
         <Route path='/auth/signup' component={Signup} />
         <Route path='/auth/reset-password/:token' component={Reset} />
         <Route path='/auth/forgot-password' component={Forgot} />
-        <Route path='/' component={ClippedDrawer} exact />
-        {/* <Route path='/dashboard' component={Dashboard} exact /> */}
+        <Route path='/' component={Dashboard} exact />
+        <Route path='/dashboard' component={Dashboard} exact />
       </div>
     </BrowserRouter>
   )

@@ -50,7 +50,6 @@ function ResponsiveDrawer(props) {
           <p>{localStorage.getItem('name')}</p>
         </div>
         <Divider />
-        <ControlledAccordions />
         {[
           { name: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
           { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },

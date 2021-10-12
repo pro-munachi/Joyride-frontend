@@ -17,6 +17,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
+import PasswordIcon from '@mui/icons-material/Password'
+import CreateIcon from '@mui/icons-material/Create'
 
 import { NavLink } from 'react-router-dom'
 import ControlledAccordions from './accordion'
@@ -25,6 +27,7 @@ import '../style/sidebar.css'
 import logo from '../images/cover.png'
 import Modals from './modal'
 import CreateOrder from '../pages/CreateOrder'
+import ChangePassword from '../pages/ChangePassword'
 
 const drawerWidth = 240
 
@@ -44,15 +47,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
       background: 'white',
       color: 'black',
-    },
-  },
-
-  button: {
-    '&:hover': {
-      backgroundColor: '#379683',
-    },
-    '&.active': {
-      background: '#379683',
     },
   },
 
@@ -105,14 +99,18 @@ function ResponsiveDrawer(props) {
       </div>
       <Divider />
       <List>
-        <ControlledAccordions />
-        <Modals
-          head={'Create Order'}
-          text={'Create an order'}
-          secondaryText={'Fill details to change your password'}
-        >
-          <CreateOrder />
-        </Modals>
+        <div className='modal-container'>
+          <CreateIcon className='modal-icon' />
+          <div className='modal-div'>
+            <Modals
+              head={'Create Order'}
+              text={'Create an order'}
+              secondaryText={'Fill details to change your password'}
+            >
+              <CreateOrder />
+            </Modals>
+          </div>
+        </div>
         {[
           { name: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
           { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
@@ -129,6 +127,19 @@ function ResponsiveDrawer(props) {
             <ListItemText primary={text.name} className={classes.name} />
           </ListItem>
         ))}
+        <Divider />
+        <div className='modal-container'>
+          <PasswordIcon className='modal-icon' />
+          <div className='modal-div'>
+            <Modals
+              head={'Change Password'}
+              text={'Change Password'}
+              secondaryText={'Fill details to change your password'}
+            >
+              <ChangePassword />
+            </Modals>
+          </div>
+        </div>
       </List>
     </div>
   )

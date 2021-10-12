@@ -23,6 +23,18 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     height: 250,
   },
+  button: {
+    height: '50px',
+    cursor: 'pointer',
+  },
+
+  list: {
+    height: '100%',
+  },
+
+  listItems: {
+    margin: 'auto',
+  },
 }))
 
 export default function Modals(props) {
@@ -39,9 +51,9 @@ export default function Modals(props) {
 
   return (
     <div>
-      <List>
-        <ListItem button onClick={handleOpen}>
-          <ListItemText primary={props.head} />
+      <List className={classes.button}>
+        <ListItem onClick={handleOpen} className={classes.List}>
+          <ListItemText primary={props.head} className={classes.listItems} />
         </ListItem>
       </List>
       <Modal

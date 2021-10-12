@@ -103,14 +103,14 @@ export default function BasicMenu() {
         </div>
         {notification.map((item) => {
           return item.isSeen === false ? (
-            <div className='notify-menu'>
-              <MenuItem key={item.id} onClick={() => onClick(item._id)}>
+            <div className='notify-menu' key={item._id}>
+              <MenuItem onClick={() => onClick(item._id)}>
                 <MessageIcon className='notify-icon' />
                 <p className='notify-text'>{item.message}</p>
               </MenuItem>
             </div>
           ) : (
-            <MenuItem key={item.id} onClick={() => onClick(item._id)}>
+            <MenuItem key={item._id} onClick={() => onClick(item._id)}>
               <MessageIcon className='notify-icon' />
               <p className='notify-text'>{item.message}</p>
             </MenuItem>

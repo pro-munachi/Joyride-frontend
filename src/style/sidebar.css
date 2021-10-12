@@ -4,6 +4,25 @@
   font-size: 0.8rem;
 }
 
+.MuiAppBar-colorPrimary {
+  background: '#05386b';
+  color: black;
+}
+
+.modal-container {
+  width: 87%;
+  margin: auto;
+  display: flex;
+}
+
+.modal-icon {
+  margin-top: 15px;
+}
+
+.modal-div {
+  margin-left: 15px;
+}
+
 .side-header {
   color: black;
   display: flex;
