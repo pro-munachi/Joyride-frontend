@@ -43,8 +43,9 @@ const CreateOrder = () => {
   }
 
   const handleSubmit = (e) => {
-    setAllItems(items)
     e.preventDefault()
+
+    onclick()
 
     const data = {
       addressFrom: addressFrom,
@@ -64,19 +65,23 @@ const CreateOrder = () => {
     }
     setLoading(true)
     axios
-      .post('http://kidsio.herokuapp.com/orders/orderProduct', data, {
+      .post('http://kidsio.herokuapp.com/orders/orderProducts', data, {
         headers: headers,
       })
       .then((res) => {
-        setLoading(false)
-        setPrice('')
-        setName('')
-        setShippingPrice('')
-        setTaxPrice('')
-        setAddressFrom('')
-        setAddressTo('')
-        setPaymentMethod('')
-        toast.success('Your order has been created successfully')
+        if (res.data.hasError === false) {
+          setLoading(false)
+          setPrice('')
+          setName('')
+          setShippingPrice('')
+          setTaxPrice('')
+          setAddressFrom('')
+          setAddressTo('')
+          setPaymentMethod('')
+          toast.success('Your order has been created successfully')
+        } else {
+          toast.error(res.data.message)
+        }
       })
       .catch((err) => {
         setLoading(false)
@@ -109,7 +114,7 @@ const CreateOrder = () => {
               onChange={(e) => setPrice(e.target.value)}
             />
           </label>
-          <div>
+          <div className='div1'>
             <button type='button' onClick={changeClick}>
               Go back
             </button>

@@ -1,0 +1,17 @@
+.css-1wvnaxz-MuiTableCell-root.MuiTableCell-head {
+  background-color: #05386b !important;
+}
+
+/* dropdown */
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-size: 11px !important;
+}
+
+.styles {
+  padding: 10px 15px;
+  list-style: none;
+  text-decoration: none;
+  color: #05386b;
+  font-size: 11px;
+}

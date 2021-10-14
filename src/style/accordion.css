@@ -1,3 +1,17 @@
 .MuiSvgIcon-root {
   color: white;
 }
+
+.accordion-container {
+  width: 100%;
+  margin: auto;
+  background: #05386b;
+  color: white;
+  border: none;
+}
+
+.accordion-container p {
+  margin-left: 30px;
+  font-size: 17px;
+  color: white;
+}

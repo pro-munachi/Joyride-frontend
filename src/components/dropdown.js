@@ -34,7 +34,9 @@ export default function BasicMenu() {
       .then((res) => {
         setNotification(res.data.notify)
       })
-      .catch((err) => {})
+      .catch((err) => {
+        toast.error('cannot load notifications')
+      })
   }, [])
 
   const handleClose = () => {
@@ -58,6 +60,10 @@ export default function BasicMenu() {
           }
         }
         setNotification(notif)
+        toast.success('Notification has been marked as read')
+      })
+      .catch((err) => {
+        toast.error('sorry something went wrong')
       })
   }
 
@@ -73,6 +79,9 @@ export default function BasicMenu() {
       })
       .then((res) => {
         toast.success('All notifications have been marked as read')
+      })
+      .catch((err) => {
+        toast.error('sorry something went wrong')
       })
   }
 

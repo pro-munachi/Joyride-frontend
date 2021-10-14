@@ -50,7 +50,22 @@
   margin: 20px auto;
 }
 
+.form-containers form .div1 {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 20px auto;
+}
+
 .form-containers form div button {
+  width: 45%;
+  height: 30px;
+  background-color: #05386b;
+  color: white;
+  border: none;
+  font-size: 13px;
+}
+.form-containers form .div1 button {
   width: 45%;
   height: 30px;
   background-color: #05386b;

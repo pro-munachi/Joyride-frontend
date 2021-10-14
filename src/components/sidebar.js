@@ -21,19 +21,22 @@ import PasswordIcon from '@mui/icons-material/Password'
 import CreateIcon from '@mui/icons-material/Create'
 
 import { NavLink } from 'react-router-dom'
-import ControlledAccordions from './accordion'
+import SimpleAccordion from './accordion'
 import BasicMenu from './dropdown'
 import '../style/sidebar.css'
 import logo from '../images/cover.png'
 import Modals from './modal'
+import AccordionSummary from './accordion'
 import CreateOrder from '../pages/CreateOrder'
 import ChangePassword from '../pages/ChangePassword'
+import Orders from '../pages/Orders'
 
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    maxWidth: '100%',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -52,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
   name: {
     fontSize: theme.typography.pxToRem(14),
+    marginLeft: '-3px',
   },
 
   icon: {
@@ -99,6 +103,24 @@ function ResponsiveDrawer(props) {
       </div>
       <Divider />
       <List>
+        <span>
+          {localStorage.getItem('admin') === 'true' && (
+            <>
+              <SimpleAccordion background={'#031c35'}>
+                <div className='side-accordion'>
+                  <NavLink to='/users' className='side-link'>
+                    All Users
+                  </NavLink>
+                  <NavLink to='/orders' className='side-link'>
+                    All Orders
+                  </NavLink>
+                </div>
+              </SimpleAccordion>
+              <Divider />
+            </>
+          )}
+        </span>
+        <Divider />
         <div className='modal-container'>
           <CreateIcon className='modal-icon' />
           <div className='modal-div'>

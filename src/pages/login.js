@@ -57,17 +57,21 @@ const Login = () => {
     axios
       .post('https://kidsio.herokuapp.com/users/login', data, headers)
       .then((res) => {
+        console.log(res.data)
         setLoading(false)
         if (res.data.hasError === false) {
-          setEmail('')
-          setPassword('')
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('name', res.data.displayName)
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('pic', res.data.profilePic)
-          History.push('/')
+          localStorage.setItem('admin', res.data.isAdmin)
           toast.success('login successful')
+          window.setTimeout(() => {
+            History.push('/')
+            setEmail('')
+            setPassword('')
+          }, 2000)
         } else {
           toast.error(res.data.error)
         }

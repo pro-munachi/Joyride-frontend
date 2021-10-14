@@ -1,0 +1,24 @@
+.user-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-container .user-profile {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.user-container .user-profile .user-image {
+  max-width: 220px;
+  max-height: 150px;
+}
+
+.user-container .user-profile .user-image img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.user-container .user-profile .user-details {
+  margin: auto 29px;
+}
