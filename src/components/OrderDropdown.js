@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 import '../style/user.css'
 
-export default function PositionedMenu({ id }) {
+export default function OrderDropdown({ id }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -24,7 +24,7 @@ export default function PositionedMenu({ id }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .delete(`https://kidsio.herokuapp.com/users/delete/${id}`, {
+      .delete(`https://kidsio.herokuapp.com/orders/delete/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -62,15 +62,7 @@ export default function PositionedMenu({ id }) {
         }}
       >
         <Button onClick={handleDelete} className='styles'>
-          Delete User
-        </Button>
-        <Divider />
-        <Button component={NavLink} to={`/users/${id}`} className='styles'>
-          Edit User
-        </Button>
-        <Divider />
-        <Button component={NavLink} to={`/users/${id}`} className='styles'>
-          View User
+          Delete Order
         </Button>
       </Menu>
     </div>

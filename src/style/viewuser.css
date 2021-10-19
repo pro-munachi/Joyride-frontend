@@ -5,13 +5,31 @@
 
 .user-container .user-profile {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  padding-bottom: 89px;
+  width: 79%;
+  margin: auto;
+}
+
+.user-container .user-profile .h2 {
+  text-align: left;
+  font-size: 28px;
+  padding: 19px 0;
+  color: #05386b;
+}
+
+.user-container .user-profile .user-contact {
+  display: flex;
+}
+
+.user-container .user-profile .user-contact .empty {
+  display: block;
+  width: 50px;
 }
 
 .user-container .user-profile .user-image {
-  max-width: 220px;
-  max-height: 150px;
+  width: 220px;
+  height: 150px;
 }
 
 .user-container .user-profile .user-image img {
@@ -19,6 +37,55 @@
   border-radius: 5px;
 }
 
-.user-container .user-profile .user-details {
-  margin: auto 29px;
+.user-container .user-profile .user-details div {
+  font-size: 18px;
+  color: #05386b;
+}
+
+.user-container .user-profile .user-details div span {
+  font-size: 18px;
+  text-transform: capitalize;
+  color: black;
+}
+
+.user-container .user-profile .user-details p {
+  font-size: 13px;
+  color: #05386b;
+}
+
+.user-container .user-profile .user-details p span {
+  color: black;
+}
+
+.user-container .user-orders .h2 {
+  text-align: center;
+  font-size: 28px;
+  padding: 19px 0;
+  color: #05386b;
+  padding: 35px 0;
+}
+
+@media (max-width: 950px) {
+  .user-container .user-profile {
+    padding-bottom: 59px;
+  }
+  .user-container .user-profile .user-contact {
+    height: 100%;
+    flex-direction: column;
+  }
+  .user-container .user-profile .user-image {
+    margin: auto;
+  }
+  .user-container .user-profile .user-contact .empty {
+    display: block;
+    height: 110px;
+  }
+  .user-container .user-profile .user-details {
+    width: 215px;
+    margin: auto;
+    border-bottom: 1px solid #05386b;
+  }
+  .user-container .user-profile .h2 {
+    text-align: center;
+  }
 }

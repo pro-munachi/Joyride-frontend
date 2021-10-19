@@ -3,6 +3,18 @@
 .MuiTypography-body1 {
   font-size: 0.8rem;
 }
+/* 
+.makeStyles-drawerPaper-55 {
+  height: 100vh !important;
+  border: 2px solid black !important;
+  overflow-y: hidden !important;
+} */
+
+/* .user-container {
+  height: 100vh !important;
+  border: 2px solid black !important;
+  overflow-y: scroll !important;
+} */
 
 .MuiAppBar-colorPrimary {
   background: white !important;
