@@ -1,7 +1,7 @@
 import { Route, BrowserRouter } from 'react-router-dom'
 
 import Dashboard from './pages/dashboard'
-import ClippedDrawer from './components/drawer'
+// import ClippedDrawer from './components/drawer'
 import Login from './pages/login'
 import Signup from './pages/signup'
 import Forgot from './pages/ForgotPassword'

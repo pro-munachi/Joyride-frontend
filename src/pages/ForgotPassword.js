@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
 import axios from 'axios'
-import { useHistory, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import '../style/login.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -32,8 +32,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Forgot = () => {
-  const History = useHistory()
-
   const classes = useStyles()
   // create state variables for each input
   const [email, setEmail] = useState('')

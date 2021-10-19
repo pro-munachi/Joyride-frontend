@@ -13,7 +13,6 @@ import Paper from '@mui/material/Paper'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
-import { Rowing } from '@material-ui/icons'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,12 +41,11 @@ const ViewUser = () => {
   let { id } = useParams()
   console.log(id)
 
-  const headers = {
-    'Content-Type': 'application/json',
-    authorization: `Bearer ${localStorage.getItem('token')}`,
-  }
-
   useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
     axios
       .get(`https://kidsio.herokuapp.com/users/${id}`, { headers: headers })
       .then((res) => {
@@ -56,9 +54,13 @@ const ViewUser = () => {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [id])
 
   useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
     axios
       .get(`https://kidsio.herokuapp.com/orders/user/${id}`, {
         headers: headers,
@@ -71,7 +73,7 @@ const ViewUser = () => {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [id])
 
   return (
     <ResponsiveDrawer>

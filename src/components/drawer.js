@@ -6,12 +6,12 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
+// import InboxIcon from '@mui/icons-material/MoveToInbox'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import MailIcon from '@mui/icons-material/Mail'
+// import MailIcon from '@mui/icons-material/Mail'
 import MenuIcon from '@mui/icons-material/Menu'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -20,12 +20,12 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
 import { NavLink } from 'react-router-dom'
-import ControlledAccordions from './accordion'
-import BasicMenu from './dropdown'
+// import ControlledAccordions from './accordion'
+// import BasicMenu from './dropdown'
 import '../style/sidebar.css'
-import logo from '../images/cover.png'
-import Modals from './modal'
-import CreateOrder from '../pages/CreateOrder'
+// import logo from '../images/cover.png'
+// import Modals from './modal'
+// import CreateOrder from '../pages/CreateOrder'
 
 const drawerWidth = 240
 
@@ -44,7 +44,7 @@ function ResponsiveDrawer(props) {
       <List>
         <div />
         <div className='side-image'>
-          <img alt='profile photo' src={localStorage.getItem('pic')} />
+          <img alt='profile' src={localStorage.getItem('pic')} />
         </div>
         <div className='user-name'>
           <p>{localStorage.getItem('name')}</p>

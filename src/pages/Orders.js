@@ -12,8 +12,8 @@ import Paper from '@mui/material/Paper'
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 import axios from 'axios'
-import PositionedMenu from '../components/ActiveDropdown'
-import PageLoader from '../components/pageloader'
+// import PositionedMenu from '../components/ActiveDropdown'
+// import PageLoader from '../components/pageloader'
 import OrderDropdown from '../components/OrderDropdown'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -37,11 +37,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }))
 
 const Orders = () => {
-  const [loading, setLoading] = useState(false)
   const [order, setOrder] = useState([])
 
   useEffect(() => {
-    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -49,7 +47,6 @@ const Orders = () => {
     axios
       .get('https://kidsio.herokuapp.com/orders/', { headers: headers })
       .then((res) => {
-        setLoading(false)
         console.log(res.data.orders)
         setOrder(res.data.orders)
       })
@@ -82,36 +79,45 @@ const Orders = () => {
                   <StyledTableCell>
                     {row.orderItems === []
                       ? null
+                      : row.orderItems.length === 1
+                      ? row.orderItems.map((item) => {
+                          return (
+                            <StyledTableCell key={item._id} align='left'>
+                              {item.price}
+                            </StyledTableCell>
+                          )
+                        })
                       : row.orderItems.map((item) => {
                           return (
-                            <>
-                              <StyledTableCell key={item._id}>
-                                {item.name}
-                              </StyledTableCell>
+                            <span key={item._id}>
+                              <StyledTableCell>{item.name}</StyledTableCell>
                               <br />
-                            </>
+                            </span>
                           )
                         })}
                   </StyledTableCell>
 
                   <StyledTableCell align='left'>
-                    {row.orderItems === [] ? null : row.orderItems.length ===
-                      0 ? (
-                      <StyledTableCell key={item._id} align='left'>
-                        {item.price}
-                      </StyledTableCell>
-                    ) : (
-                      row.orderItems.map((item) => {
-                        return (
-                          <>
+                    {row.orderItems === []
+                      ? null
+                      : row.orderItems.length === 1
+                      ? row.orderItems.map((item) => {
+                          return (
                             <StyledTableCell key={item._id} align='left'>
                               {item.price}
                             </StyledTableCell>
-                            <br />
-                          </>
-                        )
-                      })
-                    )}
+                          )
+                        })
+                      : row.orderItems.map((item) => {
+                          return (
+                            <span key={item._id}>
+                              <StyledTableCell align='left'>
+                                {item.price}
+                              </StyledTableCell>
+                              <br />
+                            </span>
+                          )
+                        })}
                   </StyledTableCell>
 
                   <StyledTableCell align='left'>

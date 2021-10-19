@@ -13,7 +13,7 @@ import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 import axios from 'axios'
 import PositionedMenu from '../components/ActiveDropdown'
-import PageLoader from '../components/pageloader'
+// import PageLoader from '../components/pageloader'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,16 +35,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein }
-}
-
 const Users = () => {
-  const [loading, setLoading] = useState(false)
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -52,7 +46,6 @@ const Users = () => {
     axios
       .get('https://kidsio.herokuapp.com/users/', { headers: headers })
       .then((res) => {
-        setLoading(false)
         console.log(res.data)
         setUsers(res.data)
       })

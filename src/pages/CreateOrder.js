@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { React, useState, useEffect } from 'react'
+import { React, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { ToastContainer, toast } from 'react-toastify'
 
 import '../style/createorder.css'
@@ -20,13 +18,7 @@ const CreateOrder = () => {
   const [add, setAdd] = useState(false)
   const [allItems, setAllItems] = useState([])
 
-  let items = []
-
   const onclick = () => {
-    // items.push({
-    //   name: name,
-    //   price: price,
-    // })
     let item = {
       name: name,
       price: price,

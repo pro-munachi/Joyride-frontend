@@ -26,10 +26,10 @@ import BasicMenu from './dropdown'
 import '../style/sidebar.css'
 import logo from '../images/cover.png'
 import Modals from './modal'
-import AccordionSummary from './accordion'
+// import AccordionSummary from './accordion'
 import CreateOrder from '../pages/CreateOrder'
 import ChangePassword from '../pages/ChangePassword'
-import Orders from '../pages/Orders'
+// import Orders from '../pages/Orders'
 
 const drawerWidth = 240
 
@@ -96,7 +96,7 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <div className='side-image'>
-        <img alt='profile photo' src={localStorage.getItem('pic')} />
+        <img alt='profile' src={localStorage.getItem('pic')} />
       </div>
       <div className='user-name'>
         <p>{localStorage.getItem('name')}</p>
