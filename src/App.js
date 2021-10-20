@@ -9,6 +9,8 @@ import Reset from './pages/ResetPassword'
 import Orders from './pages/Orders'
 import Users from './pages/Users'
 import ViewUser from './pages/ViewUser'
+import EditUser from './pages/EditUser'
+import ViewOrder from './pages/ViewOrder'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path='/orders' component={Orders} exact />
           <Route path='/users' component={Users} exact />
           <Route path='/users/:id' component={ViewUser} exact />
+          <Route path='/users/:id/edit' component={EditUser} exact />
+          <Route path='/orders/:id' component={ViewOrder} exact />
           <Route path='/dashboard' component={Dashboard} exact />
         </div>
       </BrowserRouter>

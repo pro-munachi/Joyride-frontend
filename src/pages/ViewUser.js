@@ -10,6 +10,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
@@ -75,6 +77,25 @@ const ViewUser = () => {
       })
   }, [id])
 
+  const adminHandler = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get(`https://kidsio.herokuapp.com/users/admin/${id}`, {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          toast.success('User has been made an admin')
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <ResponsiveDrawer>
       {' '}
@@ -99,6 +120,11 @@ const ViewUser = () => {
               <p>
                 Created At: <span>{user.createdAt}</span>
               </p>
+              {user.isAdmin ? null : (
+                <button onClick={adminHandler} className='view-button'>
+                  Make Admin
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -110,13 +136,15 @@ const ViewUser = () => {
             <Table sx={{ minWidth: 700 }} aria-label='customized table'>
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>User Email</StyledTableCell>
+                  <StyledTableCell>Order Name</StyledTableCell>
+                  <StyledTableCell align='left'>Order Price</StyledTableCell>
+                  <StyledTableCell align='left'>Address From</StyledTableCell>
+                  <StyledTableCell align='left'>Address To</StyledTableCell>
                   <StyledTableCell align='left'>Created At</StyledTableCell>
-                  <StyledTableCell align='left'>Is Admin</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
+                  <StyledTableCell align='left'>
+                    Dispatched Order
+                  </StyledTableCell>
+                  <StyledTableCell align='left'>Total Price</StyledTableCell>
                 </TableRow>
               </TableHead>
 
@@ -126,9 +154,17 @@ const ViewUser = () => {
                     <StyledTableCell>
                       {row.orderItems === []
                         ? null
+                        : row.orderItems.length === 1
+                        ? row.orderItems.map((item) => {
+                            return (
+                              <StyledTableCell key={item._id} align='left'>
+                                {item.name}
+                              </StyledTableCell>
+                            )
+                          })
                         : row.orderItems.map((item) => {
                             return (
-                              <StyledTableCell key={item._id}>
+                              <StyledTableCell key={item._id} align='left'>
                                 {item.name}
                               </StyledTableCell>
                             )
@@ -172,6 +208,7 @@ const ViewUser = () => {
           </TableContainer>
         </div>
       </div>
+      <ToastContainer />
     </ResponsiveDrawer>
   )
 }

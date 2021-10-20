@@ -53,6 +53,15 @@
   color: #05386b;
 }
 
+.user-container .user-profile .user-details button {
+  width: 110px;
+  height: 30px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid #05386b;
+  border-top-right-radius: 9px;
+}
+
 .user-container .user-profile .user-details p span {
   color: black;
 }
@@ -84,6 +93,10 @@
     width: 215px;
     margin: auto;
     border-bottom: 1px solid #05386b;
+  }
+
+  .user-container .user-profile .user-details button {
+    margin: 0 0 10px 0;
   }
   .user-container .user-profile .h2 {
     text-align: center;

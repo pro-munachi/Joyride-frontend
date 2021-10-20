@@ -7,6 +7,8 @@ import Divider from '@material-ui/core/Divider'
 import { NavLink } from 'react-router-dom'
 
 import '../style/user.css'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function PositionedMenu({ id }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -29,9 +31,11 @@ export default function PositionedMenu({ id }) {
       })
       .then((res) => {
         console.log(res.data)
+        toast.success('User Deleted Successfully')
       })
       .catch((err) => {
         console.log(err)
+        toast.error('Sorry something went wrong')
       })
   }
 
@@ -61,18 +65,22 @@ export default function PositionedMenu({ id }) {
           horizontal: 'left',
         }}
       >
-        <Button onClick={handleDelete} className='styles'>
+        <Button
+          onClick={() => {
+            if (window.confirm('Are you sure you want to delete this user?')) {
+              handleDelete()
+            }
+          }}
+          className='styles'
+        >
           Delete User
-        </Button>
-        <Divider />
-        <Button component={NavLink} to={`/users/${id}`} className='styles'>
-          Edit User
         </Button>
         <Divider />
         <Button component={NavLink} to={`/users/${id}`} className='styles'>
           View User
         </Button>
       </Menu>
+      <ToastContainer />
     </div>
   )
 }

@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import TablePagination from '@mui/material/TablePagination'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -37,6 +38,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Users = () => {
   const [users, setUsers] = useState([])
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
   useEffect(() => {
     const headers = {
@@ -53,6 +56,16 @@ const Users = () => {
         console.log(err)
       })
   }, [])
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(0)
+  }
+
   return (
     <div className='user'>
       <ResponsiveDrawer>
@@ -70,31 +83,42 @@ const Users = () => {
             </TableHead>
 
             <TableBody>
-              {users.map((row) => (
-                <StyledTableRow key={row._id}>
-                  <StyledTableCell component='th' scope='row'>
-                    {row.email}
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>
-                    {row.displayName}
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>
-                    {row.createdAt}
-                  </StyledTableCell>
-                  {row.isAdmin ? (
-                    <StyledTableCell align='left'>Yes</StyledTableCell>
-                  ) : (
-                    <StyledTableCell align='left'>No</StyledTableCell>
-                  )}
+              {users
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <StyledTableRow key={row._id}>
+                    <StyledTableCell component='th' scope='row'>
+                      {row.email}
+                    </StyledTableCell>
+                    <StyledTableCell align='left'>
+                      {row.displayName}
+                    </StyledTableCell>
+                    <StyledTableCell align='left'>
+                      {row.createdAt}
+                    </StyledTableCell>
+                    {row.isAdmin ? (
+                      <StyledTableCell align='left'>Yes</StyledTableCell>
+                    ) : (
+                      <StyledTableCell align='left'>No</StyledTableCell>
+                    )}
 
-                  <StyledTableCell align='left' typeof='button'>
-                    <PositionedMenu id={row._id} />
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+                    <StyledTableCell align='left' typeof='button'>
+                      <PositionedMenu id={row._id} />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
+        <TablePagination
+          component='div'
+          count={users.length}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          className='table'
+        />
       </ResponsiveDrawer>
     </div>
   )
