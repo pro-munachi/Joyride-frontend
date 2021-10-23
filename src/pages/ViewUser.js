@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
+import PageLoader from '../components/pageloader'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,11 +40,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const ViewUser = () => {
   const [user, setUser] = useState([])
   const [order, setOrder] = useState([])
+  const [loading, setLoading] = useState(false)
 
   let { id } = useParams()
   console.log(id)
 
   useEffect(() => {
+    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -52,13 +55,16 @@ const ViewUser = () => {
       .get(`https://kidsio.herokuapp.com/users/${id}`, { headers: headers })
       .then((res) => {
         setUser(res.data)
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err)
+        setLoading(false)
       })
   }, [id])
 
   useEffect(() => {
+    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -68,11 +74,13 @@ const ViewUser = () => {
         headers: headers,
       })
       .then((res) => {
+        setLoading(false)
         if (res.data.hasError === false) {
           setOrder(res.data.slice)
         }
       })
       .catch((err) => {
+        setLoading(false)
         console.log(err)
       })
   }, [id])
@@ -99,116 +107,120 @@ const ViewUser = () => {
   return (
     <ResponsiveDrawer>
       {' '}
-      <div className='user-container'>
-        <div className='user-profile'>
-          <div className='h2'>{user.displayName}'s Profile</div>
-          <div className='user-contact'>
-            <div className='user-image'>
-              <img src={user.profilePic} alt='user' />
-            </div>
-            <div className='empty' />
-            <div className='user-details'>
-              <div>
-                Display Name: <span>{user.displayName}</span>
+      {loading ? (
+        <PageLoader />
+      ) : (
+        <div className='user-container'>
+          <div className='user-profile'>
+            <div className='h2'>{user.displayName}'s Profile</div>
+            <div className='user-contact'>
+              <div className='user-image'>
+                <img src={user.profilePic} alt='user' />
               </div>
-              <p>
-                Email: <span>{user.email}</span>
-              </p>
-              <p>
-                Is Admin: <span>{user.isAdmin ? 'True' : 'False'}</span>
-              </p>
-              <p>
-                Created At: <span>{user.createdAt}</span>
-              </p>
-              {user.isAdmin ? null : (
-                <button onClick={adminHandler} className='view-button'>
-                  Make Admin
-                </button>
-              )}
+              <div className='empty' />
+              <div className='user-details'>
+                <div>
+                  Display Name: <span>{user.displayName}</span>
+                </div>
+                <p>
+                  Email: <span>{user.email}</span>
+                </p>
+                <p>
+                  Is Admin: <span>{user.isAdmin ? 'True' : 'False'}</span>
+                </p>
+                <p>
+                  Created At: <span>{user.createdAt}</span>
+                </p>
+                {user.isAdmin ? null : (
+                  <button onClick={adminHandler} className='view-button'>
+                    Make Admin
+                  </button>
+                )}
+              </div>
             </div>
           </div>
+          <Divider />
+          <div className='user-orders'>
+            <div className='h2'>{user.displayName}'s Latest Orders</div>
+
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Order Name</StyledTableCell>
+                    <StyledTableCell align='left'>Order Price</StyledTableCell>
+                    <StyledTableCell align='left'>Address From</StyledTableCell>
+                    <StyledTableCell align='left'>Address To</StyledTableCell>
+                    <StyledTableCell align='left'>Created At</StyledTableCell>
+                    <StyledTableCell align='left'>
+                      Dispatched Order
+                    </StyledTableCell>
+                    <StyledTableCell align='left'>Total Price</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+
+                <TableBody>
+                  {order.map((row) => (
+                    <StyledTableRow key={row._id}>
+                      <StyledTableCell>
+                        {row.orderItems === []
+                          ? null
+                          : row.orderItems.length === 1
+                          ? row.orderItems.map((item) => {
+                              return (
+                                <StyledTableCell key={item._id} align='left'>
+                                  {item.name}
+                                </StyledTableCell>
+                              )
+                            })
+                          : row.orderItems.map((item) => {
+                              return (
+                                <StyledTableCell key={item._id} align='left'>
+                                  {item.name}
+                                </StyledTableCell>
+                              )
+                            })}
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        {row.orderItems === []
+                          ? null
+                          : row.orderItems.map((item) => {
+                              return (
+                                <StyledTableCell key={item._id} align='left'>
+                                  {item.price}
+                                </StyledTableCell>
+                              )
+                            })}
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        {row.addressFrom}
+                      </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {row.addressTo}
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        {row.createdAt}
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        {row.dispatchOrder ? 'True' : 'False'}
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        {row.totalPrice}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+          <ToastContainer />
         </div>
-        <Divider />
-        <div className='user-orders'>
-          <div className='h2'>{user.displayName}'s Latest Orders</div>
-
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Order Name</StyledTableCell>
-                  <StyledTableCell align='left'>Order Price</StyledTableCell>
-                  <StyledTableCell align='left'>Address From</StyledTableCell>
-                  <StyledTableCell align='left'>Address To</StyledTableCell>
-                  <StyledTableCell align='left'>Created At</StyledTableCell>
-                  <StyledTableCell align='left'>
-                    Dispatched Order
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>Total Price</StyledTableCell>
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-                {order.map((row) => (
-                  <StyledTableRow key={row._id}>
-                    <StyledTableCell>
-                      {row.orderItems === []
-                        ? null
-                        : row.orderItems.length === 1
-                        ? row.orderItems.map((item) => {
-                            return (
-                              <StyledTableCell key={item._id} align='left'>
-                                {item.name}
-                              </StyledTableCell>
-                            )
-                          })
-                        : row.orderItems.map((item) => {
-                            return (
-                              <StyledTableCell key={item._id} align='left'>
-                                {item.name}
-                              </StyledTableCell>
-                            )
-                          })}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {row.orderItems === []
-                        ? null
-                        : row.orderItems.map((item) => {
-                            return (
-                              <StyledTableCell key={item._id} align='left'>
-                                {item.price}
-                              </StyledTableCell>
-                            )
-                          })}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {row.addressFrom}
-                    </StyledTableCell>
-                    <StyledTableCell align='left'>
-                      {row.addressTo}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {row.createdAt}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {row.dispatchOrder ? 'True' : 'False'}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {row.totalPrice}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      </div>
-      <ToastContainer />
+      )}
     </ResponsiveDrawer>
   )
 }

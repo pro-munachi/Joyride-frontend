@@ -42,7 +42,7 @@ const Orders = () => {
   const [order, setOrder] = useState([])
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const [loading, setLoading] = useState[false]
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -75,7 +75,6 @@ const Orders = () => {
   return (
     <div className='user'>
       <ResponsiveDrawer>
-        {' '}
         {loading ? (
           <PageLoader />
         ) : (

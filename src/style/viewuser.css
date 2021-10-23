@@ -60,6 +60,7 @@
   background: transparent;
   border: 1px solid #05386b;
   border-top-right-radius: 9px;
+  cursor: pointer;
 }
 
 .user-container .user-profile .user-details p span {

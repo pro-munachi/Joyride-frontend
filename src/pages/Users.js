@@ -14,7 +14,7 @@ import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 import axios from 'axios'
 import PositionedMenu from '../components/ActiveDropdown'
-// import PageLoader from '../components/pageloader'
+import PageLoader from '../components/pageloader'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,8 +40,10 @@ const Users = () => {
   const [users, setUsers] = useState([])
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -51,9 +53,11 @@ const Users = () => {
       .then((res) => {
         console.log(res.data)
         setUsers(res.data)
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err)
+        setLoading(false)
       })
   }, [])
 
@@ -70,55 +74,59 @@ const Users = () => {
     <div className='user'>
       <ResponsiveDrawer>
         {' '}
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>User Email</StyledTableCell>
-                <StyledTableCell align='left'>Display Name</StyledTableCell>
-                <StyledTableCell align='left'>Created At</StyledTableCell>
-                <StyledTableCell align='left'>Is Admin</StyledTableCell>
-                <StyledTableCell align='left'>Action</StyledTableCell>
-              </TableRow>
-            </TableHead>
+        {loading ? (
+          <PageLoader />
+        ) : (
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>User Email</StyledTableCell>
+                  <StyledTableCell align='left'>Display Name</StyledTableCell>
+                  <StyledTableCell align='left'>Created At</StyledTableCell>
+                  <StyledTableCell align='left'>Is Admin</StyledTableCell>
+                  <StyledTableCell align='left'>Action</StyledTableCell>
+                </TableRow>
+              </TableHead>
 
-            <TableBody>
-              {users
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (
-                  <StyledTableRow key={row._id}>
-                    <StyledTableCell component='th' scope='row'>
-                      {row.email}
-                    </StyledTableCell>
-                    <StyledTableCell align='left'>
-                      {row.displayName}
-                    </StyledTableCell>
-                    <StyledTableCell align='left'>
-                      {row.createdAt}
-                    </StyledTableCell>
-                    {row.isAdmin ? (
-                      <StyledTableCell align='left'>Yes</StyledTableCell>
-                    ) : (
-                      <StyledTableCell align='left'>No</StyledTableCell>
-                    )}
+              <TableBody>
+                {users
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <StyledTableRow key={row._id}>
+                      <StyledTableCell component='th' scope='row'>
+                        {row.email}
+                      </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {row.displayName}
+                      </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {row.createdAt}
+                      </StyledTableCell>
+                      {row.isAdmin ? (
+                        <StyledTableCell align='left'>Yes</StyledTableCell>
+                      ) : (
+                        <StyledTableCell align='left'>No</StyledTableCell>
+                      )}
 
-                    <StyledTableCell align='left' typeof='button'>
-                      <PositionedMenu id={row._id} />
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          component='div'
-          count={users.length}
-          page={page}
-          onPageChange={handleChangePage}
-          rowsPerPage={rowsPerPage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          className='table'
-        />
+                      <StyledTableCell align='left' typeof='button'>
+                        <PositionedMenu id={row._id} />
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+              </TableBody>
+            </Table>
+            <TablePagination
+              component='div'
+              count={users.length}
+              page={page}
+              onPageChange={handleChangePage}
+              rowsPerPage={rowsPerPage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              className='table'
+            />
+          </TableContainer>
+        )}
       </ResponsiveDrawer>
     </div>
   )

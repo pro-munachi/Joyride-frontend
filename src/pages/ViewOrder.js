@@ -14,8 +14,7 @@ import TablePagination from '@mui/material/TablePagination'
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 // import PositionedMenu from '../components/ActiveDropdown'
-// import PageLoader from '../components/pageloader'
-import OrderDropdown from '../components/OrderDropdown'
+import PageLoader from '../components/pageloader'
 import { useParams } from 'react-router'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -40,14 +39,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Orders = () => {
   const [order, setOrder] = useState([])
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [loading, setLoading] = useState(false)
 
   const { id } = useParams()
 
   console.log(id)
 
   useEffect(() => {
+    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -57,9 +56,11 @@ const Orders = () => {
       .then((res) => {
         console.log(res.data)
         setOrder(res.data.order)
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err)
+        setLoading(false)
       })
   }, [])
 
@@ -67,30 +68,33 @@ const Orders = () => {
     <div className='user'>
       <ResponsiveDrawer>
         {' '}
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Order Name</StyledTableCell>
-                <StyledTableCell align='left'>Order Price</StyledTableCell>
-                <StyledTableCell align='left'>Address From</StyledTableCell>
-                <StyledTableCell align='left'>Address To</StyledTableCell>
-                <StyledTableCell align='left'>Time Of Order</StyledTableCell>
-                <StyledTableCell align='left'>
-                  Is Order Delivered?
-                </StyledTableCell>
-                <StyledTableCell align='left'>Is Order Paid?</StyledTableCell>
-                <StyledTableCell align='left'>Is Order Paid?</StyledTableCell>
-                <StyledTableCell align='left'>Total Price</StyledTableCell>
-                <StyledTableCell align='left'>Payment Method</StyledTableCell>
-                <StyledTableCell align='left'>Tax Price</StyledTableCell>
-              </TableRow>
-            </TableHead>
+        {loading ? (
+          <PageLoader />
+        ) : (
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Order Name</StyledTableCell>
+                  <StyledTableCell align='left'>Order Price</StyledTableCell>
+                  <StyledTableCell align='left'>Address From</StyledTableCell>
+                  <StyledTableCell align='left'>Address To</StyledTableCell>
+                  <StyledTableCell align='left'>Time Of Order</StyledTableCell>
+                  <StyledTableCell align='left'>
+                    Is Order Delivered?
+                  </StyledTableCell>
+                  <StyledTableCell align='left'>Is Order Paid?</StyledTableCell>
+                  <StyledTableCell align='left'>Is Order Paid?</StyledTableCell>
+                  <StyledTableCell align='left'>Total Price</StyledTableCell>
+                  <StyledTableCell align='left'>Payment Method</StyledTableCell>
+                  <StyledTableCell align='left'>Tax Price</StyledTableCell>
+                </TableRow>
+              </TableHead>
 
-            <TableBody>
-              <StyledTableRow key={order._id}>
-                <StyledTableCell>
-                  {/* {order.orderItems === []
+              <TableBody>
+                <StyledTableRow key={order._id}>
+                  <StyledTableCell>
+                    {/* {order.orderItems === []
                     ? null
                     : order.orderItems.map((item) => {
                         return (
@@ -99,10 +103,10 @@ const Orders = () => {
                           </StyledTableCell>
                         )
                       })} */}
-                </StyledTableCell>
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {/* {order.orderItems === []
+                  <StyledTableCell align='left'>
+                    {/* {order.orderItems === []
                     ? null
                     : order.orderItems.map((item) => {
                         return (
@@ -111,43 +115,46 @@ const Orders = () => {
                           </StyledTableCell>
                         )
                       })} */}
-                </StyledTableCell>
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.addressFrom}
-                </StyledTableCell>
-                <StyledTableCell align='left'>
-                  {order.addressTo}
-                </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.addressFrom}
+                  </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.addressTo}
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.createdAt}
-                </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.createdAt}
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.dispatchOrder ? 'Delivered' : 'Not delivered'}
-                </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.dispatchOrder ? 'Delivered' : 'Not delivered'}
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.ispaid ? 'Paid' : 'Not Paid'}
-                </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.ispaid ? 'Paid' : 'Not Paid'}
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.dispatchOrder ? 'Dispatched' : 'Not Dispatched'}
-                </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.dispatchOrder ? 'Dispatched' : 'Not Dispatched'}
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.totalPrice}
-                </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.totalPrice}
+                  </StyledTableCell>
 
-                <StyledTableCell align='left'>
-                  {order.paymentMethod}
-                </StyledTableCell>
-                <StyledTableCell align='left'>{order.taxPrice}</StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+                  <StyledTableCell align='left'>
+                    {order.paymentMethod}
+                  </StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.taxPrice}
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </ResponsiveDrawer>
     </div>
   )
