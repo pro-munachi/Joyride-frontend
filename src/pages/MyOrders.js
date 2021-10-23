@@ -15,7 +15,7 @@ import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 // import PositionedMenu from '../components/ActiveDropdown'
 // import PageLoader from '../components/pageloader'
-import OrderDropdown from '../components/OrderDropdown'
+import OrderUserDropdown from '../components/OrderUserDropdown'
 import PageLoader from '../components/pageloader'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -38,11 +38,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-const Orders = () => {
+const MyOrders = () => {
   const [order, setOrder] = useState([])
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const [loading, setLoading] = useState[false]
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -51,10 +51,12 @@ const Orders = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/orders/', { headers: headers })
+      .get('https://kidsio.herokuapp.com/orders/deleteByUser', {
+        headers: headers,
+      })
       .then((res) => {
-        console.log(res.data.orders)
-        setOrder(res.data.orders)
+        console.log(res.data)
+        setOrder(res.data.order)
         setLoading(false)
       })
       .catch((err) => {
@@ -75,7 +77,6 @@ const Orders = () => {
   return (
     <div className='user'>
       <ResponsiveDrawer>
-        {' '}
         {loading ? (
           <PageLoader />
         ) : (
@@ -165,7 +166,7 @@ const Orders = () => {
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        <OrderDropdown id={row._id} />
+                        <OrderUserDropdown id={row._id} />
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
@@ -187,4 +188,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default MyOrders

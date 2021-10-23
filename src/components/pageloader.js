@@ -1,8 +1,19 @@
-import React from 'react'
+import * as React from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import Box from '@mui/material/Box'
 import '../style/pageloader.css'
 
-const PageLoader = () => {
-  return <tbody className='loading'></tbody>
+export default function PageLoader() {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        position: 'relative',
+        top: '100%',
+      }}
+    >
+      <CircularProgress />
+    </Box>
+  )
 }
-
-export default PageLoader

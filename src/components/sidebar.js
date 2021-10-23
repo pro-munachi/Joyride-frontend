@@ -16,11 +16,13 @@ import Typography from '@material-ui/core/Typography'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import PersonIcon from '@mui/icons-material/Person'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import PasswordIcon from '@mui/icons-material/Password'
+// import PasswordIcon from '@mui/icons-material/Password'
 import CreateIcon from '@mui/icons-material/Create'
-
 import { NavLink } from 'react-router-dom'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+
 import SimpleAccordion from './accordion'
 import BasicMenu from './dropdown'
 import '../style/sidebar.css'
@@ -106,7 +108,11 @@ function ResponsiveDrawer(props) {
         <span>
           {localStorage.getItem('admin') === 'true' && (
             <>
-              <SimpleAccordion background={'#031c35'}>
+              <SimpleAccordion
+                background={'#031c35'}
+                name='Admin'
+                icon={<AdminPanelSettingsIcon />}
+              >
                 <div className='side-accordion'>
                   <NavLink to='/users' className='side-link'>
                     All Users
@@ -150,18 +156,29 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
         <Divider />
-        <div className='modal-container'>
-          <PasswordIcon className='modal-icon' />
-          <div className='modal-div'>
-            <Modals
-              head={'Change Password'}
-              text={'Change Password'}
-              secondaryText={'Fill details to change your password'}
-            >
-              <ChangePassword />
-            </Modals>
+        <SimpleAccordion
+          background={'#031c35'}
+          name={localStorage.getItem('name')}
+          icon={<PersonIcon />}
+        >
+          <div className='side-accordion'>
+            <div>
+              <div className='modal-div1'>
+                <Modals
+                  head={'Change Password'}
+                  text={'Change Password'}
+                  secondaryText={'Fill details to change your password'}
+                  color={'white'}
+                >
+                  <ChangePassword />
+                </Modals>
+              </div>
+              <NavLink to='/myorders/' className='side-link'>
+                My Orders
+              </NavLink>
+            </div>
           </div>
-        </div>
+        </SimpleAccordion>
       </List>
     </div>
   )

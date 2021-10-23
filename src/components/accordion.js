@@ -4,7 +4,6 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 // import { NavLink } from 'react-router-dom'
 
 import '../style/accordion.css'
@@ -20,8 +19,8 @@ export default function SimpleAccordion(props) {
           aria-controls='panel1a-content'
           id='panel1a-header'
         >
-          <AdminPanelSettingsIcon />
-          <Typography>Admin</Typography>
+          {props.icon}
+          <Typography>{props.name}</Typography>
         </AccordionSummary>
         <AccordionDetails
           style={{ background: props.background, border: 'none' }}

@@ -53,7 +53,11 @@ export default function Modals(props) {
     <div>
       <List className={classes.button}>
         <ListItem onClick={handleOpen} className={classes.List}>
-          <ListItemText primary={props.head} className={classes.listItems} />
+          <ListItemText
+            primary={props.head}
+            style={{ color: props.color }}
+            className={classes.listItems}
+          />
         </ListItem>
       </List>
       <Modal

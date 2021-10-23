@@ -25,16 +25,6 @@
   color: white !important;
 }
 
-.modal-container {
-  width: 87%;
-  margin: auto;
-  display: flex;
-}
-
-.modal-container:hover {
-  background: '#379683';
-}
-
 .side-accordion {
   width: 100%;
   height: 100%;
@@ -45,9 +35,19 @@
 .side-link {
   text-decoration: none;
   color: white;
-  margin-left: 14px;
+  margin-left: 17px;
   margin-top: 15px;
   font-size: 16px;
+}
+
+.modal-container {
+  width: 87%;
+  margin: auto;
+  display: flex;
+}
+
+.modal-container:hover {
+  background: '#379683';
 }
 
 .modal-icon {
