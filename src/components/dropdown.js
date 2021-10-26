@@ -39,6 +39,24 @@ export default function BasicMenu() {
       })
   }, [])
 
+  const fetch = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('https://kidsio.herokuapp.com/notifications/getUser', {
+        headers: headers,
+      })
+      .then((res) => {
+        setNotification(res.data.notify)
+      })
+      .catch((err) => {
+        toast.error('cannot load notifications')
+      })
+  }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -54,17 +72,18 @@ export default function BasicMenu() {
       })
       .then((res) => {
         let notif = notification
-        for (let i = 0; i < notif.length; i++) {
-          if (notif[i]._id === id) {
-            notif[i].isSeen = true
+        for (let i = 0; i < notification.length; i++) {
+          if (notification[i]._id === id) {
+            notification[i].isSeen = true
           }
         }
-        setNotification(notif)
+        console.log(notification)
         toast.success('Notification has been marked as read')
       })
       .catch((err) => {
         toast.error('sorry something went wrong')
       })
+    fetch()
   }
 
   const updateAll = (e) => {
@@ -83,6 +102,7 @@ export default function BasicMenu() {
       .catch((err) => {
         toast.error('sorry something went wrong')
       })
+    fetch()
   }
 
   return (
@@ -94,7 +114,7 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <NotificationsNoneIcon className='side-icon' />
+        <NotificationsNoneIcon className='side-icon' onClick={fetch} />
       </Button>
       <Menu
         id='basic-menu'

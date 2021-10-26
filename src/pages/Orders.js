@@ -42,10 +42,9 @@ const Orders = () => {
   const [order, setOrder] = useState([])
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -101,47 +100,23 @@ const Orders = () => {
                   .map((row) => (
                     <StyledTableRow key={row._id}>
                       <StyledTableCell>
-                        {row.orderItems === []
-                          ? null
-                          : row.orderItems.length === 1
-                          ? row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.price}
-                                </StyledTableCell>
-                              )
-                            })
-                          : row.orderItems.map((item) => {
-                              return (
-                                <span key={item._id}>
-                                  <StyledTableCell>{item.name}</StyledTableCell>
-                                  <br />
-                                </span>
-                              )
-                            })}
+                        {row.orderItems.map((item) => {
+                          return (
+                            <React.Fragment key={item._id}>
+                              <>{item.name}</> <br />
+                            </React.Fragment>
+                          )
+                        })}
                       </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        {row.orderItems === []
-                          ? null
-                          : row.orderItems.length === 1
-                          ? row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.price}
-                                </StyledTableCell>
-                              )
-                            })
-                          : row.orderItems.map((item) => {
-                              return (
-                                <span key={item._id}>
-                                  <StyledTableCell align='left'>
-                                    {item.price}
-                                  </StyledTableCell>
-                                  <br />
-                                </span>
-                              )
-                            })}
+                      <StyledTableCell>
+                        {row.orderItems.map((item) => {
+                          return (
+                            <React.Fragment key={item._id}>
+                              <>{item.price}</> <br />
+                            </React.Fragment>
+                          )
+                        })}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
@@ -160,7 +135,7 @@ const Orders = () => {
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.totalPrice}
+                        {row.totalPrice}.00
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>

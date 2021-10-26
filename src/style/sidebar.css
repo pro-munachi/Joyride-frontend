@@ -17,12 +17,12 @@
 } */
 
 .MuiAppBar-colorPrimary {
-  background: white !important;
-  color: #05386b !important;
+  background: white;
+  color: #05386b;
 }
 
 .MuiSvgIcon-root {
-  color: white !important;
+  color: white;
 }
 
 .side-accordion {

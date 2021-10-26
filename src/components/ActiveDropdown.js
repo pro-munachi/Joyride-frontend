@@ -10,7 +10,7 @@ import '../style/user.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function PositionedMenu({ id }) {
+export default function PositionedMenu({ id, func }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -37,6 +37,7 @@ export default function PositionedMenu({ id }) {
         console.log(err)
         toast.error('Sorry something went wrong')
       })
+    func()
   }
 
   return (

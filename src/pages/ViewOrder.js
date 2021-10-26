@@ -1,6 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -94,27 +94,25 @@ const Orders = () => {
               <TableBody>
                 <StyledTableRow key={order._id}>
                   <StyledTableCell>
-                    {/* {order.orderItems === []
-                    ? null
-                    : order.orderItems.map((item) => {
-                        return (
-                          <StyledTableCell key={item._id} align='left'>
-                            {item.price}
-                          </StyledTableCell>
-                        )
-                      })} */}
+                    {/* {order.orderItems.map((item) => {
+                      return (
+                        <Fragment key={item._id}>
+                          <> {item.price} </>
+                          <br />
+                        </Fragment>
+                      )
+                    })} */}
                   </StyledTableCell>
 
                   <StyledTableCell align='left'>
-                    {/* {order.orderItems === []
-                    ? null
-                    : order.orderItems.map((item) => {
-                        return (
-                          <StyledTableCell key={item._id} align='left'>
-                            {item.price}
-                          </StyledTableCell>
-                        )
-                      })} */}
+                    {/* {order.orderItems.map((item) => {
+                      return (
+                        <Fragment key={item._id}>
+                          <> {item.price} </>
+                          <br />
+                        </Fragment>
+                      )
+                    })} */}
                   </StyledTableCell>
 
                   <StyledTableCell align='left'>

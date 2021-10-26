@@ -1,6 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -103,47 +103,25 @@ const MyOrders = () => {
                   .map((row) => (
                     <StyledTableRow key={row._id}>
                       <StyledTableCell>
-                        {row.orderItems === []
-                          ? null
-                          : row.orderItems.length === 1
-                          ? row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.price}
-                                </StyledTableCell>
-                              )
-                            })
-                          : row.orderItems.map((item) => {
-                              return (
-                                <span key={item._id}>
-                                  <StyledTableCell>{item.name}</StyledTableCell>
-                                  <br />
-                                </span>
-                              )
-                            })}
+                        {row.orderItems.map((item) => {
+                          return (
+                            <Fragment key={item._id}>
+                              <> {item.price} </>
+                              <br />
+                            </Fragment>
+                          )
+                        })}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.orderItems === []
-                          ? null
-                          : row.orderItems.length === 1
-                          ? row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.price}
-                                </StyledTableCell>
-                              )
-                            })
-                          : row.orderItems.map((item) => {
-                              return (
-                                <span key={item._id}>
-                                  <StyledTableCell align='left'>
-                                    {item.price}
-                                  </StyledTableCell>
-                                  <br />
-                                </span>
-                              )
-                            })}
+                        {row.orderItems.map((item) => {
+                          return (
+                            <Fragment key={item._id}>
+                              <> {item.price} </>
+                              <br />
+                            </Fragment>
+                          )
+                        })}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>

@@ -12,6 +12,7 @@ import ViewUser from './pages/ViewUser'
 import EditUser from './pages/EditUser'
 import ViewOrder from './pages/ViewOrder'
 import MyOrders from './pages/MyOrders'
+import Dashboards from './pages/Default/index'
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           <Route path='/users/:id/edit' component={EditUser} exact />
           <Route path='/orders/:id' component={ViewOrder} exact />
           <Route path='/myorders/' component={MyOrders} exact />
-          <Route path='/dashboard' component={Dashboard} exact />
+          <Route path='/dashboard' component={Dashboards} exact />
         </div>
       </BrowserRouter>
     </div>

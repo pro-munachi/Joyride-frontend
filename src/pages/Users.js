@@ -61,6 +61,22 @@ const Users = () => {
       })
   }, [])
 
+  const reload = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get('https://kidsio.herokuapp.com/users/', { headers: headers })
+      .then((res) => {
+        console.log(res.data)
+        setUsers(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -110,7 +126,7 @@ const Users = () => {
                       )}
 
                       <StyledTableCell align='left' typeof='button'>
-                        <PositionedMenu id={row._id} />
+                        <PositionedMenu id={row._id} func={reload} />
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { React, useEffect, useState } from 'react'
+import { Fragment, React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider'
 import { styled } from '@mui/material/styles'
@@ -85,6 +85,25 @@ const ViewUser = () => {
       })
   }, [id])
 
+  const reload = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get(`https://kidsio.herokuapp.com/orders/user/${id}`, {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          setOrder(res.data.slice)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   const adminHandler = () => {
     const headers = {
       'Content-Type': 'application/json',
@@ -102,6 +121,8 @@ const ViewUser = () => {
       .catch((err) => {
         console.log(err)
       })
+
+    reload()
   }
 
   return (
@@ -163,35 +184,25 @@ const ViewUser = () => {
                   {order.map((row) => (
                     <StyledTableRow key={row._id}>
                       <StyledTableCell>
-                        {row.orderItems === []
-                          ? null
-                          : row.orderItems.length === 1
-                          ? row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.name}
-                                </StyledTableCell>
-                              )
-                            })
-                          : row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.name}
-                                </StyledTableCell>
-                              )
-                            })}
+                        {row.orderItems.map((item) => {
+                          return (
+                            <Fragment key={item._id}>
+                              <> {item.name} </>
+                              <br />
+                            </Fragment>
+                          )
+                        })}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.orderItems === []
-                          ? null
-                          : row.orderItems.map((item) => {
-                              return (
-                                <StyledTableCell key={item._id} align='left'>
-                                  {item.price}
-                                </StyledTableCell>
-                              )
-                            })}
+                        {row.orderItems.map((item) => {
+                          return (
+                            <Fragment key={item._id}>
+                              <> {item.price} </>
+                              <br />
+                            </Fragment>
+                          )
+                        })}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
