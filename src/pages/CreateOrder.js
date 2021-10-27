@@ -21,7 +21,7 @@ const CreateOrder = () => {
   const onclick = () => {
     let item = {
       name: name,
-      price: price,
+      price: parseInt(price),
     }
 
     setAllItems([...allItems, item])
@@ -29,6 +29,10 @@ const CreateOrder = () => {
     console.log(item)
     console.log(allItems)
   }
+
+  let totalPrice = allItems.reduce(function (acc, curr) {
+    return acc + curr.price
+  }, 0)
 
   const changeClick = () => {
     setAdd(!add)
@@ -46,6 +50,7 @@ const CreateOrder = () => {
       shippingPrice: shippingPrice,
       taxPrice: taxPrice,
       orderItems: allItems,
+      totalPrice: totalPrice,
     }
 
     console.log(allItems)
