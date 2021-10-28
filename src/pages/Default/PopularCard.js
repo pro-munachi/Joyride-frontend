@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { React, useState, useEffect, Fragment } from 'react'
+import axios from 'axios'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -33,6 +34,26 @@ const PopularCard = ({ isLoading }) => {
   const theme = useTheme()
 
   const [anchorEl, setAnchorEl] = useState(null)
+  const [order, setOrder] = useState([])
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get('https://kidsio.herokuapp.com/orders/deleteByUser', {
+        headers: headers,
+      })
+      .then((res) => {
+        const ord = res.data.order
+        const slice = ord.slice(0, 5)
+        setOrder(slice)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -57,7 +78,7 @@ const PopularCard = ({ isLoading }) => {
                   justifyContent='space-between'
                 >
                   <Grid item>
-                    <Typography variant='h4'>Popular Stocks</Typography>
+                    <Typography variant='h4'>Recent Orders</Typography>
                   </Grid>
                   <Grid item>
                     <MoreHorizOutlinedIcon
@@ -93,65 +114,82 @@ const PopularCard = ({ isLoading }) => {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={12} sx={{ pt: '16px !important' }}>
-                <BajajAreaChartCard />
-              </Grid>
+
               <Grid item xs={12}>
-                <Grid container direction='column'>
-                  <Grid item>
-                    <Grid
-                      container
-                      alignItems='center'
-                      justifyContent='space-between'
-                    >
-                      <Grid item>
-                        <Typography variant='subtitle1' color='inherit'>
-                          Bajaj Finery
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Grid
-                          container
-                          alignItems='center'
-                          justifyContent='space-between'
-                        >
-                          <Grid item>
-                            <Typography variant='subtitle1' color='inherit'>
-                              $1839.00
-                            </Typography>
+                {order.map((item) => {
+                  return (
+                    <Fragment key={item._id}>
+                      {item.orderItems.map((ord, index) => {
+                        return (
+                          <Grid container direction='column' key={index}>
+                            <Grid item>
+                              <Grid
+                                container
+                                alignItems='center'
+                                justifyContent='space-between'
+                              >
+                                <Grid item>
+                                  <Typography
+                                    variant='subtitle1'
+                                    color='inherit'
+                                  >
+                                    {ord.name}
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <Grid
+                                    container
+                                    alignItems='center'
+                                    justifyContent='space-between'
+                                  >
+                                    <Grid item>
+                                      <Typography
+                                        variant='subtitle1'
+                                        color='inherit'
+                                      >
+                                        ${ord.price}.00
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                      <Avatar
+                                        variant='rounded'
+                                        sx={{
+                                          width: 16,
+                                          height: 16,
+                                          borderRadius: '5px',
+                                          backgroundColor:
+                                            theme.palette.success.light,
+                                          color: theme.palette.success.dark,
+                                          ml: 2,
+                                        }}
+                                      >
+                                        <KeyboardArrowUpOutlinedIcon
+                                          fontSize='small'
+                                          color='inherit'
+                                        />
+                                      </Avatar>
+                                    </Grid>
+                                  </Grid>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item>
+                              <Typography
+                                variant='subtitle2'
+                                sx={{ color: 'success.dark' }}
+                              >
+                                10% Profit
+                              </Typography>
+                            </Grid>
                           </Grid>
-                          <Grid item>
-                            <Avatar
-                              variant='rounded'
-                              sx={{
-                                width: 16,
-                                height: 16,
-                                borderRadius: '5px',
-                                backgroundColor: theme.palette.success.light,
-                                color: theme.palette.success.dark,
-                                ml: 2,
-                              }}
-                            >
-                              <KeyboardArrowUpOutlinedIcon
-                                fontSize='small'
-                                color='inherit'
-                              />
-                            </Avatar>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant='subtitle2'
-                      sx={{ color: 'success.dark' }}
-                    >
-                      10% Profit
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Divider sx={{ my: 1.5 }} />
+                        )
+                      })}
+
+                      <Divider sx={{ my: 1.5 }} />
+                    </Fragment>
+                  )
+                })}
+
                 <Grid container direction='column'>
                   <Grid item>
                     <Grid

@@ -18,6 +18,8 @@ import TotalIncomeCard from '../../ui-component/cards/Skeleton/TotalIncomeCard'
 
 // assets
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -49,6 +51,28 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalIncomeLightCard = ({ isLoading }) => {
   const theme = useTheme()
+  const [total, setTotal] = useState([])
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('http://kidsio.herokuapp.com/dashboard/totalprice', {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          console.log(res.data)
+          setTotal(res.data.totalLength)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <>
@@ -78,7 +102,7 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                     mt: 0.45,
                     mb: 0.45,
                   }}
-                  primary={<Typography variant='h4'>$203k</Typography>}
+                  primary={<Typography variant='h4'>{total}</Typography>}
                   secondary={
                     <Typography
                       variant='subtitle2'
@@ -87,7 +111,7 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                         mt: 0.5,
                       }}
                     >
-                      Total Income
+                      Total no of orders made
                     </Typography>
                   }
                 />

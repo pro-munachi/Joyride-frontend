@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles'
@@ -18,6 +18,7 @@ import ChartDataYear from './chart-data/total-order-year-line-chart'
 // assets
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import axios from 'axios'
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -66,7 +67,34 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 const TotalOrderLineChartCard = ({ isLoading }) => {
   const theme = useTheme()
 
-  const [timeValue, setTimeValue] = useState(false)
+  const [timeValue, setTimeValue] = useState('month')
+  const [month, setMonth] = useState([])
+  const [year, setYear] = useState([])
+  const [total, setTotal] = useState([])
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('http://kidsio.herokuapp.com/dashboard/totalprice', {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          console.log(res.data)
+          setMonth(res.data.totalMonth)
+          setYear(res.data.totalYear)
+          setTotal(res.data.total)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   const handleChangeTime = (event, newValue) => {
     setTimeValue(newValue)
   }
@@ -98,21 +126,30 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                   <Grid item>
                     <Button
                       disableElevation
-                      variant={timeValue ? 'contained' : 'text'}
+                      variant={timeValue === 'month' ? 'contained' : 'text'}
                       size='small'
                       sx={{ color: 'inherit' }}
-                      onClick={(e) => handleChangeTime(e, true)}
+                      onClick={(e) => handleChangeTime(e, 'month')}
                     >
                       Month
                     </Button>
                     <Button
                       disableElevation
-                      variant={!timeValue ? 'contained' : 'text'}
+                      variant={timeValue === 'year' ? 'contained' : 'text'}
                       size='small'
                       sx={{ color: 'inherit' }}
-                      onClick={(e) => handleChangeTime(e, false)}
+                      onClick={(e) => handleChangeTime(e, 'year')}
                     >
                       Year
+                    </Button>
+                    <Button
+                      disableElevation
+                      variant={timeValue === 'total' ? 'contained' : 'text'}
+                      size='small'
+                      sx={{ color: 'inherit' }}
+                      onClick={(e) => handleChangeTime(e, 'total')}
+                    >
+                      Total
                     </Button>
                   </Grid>
                 </Grid>
@@ -122,7 +159,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                   <Grid item xs={6}>
                     <Grid container alignItems='center'>
                       <Grid item>
-                        {timeValue ? (
+                        {timeValue === 'month' && (
                           <Typography
                             sx={{
                               fontSize: '2.125rem',
@@ -132,9 +169,13 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                               mb: 0.75,
                             }}
                           >
-                            $108
+                            &#8358;{month}.00
                           </Typography>
-                        ) : (
+                        )}
+                      </Grid>
+                      <Grid>
+                        {' '}
+                        {timeValue === 'year' && (
                           <Typography
                             sx={{
                               fontSize: '2.125rem',
@@ -144,24 +185,28 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                               mb: 0.75,
                             }}
                           >
-                            $961
+                            &#8358;{year}.00
+                          </Typography>
+                        )}
+                      </Grid>
+                      <Grid>
+                        {' '}
+                        {timeValue === 'total' && (
+                          <Typography
+                            sx={{
+                              fontSize: '2.125rem',
+                              fontWeight: 500,
+                              mr: 1,
+                              mt: 1.75,
+                              mb: 0.75,
+                            }}
+                          >
+                            &#8358;{total}.00
                           </Typography>
                         )}
                       </Grid>
                       <Grid item>
-                        <Avatar
-                          sx={{
-                            ...theme.typography.smallAvatar,
-                            cursor: 'pointer',
-                            backgroundColor: theme.palette.primary[200],
-                            color: theme.palette.primary.dark,
-                          }}
-                        >
-                          <ArrowDownwardIcon
-                            fontSize='inherit'
-                            sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
-                          />
-                        </Avatar>
+                        <div style={{ height: '28px' }}></div>
                       </Grid>
                       <Grid item xs={12}>
                         <Typography
@@ -171,7 +216,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                             color: theme.palette.primary[200],
                           }}
                         >
-                          Total Order
+                          Expenditure
                         </Typography>
                       </Grid>
                     </Grid>

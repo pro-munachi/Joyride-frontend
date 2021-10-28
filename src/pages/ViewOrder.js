@@ -54,7 +54,7 @@ const Orders = () => {
     axios
       .get(`https://kidsio.herokuapp.com/orders/${id}`, { headers: headers })
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data.order)
         setOrder(res.data.order)
         setLoading(false)
       })
@@ -91,65 +91,62 @@ const Orders = () => {
                 </TableRow>
               </TableHead>
 
-              <TableBody>
-                <StyledTableRow key={order._id}>
-                  <StyledTableCell>
-                    {/* {order.orderItems.map((item) => {
-                      return (
-                        <Fragment key={item._id}>
+              {/* <TableBody>
+                {order.orderItems.map((item) => {
+                  return (
+                    <StyledTableRow key={item._id}>
+                      <StyledTableCell>
+                        <Fragment>
+                          <> {item.name} </>
+                          <br />
+                        </Fragment>
+                        )
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        <Fragment>
                           <> {item.price} </>
                           <br />
                         </Fragment>
-                      )
-                    })} */}
-                  </StyledTableCell>
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {/* {order.orderItems.map((item) => {
-                      return (
-                        <Fragment key={item._id}>
-                          <> {item.price} </>
-                          <br />
-                        </Fragment>
-                      )
-                    })} */}
-                  </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.addressFrom}
+                      </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.addressTo}
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {order.addressFrom}
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>
-                    {order.addressTo}
-                  </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.createdAt}
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {order.createdAt}
-                  </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.dispatchOrder ? 'Delivered' : 'Not delivered'}
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {order.dispatchOrder ? 'Delivered' : 'Not delivered'}
-                  </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.ispaid ? 'Paid' : 'Not Paid'}
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {order.ispaid ? 'Paid' : 'Not Paid'}
-                  </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.dispatchOrder ? 'Dispatched' : 'Not Dispatched'}
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {order.dispatchOrder ? 'Dispatched' : 'Not Dispatched'}
-                  </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.totalPrice}
+                      </StyledTableCell>
 
-                  <StyledTableCell align='left'>
-                    {order.totalPrice}
-                  </StyledTableCell>
-
-                  <StyledTableCell align='left'>
-                    {order.paymentMethod}
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>
-                    {order.taxPrice}
-                  </StyledTableCell>
-                </StyledTableRow>
-              </TableBody>
+                      <StyledTableCell align='left'>
+                        {order.paymentMethod}
+                      </StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {order.taxPrice}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  )
+                })}
+              </TableBody> */}
             </Table>
           </TableContainer>
         )}

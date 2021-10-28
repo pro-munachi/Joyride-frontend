@@ -18,6 +18,8 @@ import TotalIncomeCard from '../../ui-component/cards/Skeleton/TotalIncomeCard'
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -51,6 +53,28 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalIncomeDarkCard = ({ isLoading }) => {
   const theme = useTheme()
+  const [order, setOrder] = useState([])
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('http://kidsio.herokuapp.com/dashboard/today', {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          console.log(res.data)
+          setOrder(res.data.long)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <>
@@ -82,7 +106,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                   }}
                   primary={
                     <Typography variant='h4' sx={{ color: '#fff' }}>
-                      $203k
+                      {order}
                     </Typography>
                   }
                   secondary={
@@ -90,7 +114,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                       variant='subtitle2'
                       sx={{ color: 'primary.light', mt: 0.25 }}
                     >
-                      Total Income
+                      No of orders made today
                     </Typography>
                   }
                 />

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles'
@@ -10,7 +11,7 @@ import MainCard from '../../ui-component/cards/MainCard'
 import SkeletonEarningCard from '../../ui-component/cards/Skeleton/EarningCard'
 
 // assets
-// import EarningIcon from 'assets/images/icons/earning.svg';
+import MoneyIcon from '@mui/icons-material/Money'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined'
@@ -58,6 +59,28 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const EarningCard = ({ isLoading }) => {
   const theme = useTheme()
+  const [price, setPrice] = useState([])
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('http://kidsio.herokuapp.com/dashboard/today/price', {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          console.log(res.data)
+          setPrice(res.data.test)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -89,7 +112,7 @@ const EarningCard = ({ isLoading }) => {
                         mt: 1,
                       }}
                     >
-                      <img src='jhjh' alt='Notification' />
+                      <MoneyIcon />
                     </Avatar>
                   </Grid>
                   <Grid item>
@@ -152,10 +175,10 @@ const EarningCard = ({ isLoading }) => {
                         mb: 0.75,
                       }}
                     >
-                      $500.00
+                      &#8358;{price}.00
                     </Typography>
                   </Grid>
-                  <Grid item>
+                  {/* <Grid item>
                     <Avatar
                       sx={{
                         cursor: 'pointer',
@@ -169,7 +192,7 @@ const EarningCard = ({ isLoading }) => {
                         sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
                       />
                     </Avatar>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </Grid>
               <Grid item sx={{ mb: 1.25 }}>
@@ -180,7 +203,7 @@ const EarningCard = ({ isLoading }) => {
                     color: theme.palette.secondary[200],
                   }}
                 >
-                  Total Earning
+                  Expenditure (TODAY)
                 </Typography>
               </Grid>
             </Grid>

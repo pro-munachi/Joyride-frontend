@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -15,7 +16,7 @@ import SkeletonTotalGrowthBarChart from '../../ui-component/cards/Skeleton/Total
 import MainCard from '../../ui-component/cards/MainCard'
 
 // chart data
-import chartData from './chart-data/total-growth-bar-chart'
+// import chartData from './chart-data/total-growth-bar-chart'
 
 const status = [
   {
@@ -35,7 +36,8 @@ const status = [
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
 const TotalGrowthBarChart = ({ isLoading }) => {
-  const [value, setValue] = useState('today')
+  const [value, setValue] = useState(0)
+  const [chart, setChart] = useState([])
   const theme = useTheme()
   const customization = useSelector((state) => state.customization)
 
@@ -51,6 +53,121 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   const secondaryLight = theme.palette.secondary.light
 
   const gridSpacing = 3
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('http://kidsio.herokuapp.com/dashboard/chart', {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          console.log(res.data)
+          setChart(res.data.months)
+
+          let dates = res.data.months
+
+          let amount = 0
+          for (let i = 0; i < dates.length; i++) {
+            amount += dates[i]
+          }
+          setValue(amount)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  const chartData = {
+    height: 480,
+    type: 'bar',
+    options: {
+      chart: {
+        id: 'bar-chart',
+        stacked: true,
+        toolbar: {
+          show: true,
+        },
+        zoom: {
+          enabled: true,
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              position: 'bottom',
+              offsetX: -10,
+              offsetY: 0,
+            },
+          },
+        },
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '50%',
+        },
+      },
+      xaxis: {
+        type: 'category',
+        categories: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec',
+        ],
+      },
+      legend: {
+        show: true,
+        fontSize: '14px',
+        fontFamily: `'Roboto', sans-serif`,
+        position: 'bottom',
+        offsetX: 20,
+        labels: {
+          useSeriesColors: false,
+        },
+        markers: {
+          width: 16,
+          height: 16,
+          radius: 5,
+        },
+        itemMargin: {
+          horizontal: 15,
+          vertical: 8,
+        },
+      },
+      fill: {
+        type: 'solid',
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      grid: {
+        show: true,
+      },
+    },
+    series: [
+      {
+        name: 'Amount',
+        data: chart,
+      },
+    ],
+  }
 
   useEffect(() => {
     const newChartData = {
@@ -132,23 +249,12 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                       <Typography variant='subtitle2'>Total Growth</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant='h3'>$2,324.00</Typography>
+                      <Typography variant='h3'>&#8358;{value}.00</Typography>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <TextField
-                    id='standard-select-currency'
-                    select
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                  >
-                    {status.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                  <Typography variant='h4'>Year Chart</Typography>
                 </Grid>
               </Grid>
             </Grid>
