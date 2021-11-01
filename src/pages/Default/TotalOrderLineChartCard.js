@@ -17,7 +17,6 @@ import ChartDataYear from './chart-data/total-order-year-line-chart'
 
 // assets
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import axios from 'axios'
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({

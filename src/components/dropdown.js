@@ -71,7 +71,6 @@ export default function BasicMenu() {
         headers: headers,
       })
       .then((res) => {
-        let notif = notification
         for (let i = 0; i < notification.length; i++) {
           if (notification[i]._id === id) {
             notification[i].isSeen = true

@@ -1,15 +1,15 @@
 import * as React from 'react'
 import axios from 'axios'
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
+// import TableBody from '@mui/material/TableBody'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import TablePagination from '@mui/material/TablePagination'
+// import TablePagination from '@mui/material/TablePagination'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -27,15 +27,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }))
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}))
+// const StyledTableRow = styled(TableRow)(({ theme }) => ({
+//   '&:nth-of-type(odd)': {
+//     backgroundColor: theme.palette.action.hover,
+//   },
+//   // hide last border
+//   '&:last-child td, &:last-child th': {
+//     border: 0,
+//   },
+// }))
 
 const Orders = () => {
   const [order, setOrder] = useState([])
@@ -62,7 +62,7 @@ const Orders = () => {
         console.log(err)
         setLoading(false)
       })
-  }, [])
+  }, [id])
 
   return (
     <div className='user'>
@@ -88,6 +88,9 @@ const Orders = () => {
                   <StyledTableCell align='left'>Total Price</StyledTableCell>
                   <StyledTableCell align='left'>Payment Method</StyledTableCell>
                   <StyledTableCell align='left'>Tax Price</StyledTableCell>
+                  <StyledTableCell align='left'>
+                    {order.totalPrice}
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
 

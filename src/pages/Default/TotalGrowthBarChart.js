@@ -5,10 +5,10 @@ import axios from 'axios'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Grid, MenuItem, TextField, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 
 // third-party
-import ApexCharts from 'apexcharts'
+
 import Chart from 'react-apexcharts'
 
 // project imports
@@ -155,49 +155,6 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   }
 
   useEffect(() => {
-    const newChartData = {
-      ...chartData.options,
-      colors: [primary200, primaryDark, secondaryMain, secondaryLight],
-      xaxis: {
-        labels: {
-          style: {
-            colors: [
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-              primary,
-            ],
-          },
-        },
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: [primary],
-          },
-        },
-      },
-      grid: {
-        borderColor: grey200,
-      },
-      tooltip: {
-        theme: 'light',
-      },
-      legend: {
-        labels: {
-          colors: grey500,
-        },
-      },
-    }
-
     // do not load chart when loading
     // if (!isLoading) {
     //   ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData)

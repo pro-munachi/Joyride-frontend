@@ -13,7 +13,6 @@ import SkeletonEarningCard from '../../ui-component/cards/Skeleton/EarningCard'
 // assets
 import MoneyIcon from '@mui/icons-material/Money'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined'
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined'
 import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined'
