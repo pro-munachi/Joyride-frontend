@@ -56,7 +56,8 @@ const MyOrders = () => {
       })
       .then((res) => {
         console.log(res.data)
-        setOrder(res.data.order)
+        const reverse = res.data.order.reverse()
+        setOrder(reverse)
         setLoading(false)
       })
       .catch((err) => {
@@ -106,7 +107,7 @@ const MyOrders = () => {
                         {row.orderItems.map((item) => {
                           return (
                             <Fragment key={item._id}>
-                              <> {item.price} </>
+                              <> {item.name} </>
                               <br />
                             </Fragment>
                           )

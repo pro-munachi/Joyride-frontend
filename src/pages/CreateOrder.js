@@ -24,10 +24,14 @@ const CreateOrder = () => {
       price: parseInt(price),
     }
 
+    localStorage.setItem('orde', item)
+
     setAllItems([...allItems, item])
 
-    console.log(item)
-    console.log(allItems)
+    console.log(localStorage.getItem('orde'))
+
+    // console.log(item)
+    // console.log(allItems)
   }
 
   let totalPrice = allItems.reduce(function (acc, curr) {

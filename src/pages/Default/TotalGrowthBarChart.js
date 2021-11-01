@@ -246,15 +246,14 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                 <Grid item>
                   <Grid container direction='column' spacing={1}>
                     <Grid item>
-                      <Typography variant='subtitle2'>Total Growth</Typography>
+                      <Typography variant='subtitle2'>
+                        Yearly Expenses
+                      </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant='h3'>&#8358;{value}.00</Typography>
+                      <Typography variant='h4'>&#8358;{value}.00</Typography>
                     </Grid>
                   </Grid>
-                </Grid>
-                <Grid item>
-                  <Typography variant='h4'>Year Chart</Typography>
                 </Grid>
               </Grid>
             </Grid>
