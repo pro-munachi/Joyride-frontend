@@ -18,21 +18,6 @@ import MainCard from '../../ui-component/cards/MainCard'
 // chart data
 // import chartData from './chart-data/total-growth-bar-chart'
 
-const status = [
-  {
-    value: 'today',
-    label: 'Today',
-  },
-  {
-    value: 'month',
-    label: 'This Month',
-  },
-  {
-    value: 'year',
-    label: 'This Year',
-  },
-]
-
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
 const TotalGrowthBarChart = ({ isLoading }) => {
