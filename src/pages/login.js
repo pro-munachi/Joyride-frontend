@@ -65,6 +65,7 @@ const Login = () => {
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('pic', res.data.profilePic)
+          localStorage.setItem('email', res.data.phoneNumber)
           localStorage.setItem('admin', res.data.isAdmin)
           toast.success('login successful')
           setEmail('')

@@ -12,6 +12,7 @@ import ViewUser from './pages/ViewUser'
 import EditUser from './pages/EditUser'
 import ViewOrder from './pages/ViewOrder'
 import MyOrders from './pages/MyOrders'
+import CreateOrder from './pages/CreateOrder'
 import Dashboards from './pages/Default/index'
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <Route path='/auth/signup' component={Signup} />
           <Route path='/auth/reset-password/:token' component={Reset} />
           <Route path='/auth/forgot-password' component={Forgot} />
-          <Route path='/auth/forgot-password' component={Forgot} />
+          <Route path='/create' component={CreateOrder} />
           <Route path='/' component={Dashboard} exact />
           <Route path='/orders' component={Orders} exact />
           <Route path='/users' component={Users} exact />

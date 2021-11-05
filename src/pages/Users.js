@@ -52,7 +52,7 @@ const Users = () => {
       .get('https://kidsio.herokuapp.com/users/', { headers: headers })
       .then((res) => {
         console.log(res.data)
-        setUsers(res.data)
+        setUsers(res.data.allUsers)
         setLoading(false)
       })
       .catch((err) => {

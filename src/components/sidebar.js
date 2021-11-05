@@ -29,7 +29,6 @@ import '../style/sidebar.css'
 import logo from '../images/cover.png'
 import Modals from './modal'
 // import AccordionSummary from './accordion'
-import CreateOrder from '../pages/CreateOrder'
 import ChangePassword from '../pages/ChangePassword'
 // import Orders from '../pages/Orders'
 
@@ -127,19 +126,8 @@ function ResponsiveDrawer(props) {
           )}
         </span>
         <Divider />
-        <div className='modal-container'>
-          <CreateIcon className='modal-icon' />
-          <div className='modal-div'>
-            <Modals
-              head={'Create Order'}
-              text={'Create an order'}
-              secondaryText={'Fill details to change your password'}
-            >
-              <CreateOrder />
-            </Modals>
-          </div>
-        </div>
         {[
+          { name: 'Create Order', icon: <CreateIcon />, link: '/create' },
           { name: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
           { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
           { name: 'Logout', icon: <ExitToAppIcon />, link: '/auth/signup' },

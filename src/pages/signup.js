@@ -40,6 +40,7 @@ const Signup = () => {
   // create state variables for each input
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
+  const [number, setNumber] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -52,6 +53,7 @@ const Signup = () => {
       displayName: displayName,
       email: email,
       password: password,
+      phoneNumber: number,
       passwordCheck: confirmPassword,
     }
 
@@ -61,6 +63,7 @@ const Signup = () => {
       .then((res) => {
         setLoading(false)
         if (res.data.hasError === false) {
+          console.log(res.data)
           setDisplayName('')
           setEmail('')
           setPassword('')
@@ -69,6 +72,7 @@ const Signup = () => {
           localStorage.setItem('name', res.data.displayName)
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
+          localStorage.setItem('email', res.data.phoneNumber)
           localStorage.setItem('pic', res.data.profilePic)
           History.push('/')
           toast.success('login successful')
@@ -116,6 +120,17 @@ const Signup = () => {
               onChange={(e) => setEmail(e.target.value)}
               className='input'
               placeholder='Email'
+            />
+          </label>
+          <label className='label'>
+            Phone Number
+            <input
+              type='number'
+              required
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              className='input'
+              placeholder='Phone Number'
             />
           </label>
           <label className='label'>
