@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider'
 import { NavLink } from 'react-router-dom'
 
 import '../style/user.css'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function PositionedMenu({ id, func }) {
@@ -81,7 +81,6 @@ export default function PositionedMenu({ id, func }) {
           View User
         </Button>
       </Menu>
-      <ToastContainer />
     </div>
   )
 }

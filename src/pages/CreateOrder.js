@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { React, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import ResponsiveDrawer from '../components/sidebar'
@@ -51,19 +51,19 @@ const CreateOrder = () => {
     toast.error('Item has been removed successfully')
   }
 
-  let totalPrice = 0
+  // let totalPrice = 0
 
-  if (JSON.parse(localStorage.getItem('order')).length === 0) {
-    totalPrice += 0
-  } else {
-    totalPrice = JSON.parse(localStorage.getItem('order')).reduce(function (
-      acc,
-      curr
-    ) {
-      return acc + curr.price
-    },
-    0)
-  }
+  // if (JSON.parse(localStorage.getItem('order')).length === 0) {
+  //   totalPrice += 0
+  // } else {
+  //   totalPrice = JSON.parse(localStorage.getItem('order')).reduce(function (
+  //     acc,
+  //     curr
+  //   ) {
+  //     return acc + curr.price
+  //   },
+  //   0)
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -77,7 +77,6 @@ const CreateOrder = () => {
       shippingPrice: shippingPrice,
       taxPrice: taxPrice,
       orderItems: orderItems,
-      totalPrice: totalPrice,
     }
 
     console.log(allItems)
@@ -175,8 +174,6 @@ const CreateOrder = () => {
               </button>
             </div>
           </form>
-
-          <ToastContainer />
         </div>
         <div className='form-container2'>
           <form>

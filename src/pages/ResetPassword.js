@@ -4,7 +4,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useHistory, useParams } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import '../style/login.css'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -121,7 +121,7 @@ const Reset = () => {
               <VisibilityOff className='icon' onClick={handleClick} />
             )}
           </label>
-          <ToastContainer />
+
           <div>
             <button className='button' disabled={loading}>
               {loading ? <CircularIndeterminate /> : 'Submit'}

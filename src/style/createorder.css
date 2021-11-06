@@ -29,7 +29,7 @@
 .form-containers form label input {
   width: 100%;
   margin: auto;
-  height: 45px;
+  height: 35px;
   border: 1px solid black;
   border-radius: 5px;
   padding-left: 5px;
@@ -91,7 +91,7 @@
 .form-container2 form label input {
   width: 100%;
   margin: auto;
-  height: 45px;
+  height: 35px;
   border: 1px solid black;
   border-radius: 5px;
   padding-left: 5px;

@@ -4,7 +4,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useHistory, NavLink } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import '../style/login.css'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -124,7 +124,7 @@ const Login = () => {
               <VisibilityOff className='icon' onClick={handleClick} />
             )}
           </label>
-          <ToastContainer />
+
           <div className='write'>
             <NavLink to='/auth/forgot-password' className='link'>
               Forgot password?

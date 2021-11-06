@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import axios from 'axios'
@@ -7,15 +8,23 @@ import Divider from '@material-ui/core/Divider'
 import { NavLink } from 'react-router-dom'
 
 import '../style/user.css'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function OrderDropdown({ id }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+  const [mode, setMode] = useState(false)
+  const [price, setPrice] = useState('')
+
+  const addClick = () => {
+    setMode(!mode)
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -39,8 +48,45 @@ export default function OrderDropdown({ id }) {
       })
   }
 
+  const handleSubmit = () => {
+    const body = {
+      id: id,
+      amount: price,
+    }
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .post('https://kidsio.herokuapp.com/orders/orderIsPaid', body, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log('object')
+        console.log(res.data)
+        toast.success('price added successfully')
+      })
+      .catch((err) => {
+        console.log('dfdf')
+      })
+  }
+
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
+      {mode ? (
+        <form className='addform'>
+          <input
+            type='text'
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder='amount'
+          />
+          <button type='button' onClick={handleSubmit}>
+            confirm
+          </button>
+        </form>
+      ) : null}
       <Button
         id='demo-positioned-button'
         aria-controls='demo-positioned-menu'
@@ -83,8 +129,11 @@ export default function OrderDropdown({ id }) {
         <Button component={NavLink} to={`/orders/${id}`} className='styles'>
           View Order
         </Button>
+        <Divider />
+        <Button onClick={addClick} className='styles'>
+          Add Price
+        </Button>
       </Menu>
-      <ToastContainer />
     </div>
   )
 }

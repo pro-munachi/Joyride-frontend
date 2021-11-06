@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider'
 import { NavLink } from 'react-router-dom'
 
 import '../style/user.css'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function OrderUserDropdown({ id }) {
@@ -84,7 +84,6 @@ export default function OrderUserDropdown({ id }) {
           View Order
         </Button>
       </Menu>
-      <ToastContainer />
     </div>
   )
 }

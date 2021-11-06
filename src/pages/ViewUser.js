@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import ResponsiveDrawer from '../components/sidebar'
@@ -229,7 +229,6 @@ const ViewUser = () => {
               </Table>
             </TableContainer>
           </div>
-          <ToastContainer />
         </div>
       )}
     </ResponsiveDrawer>

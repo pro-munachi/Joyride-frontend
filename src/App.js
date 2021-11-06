@@ -14,12 +14,14 @@ import ViewOrder from './pages/ViewOrder'
 import MyOrders from './pages/MyOrders'
 import CreateOrder from './pages/CreateOrder'
 import Dashboards from './pages/Default/index'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
         <div>
+          <ToastContainer />
           <Route path='/auth/login' exact component={Login} />
           <Route path='/auth/signup' component={Signup} />
           <Route path='/auth/reset-password/:token' component={Reset} />

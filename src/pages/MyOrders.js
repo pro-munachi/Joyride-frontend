@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
+import Moment from 'react-moment'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -85,16 +86,14 @@ const MyOrders = () => {
             <Table sx={{ minWidth: 700 }} aria-label='customized table'>
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Order Name</StyledTableCell>
-                  <StyledTableCell align='left'>Order Price</StyledTableCell>
-                  <StyledTableCell align='left'>Address From</StyledTableCell>
-                  <StyledTableCell align='left'>Address To</StyledTableCell>
-                  <StyledTableCell align='left'>Time Of Order</StyledTableCell>
-                  <StyledTableCell align='left'>
-                    Is Order Delivered?
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>Total Price</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell align='left'>Phone</StyledTableCell>
+                  <StyledTableCell align='left'>From</StyledTableCell>
+                  <StyledTableCell align='left'>To</StyledTableCell>
+                  <StyledTableCell align='left'>Time</StyledTableCell>
+                  <StyledTableCell align='left'>Is Delivered?</StyledTableCell>
+                  <StyledTableCell align='left'>Price</StyledTableCell>
+                  <StyledTableCell align='left'></StyledTableCell>
                 </TableRow>
               </TableHead>
 
@@ -103,37 +102,24 @@ const MyOrders = () => {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <StyledTableRow key={row._id}>
-                      <StyledTableCell>
-                        {row.orderItems.map((item) => {
-                          return (
-                            <Fragment key={item._id}>
-                              <> {item.name} </>
-                              <br />
-                            </Fragment>
-                          )
-                        })}
-                      </StyledTableCell>
+                      <StyledTableCell>{row.userName}</StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.orderItems.map((item) => {
-                          return (
-                            <Fragment key={item._id}>
-                              <> {item.price} </>
-                              <br />
-                            </Fragment>
-                          )
-                        })}
+                        {row.number}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
                         {row.addressFrom}
                       </StyledTableCell>
+
                       <StyledTableCell align='left'>
                         {row.addressTo}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.createdAt}
+                        <Moment format='D MMM YYYY' withTitle>
+                          {row.createdAt}
+                        </Moment>
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>

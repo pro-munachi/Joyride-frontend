@@ -20,3 +20,32 @@
   background: #05386b;
   color: white !important;
 }
+
+.addform {
+  position: absolute;
+  top: 20%;
+  right: 80px;
+  height: 35px;
+  display: flex;
+}
+
+.addform input {
+  height: 100%;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  border: 2px solid #05386b;
+  outline: none;
+  padding-left: 6px;
+}
+
+.addform button {
+  height: 100%;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border: none;
+  outline: none;
+  background: #05386b;
+  color: white;
+  padding: 0 10px;
+  cursor: pointer;
+}

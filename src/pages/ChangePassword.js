@@ -3,7 +3,7 @@ import { React, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 import '../style/changepassword.css'
 import CircularIndeterminate from '../components/loader'
@@ -112,7 +112,6 @@ const ChangePassword = () => {
             <VisibilityOff className='change-icon' onClick={modeChange} />
           )}
         </label>
-        <ToastContainer />
         <div className='change-button'>
           <button disabled={loading}>
             {loading ? <CircularIndeterminate /> : 'Submit'}

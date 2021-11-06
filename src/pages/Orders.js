@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
+import Moment from 'react-moment'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -52,8 +53,8 @@ const Orders = () => {
     axios
       .get('https://kidsio.herokuapp.com/orders/', { headers: headers })
       .then((res) => {
-        console.log(res.data.orders)
-        setOrder(res.data.orders)
+        const ord = res.data.orders.reverse()
+        setOrder(ord)
         setLoading(false)
       })
       .catch((err) => {
@@ -84,16 +85,14 @@ const Orders = () => {
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Order Name</StyledTableCell>
-                  <StyledTableCell align='left'>Order Price</StyledTableCell>
-                  <StyledTableCell align='left'>Address From</StyledTableCell>
-                  <StyledTableCell align='left'>Address To</StyledTableCell>
-                  <StyledTableCell align='left'>Time Of Order</StyledTableCell>
-                  <StyledTableCell align='left'>
-                    Is Order Delivered?
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>Total Price</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell align='left'>Number</StyledTableCell>
+                  <StyledTableCell align='left'>From</StyledTableCell>
+                  <StyledTableCell align='left'>To</StyledTableCell>
+                  <StyledTableCell align='left'>Time</StyledTableCell>
+                  <StyledTableCell align='left'>Is Delivered?</StyledTableCell>
+                  <StyledTableCell align='left'>Price</StyledTableCell>
+                  <StyledTableCell align='left'></StyledTableCell>
                 </TableRow>
               </TableHead>
 
@@ -102,24 +101,10 @@ const Orders = () => {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <StyledTableRow key={row._id}>
-                      <StyledTableCell>
-                        {row.orderItems.map((item) => {
-                          return (
-                            <React.Fragment key={item._id}>
-                              <>{item.name}</> <br />
-                            </React.Fragment>
-                          )
-                        })}
-                      </StyledTableCell>
+                      <StyledTableCell>{row.userName}</StyledTableCell>
 
-                      <StyledTableCell>
-                        {row.orderItems.map((item) => {
-                          return (
-                            <React.Fragment key={item._id}>
-                              <>{item.price}</> <br />
-                            </React.Fragment>
-                          )
-                        })}
+                      <StyledTableCell align='left'>
+                        {row.number}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
@@ -130,7 +115,9 @@ const Orders = () => {
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.createdAt}
+                        <Moment format='D MMM YYYY' withTitle>
+                          {row.createdAt}
+                        </Moment>
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
