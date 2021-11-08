@@ -10,12 +10,14 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
+import { withRouter } from 'react-router'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 // import PositionedMenu from '../components/ActiveDropdown'
 import PageLoader from '../components/pageloader'
 import { useParams } from 'react-router'
+import ViewUser from './ViewUser'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -147,4 +149,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default withRouter(Orders)

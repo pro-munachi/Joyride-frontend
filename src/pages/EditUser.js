@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider'
 // import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { withRouter } from 'react-router'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
@@ -144,4 +145,4 @@ const EditUser = () => {
   )
 }
 
-export default EditUser
+export default withRouter(EditUser)

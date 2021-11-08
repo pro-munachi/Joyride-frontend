@@ -1,4 +1,5 @@
 import { Route, BrowserRouter } from 'react-router-dom'
+import React from 'react'
 
 import Dashboard from './pages/dashboard'
 // import ClippedDrawer from './components/drawer'
@@ -15,8 +16,10 @@ import MyOrders from './pages/MyOrders'
 import CreateOrder from './pages/CreateOrder'
 import Dashboards from './pages/Default/index'
 import { ToastContainer } from 'react-toastify'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
+  const [state, setstate] = React.useState(true)
   return (
     <div className='App'>
       <BrowserRouter>
@@ -27,14 +30,42 @@ function App() {
           <Route path='/auth/reset-password/:token' component={Reset} />
           <Route path='/auth/forgot-password' component={Forgot} />
           <Route path='/create' component={CreateOrder} />
-          <Route path='/' component={Dashboard} exact />
-          <Route path='/orders' component={Orders} exact />
-          <Route path='/users' component={Users} exact />
-          <Route path='/users/:id' component={ViewUser} exact />
-          <Route path='/users/:id/edit' component={EditUser} exact />
-          <Route path='/orders/:id' component={ViewOrder} exact />
-          <Route path='/myorders/' component={MyOrders} exact />
-          <Route path='/dashboard' component={Dashboards} exact />
+          <ProtectedRoute
+            path='/'
+            component={Dashboards}
+            isAuth={localStorage.getItem('token')}
+            exact
+          />
+          <ProtectedRoute
+            path='/orders'
+            component={Orders}
+            isAuth={localStorage.getItem('token')}
+          />
+          <ProtectedRoute
+            path='/users'
+            component={Users}
+            isAuth={localStorage.getItem('token')}
+          />
+          <ProtectedRoute
+            path='/users/:id'
+            component={ViewUser}
+            isAuth={localStorage.getItem('token')}
+          />
+          <ProtectedRoute
+            path='/users/:id/edit'
+            component={EditUser}
+            isAuth={localStorage.getItem('token')}
+          />
+          <ProtectedRoute
+            path='/orders/:id'
+            component={ViewOrder}
+            isAuth={localStorage.getItem('token')}
+          />
+          <ProtectedRoute
+            path='/myorders'
+            component={MyOrders}
+            isAuth={localStorage.getItem('token')}
+          />
         </div>
       </BrowserRouter>
     </div>

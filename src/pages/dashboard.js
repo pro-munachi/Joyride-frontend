@@ -1,4 +1,6 @@
 import React from 'react'
+import { withRouter } from 'react-router'
+
 import ResponsiveDrawer from '../components/sidebar'
 import MyChart from '../components/Chart'
 

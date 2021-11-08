@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { withRouter } from 'react-router'
 
 // material-ui
 import { Grid } from '@mui/material'
@@ -59,4 +60,4 @@ const Dashboards = () => {
   )
 }
 
-export default Dashboards
+export default withRouter(Dashboards)

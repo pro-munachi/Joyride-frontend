@@ -4,8 +4,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
-import ResponsiveDrawer from '../components/sidebar'
+import { withRouter } from 'react-router'
 
+import ResponsiveDrawer from '../components/sidebar'
 import '../style/createorder.css'
 import CircularIndeterminate from '../components/loader'
 
@@ -181,7 +182,7 @@ const CreateOrder = () => {
             </div>
             <div className='box'>
               {' '}
-              {JSON.parse(localStorage.getItem('order')).length === 0 ? (
+              {JSON.parse(!localStorage.getItem('order')) ? (
                 <div style={{ margin: '12px auto' }}>No order Yet</div>
               ) : (
                 JSON.parse(localStorage.getItem('order')).map((single) => (
@@ -206,4 +207,4 @@ const CreateOrder = () => {
   )
 }
 
-export default CreateOrder
+export default withRouter(CreateOrder)

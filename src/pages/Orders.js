@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
 import Moment from 'react-moment'
+import { withRouter } from 'react-router'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -151,4 +152,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default withRouter(Orders)

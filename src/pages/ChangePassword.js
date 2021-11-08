@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { toast } from 'react-toastify'
+import { withRouter } from 'react-router'
 
 import '../style/changepassword.css'
 import CircularIndeterminate from '../components/loader'
@@ -122,4 +123,4 @@ const ChangePassword = () => {
   )
 }
 
-export default ChangePassword
+export default withRouter(ChangePassword)

@@ -12,6 +12,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { withRouter } from 'react-router'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
@@ -235,4 +236,4 @@ const ViewUser = () => {
   )
 }
 
-export default ViewUser
+export default withRouter(ViewUser)
