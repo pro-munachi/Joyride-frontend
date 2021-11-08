@@ -27,7 +27,7 @@ import { gridSpacing } from '../../store/constant'
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined'
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined'
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined'
-// import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
 import moment from 'moment'
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
@@ -144,33 +144,47 @@ const PopularCard = ({ isLoading }) => {
                                     alignItems='center'
                                     justifyContent='space-between'
                                   >
-                                    <Grid item>
-                                      <Typography
-                                        variant='subtitle1'
-                                        color='inherit'
-                                      >
-                                        &#8358;{ord.price}.00
-                                      </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                      <Avatar
-                                        variant='rounded'
-                                        sx={{
-                                          width: 16,
-                                          height: 16,
-                                          borderRadius: '5px',
-                                          backgroundColor:
-                                            theme.palette.success.light,
-                                          color: theme.palette.success.dark,
-                                          ml: 2,
-                                        }}
-                                      >
-                                        <KeyboardArrowUpOutlinedIcon
-                                          fontSize='small'
-                                          color='inherit'
-                                        />
-                                      </Avatar>
-                                    </Grid>
+                                    {item.totalPrice === 0 ? (
+                                      <Grid item>
+                                        <Avatar
+                                          variant='rounded'
+                                          sx={{
+                                            width: 16,
+                                            height: 16,
+                                            borderRadius: '5px',
+                                            backgroundColor:
+                                              theme.palette.success.light,
+                                            color: theme.palette.success.dark,
+                                            ml: 2,
+                                          }}
+                                        >
+                                          <KeyboardArrowDownOutlinedIcon
+                                            fontSize='small'
+                                            color='inherit'
+                                          />
+                                        </Avatar>
+                                      </Grid>
+                                    ) : (
+                                      <Grid item>
+                                        <Avatar
+                                          variant='rounded'
+                                          sx={{
+                                            width: 16,
+                                            height: 16,
+                                            borderRadius: '5px',
+                                            backgroundColor:
+                                              theme.palette.success.light,
+                                            color: theme.palette.success.dark,
+                                            ml: 2,
+                                          }}
+                                        >
+                                          <KeyboardArrowUpOutlinedIcon
+                                            fontSize='small'
+                                            color='inherit'
+                                          />
+                                        </Avatar>
+                                      </Grid>
+                                    )}
                                   </Grid>
                                 </Grid>
                               </Grid>

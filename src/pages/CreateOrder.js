@@ -74,8 +74,6 @@ const CreateOrder = () => {
       addressFrom: addressFrom,
       addressTo: addressTo,
       paymentMethod: paymentMethod,
-      shippingPrice: shippingPrice,
-      taxPrice: taxPrice,
       orderItems: orderItems,
     }
 
@@ -96,8 +94,6 @@ const CreateOrder = () => {
           setLoading(false)
           setPrice('')
           setName('')
-          setShippingPrice('')
-          setTaxPrice('')
           setAddressFrom('')
           setAddressTo('')
           setPaymentMethod('')
@@ -146,26 +142,6 @@ const CreateOrder = () => {
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
                 placeholder='Payment Method'
-              />
-            </label>
-            <label>
-              Shipping Price
-              <input
-                type='number'
-                required
-                value={shippingPrice}
-                onChange={(e) => setShippingPrice(e.target.value)}
-                placeholder='Shipping Price'
-              />
-            </label>
-            <label>
-              Tax Price
-              <input
-                type='number'
-                required
-                value={taxPrice}
-                onChange={(e) => setTaxPrice(e.target.value)}
-                placeholder='Tax Price'
               />
             </label>
             <div>
