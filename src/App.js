@@ -39,12 +39,17 @@ function App() {
           <ProtectedRoute
             path='/orders'
             component={Orders}
-            isAuth={localStorage.getItem('token')}
+            isAuth={localStorage.getItem('admin')}
           />
           <ProtectedRoute
             path='/users'
             component={Users}
-            isAuth={localStorage.getItem('token')}
+            isAuth={localStorage.getItem('admin')}
+          />
+          <ProtectedRoute
+            path='/report'
+            component={Users}
+            isAuth={localStorage.getItem('admin')}
           />
           <ProtectedRoute
             path='/users/:id'

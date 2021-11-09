@@ -119,6 +119,9 @@ function ResponsiveDrawer(props) {
                   <NavLink to='/orders' className='side-link'>
                     All Orders
                   </NavLink>
+                  <NavLink to='/report' className='side-link'>
+                    Report
+                  </NavLink>
                 </div>
               </SimpleAccordion>
               <Divider />
@@ -128,7 +131,7 @@ function ResponsiveDrawer(props) {
         <Divider />
         {[
           { name: 'Create Order', icon: <CreateIcon />, link: '/create' },
-          { name: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
+          { name: 'Dashboard', icon: <DashboardIcon />, link: '/' },
           { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
           { name: 'Logout', icon: <ExitToAppIcon />, link: '/auth/signup' },
         ].map((text, index) => (

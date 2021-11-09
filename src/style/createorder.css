@@ -1,9 +1,11 @@
 .forms {
   display: flex;
+  flex-direction: column;
 }
 
 .form-containers {
-  width: 60%;
+  width: 70%;
+  margin: auto;
 }
 
 .form-containers form {
@@ -70,12 +72,12 @@
 }
 
 .form-container2 {
-  width: 38%;
+  width: 70%;
+  margin: auto;
 }
 
-.form-container2 form h2 {
-  text-align: center;
-  color: #05386b;
+.form-container2 form {
+  display: flex;
 }
 
 .form-container2 form label {
@@ -84,7 +86,7 @@
   flex-direction: column;
   font-weight: 600;
   margin: 12px auto;
-  width: 90%;
+  width: 60%;
   font-size: 16px;
 }
 
@@ -99,7 +101,7 @@
 }
 
 .form-container2 form .div1 {
-  width: 45%;
+  width: 20%;
   margin: auto;
 }
 
@@ -112,6 +114,7 @@
   color: white;
   border: none;
   font-size: 13px;
+  margin-top: 20px;
 }
 
 .box {
@@ -125,15 +128,25 @@
   margin: 17px auto;
 }
 
-@media (max-width: 900px) {
-  .forms {
-    display: flex;
-    flex-direction: column-reverse;
-  }
+.create {
+  width: 50%;
+  margin: auto;
+}
 
+.create button {
+  width: 100%;
+  height: 30px;
+  background: #05386b;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+}
+
+@media (max-width: 900px) {
   .form-containers,
   .form-container2 {
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 }

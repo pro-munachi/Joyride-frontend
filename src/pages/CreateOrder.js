@@ -9,6 +9,7 @@ import { withRouter } from 'react-router'
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/createorder.css'
 import CircularIndeterminate from '../components/loader'
+import { TextField, InputLabel } from '@mui/material'
 
 const CreateOrder = () => {
   const [addressFrom, setAddressFrom] = useState('')
@@ -28,14 +29,14 @@ const CreateOrder = () => {
       price: parseInt(price),
     }
     let items = JSON.parse(localStorage.getItem('order'))
-    console.log(items)
+
     if (items) {
       items.push(item)
       localStorage.setItem('order', JSON.stringify(items))
-      console.log('work')
+      setAdd(!add)
     } else {
       localStorage.setItem('order', JSON.stringify([item]))
-      console.log('wor')
+      setAdd(!add)
     }
     console.log(JSON.parse(localStorage.getItem('order')))
 
@@ -48,6 +49,7 @@ const CreateOrder = () => {
       return el.name !== name
     })
     localStorage.setItem('order', JSON.stringify(item))
+    setAdd(!add)
 
     toast.error('Item has been removed successfully')
   }
@@ -145,16 +147,10 @@ const CreateOrder = () => {
                 placeholder='Payment Method'
               />
             </label>
-            <div>
-              <button disabled={loading}>
-                {loading ? <CircularIndeterminate /> : 'Create Order'}
-              </button>
-            </div>
           </form>
         </div>
         <div className='form-container2'>
           <form>
-            <h2>Add the orders you want to create</h2>
             <label>
               Order Name
               <input
@@ -165,43 +161,38 @@ const CreateOrder = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </label>
-            <label>
-              Order Price
-              <input
-                type='number'
-                required
-                placeholder='Price'
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </label>
             <div className='div1'>
               <button className='button1' type='button' onClick={onclick}>
-                Add Order
+                Add
               </button>
             </div>
-            <div className='box'>
-              {' '}
-              {JSON.parse(!localStorage.getItem('order')) ? (
-                <div style={{ margin: '12px auto' }}>No order Yet</div>
-              ) : (
-                JSON.parse(localStorage.getItem('order')).map((single) => (
-                  <Stack
-                    direction='row'
-                    spacing={1}
-                    key={single.name}
-                    sx={{ margin: '3px 7px' }}
-                  >
-                    <Chip
-                      label={single.name}
-                      onDelete={() => deleteItem(single.name)}
-                    />
-                  </Stack>
-                ))
-              )}
-            </div>
           </form>
+          <div className='box'>
+            {' '}
+            {JSON.parse(!localStorage.getItem('order')) ? (
+              <div style={{ margin: '12px auto' }}>No order Yet</div>
+            ) : (
+              JSON.parse(localStorage.getItem('order')).map((single) => (
+                <Stack
+                  direction='row'
+                  spacing={1}
+                  key={single.name}
+                  sx={{ margin: '3px 7px' }}
+                >
+                  <Chip
+                    label={single.name}
+                    onDelete={() => deleteItem(single.name)}
+                  />
+                </Stack>
+              ))
+            )}
+          </div>
         </div>
+      </div>
+      <div className='create'>
+        <button disabled={loading}>
+          {loading ? <CircularIndeterminate /> : 'Create Order'}
+        </button>
       </div>
     </ResponsiveDrawer>
   )
