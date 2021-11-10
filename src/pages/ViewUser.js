@@ -166,7 +166,10 @@ const ViewUser = () => {
             <div className='h2'>{user.displayName}'s Latest Orders</div>
 
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+              <Table
+                sx={{ maxWidth: '100%', overflowX: 'scroll' }}
+                aria-label='customized table'
+              >
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>Order Name</StyledTableCell>
@@ -180,7 +183,6 @@ const ViewUser = () => {
                     <StyledTableCell align='left'>Total Price</StyledTableCell>
                   </TableRow>
                 </TableHead>
-
                 <TableBody>
                   {order.map((row) => (
                     <StyledTableRow key={row._id}>

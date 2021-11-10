@@ -1,0 +1,57 @@
+.report-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-container .date {
+  width: 100%;
+}
+
+.report-container .date form {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.report-container .date form label {
+  display: flex;
+  flex-direction: column;
+  margin: 7px 7px;
+}
+
+.report-container .date form label input {
+  width: 300px;
+  height: 30px;
+  outline: none;
+  border: 2px solid #05386b;
+  border-radius: 5px;
+  padding: 0 4px;
+  background: transparent;
+}
+
+.report-container .date form button {
+  height: 30px;
+  width: 80px;
+  margin: 26px 0;
+  border: none;
+  background: #05386b;
+  color: white;
+  border-radius: 5px;
+}
+
+@media (max-width: 1000px) {
+  .report-container .date form {
+    flex-direction: column;
+    margin: auto;
+  }
+  .report-container .date form label {
+    width: 80%;
+    margin: 5px auto;
+  }
+  .report-container .date form label input {
+    width: 100%;
+  }
+  .report-container .date form div {
+    margin: auto;
+  }
+}

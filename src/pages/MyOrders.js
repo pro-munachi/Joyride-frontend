@@ -84,7 +84,10 @@ const MyOrders = () => {
           <PageLoader />
         ) : (
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+            <Table
+              sx={{ maxWidth: '100%', overflowX: 'scroll' }}
+              aria-label='customized table'
+            >
               <TableHead>
                 <TableRow>
                   <StyledTableCell>Name</StyledTableCell>
@@ -97,7 +100,6 @@ const MyOrders = () => {
                   <StyledTableCell align='left'></StyledTableCell>
                 </TableRow>
               </TableHead>
-
               <TableBody>
                 {order
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -146,6 +148,7 @@ const MyOrders = () => {
               rowsPerPage={rowsPerPage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               className='table'
+              sx={{ width: '100%' }}
             />
           </TableContainer>
         )}

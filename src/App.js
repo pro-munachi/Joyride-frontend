@@ -17,6 +17,7 @@ import CreateOrder from './pages/CreateOrder'
 import Dashboards from './pages/Default/index'
 import { ToastContainer } from 'react-toastify'
 import ProtectedRoute from './components/ProtectedRoute'
+import Report from './pages/Report'
 
 function App() {
   const [state, setstate] = React.useState(true)
@@ -48,7 +49,7 @@ function App() {
           />
           <ProtectedRoute
             path='/report'
-            component={Users}
+            component={Report}
             isAuth={localStorage.getItem('admin')}
           />
           <ProtectedRoute
