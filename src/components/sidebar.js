@@ -79,7 +79,10 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    background: 'white',
+    background: '#f5f5f5',
+    width: '100%',
+    overflowX: 'scroll',
+    height: '100%',
   },
 }))
 

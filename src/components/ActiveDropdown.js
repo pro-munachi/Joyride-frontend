@@ -77,7 +77,7 @@ export default function PositionedMenu({ id, func }) {
           Delete User
         </Button>
         <Divider />
-        <Button component={NavLink} to={`/users/${id}`} className='styles'>
+        <Button component={NavLink} to={`/user/${id}`} className='styles'>
           View User
         </Button>
       </Menu>

@@ -115,7 +115,7 @@ const CreateOrder = () => {
     <ResponsiveDrawer>
       <div className='forms'>
         <div className='form-containers'>
-          <form onSubmit={handleSubmit}>
+          <form>
             <h2>Create Orders</h2>
             <label>
               Address From
@@ -190,7 +190,7 @@ const CreateOrder = () => {
         </div>
       </div>
       <div className='create'>
-        <button disabled={loading}>
+        <button disabled={loading} type='button' onClick={handleSubmit}>
           {loading ? <CircularIndeterminate /> : 'Create Order'}
         </button>
       </div>

@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
 import TablePagination from '@mui/material/TablePagination'
 import Moment from 'react-moment'
 
@@ -42,6 +42,7 @@ const Report = () => {
   const [start, setStart] = useState('')
   const [end, setEnd] = useState('')
   const [order, setOrder] = useState([])
+  const [total, setTotal] = useState(null)
   //   const [page, setPage] = React.useState(0)
   //   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const [loading, setLoading] = useState(false)
@@ -64,6 +65,7 @@ const Report = () => {
       .then((res) => {
         console.log(res.data)
         setOrder(res.data.all)
+        setTotal(res.data.total)
       })
       .catch((err) => {
         console.log(err)
@@ -109,19 +111,14 @@ const Report = () => {
             </div>
           </form>
         </div>
+        <Divider />
         <div>
           {loading ? (
             <PageLoader />
           ) : (
-            <TableContainer
-              component={Box}
-              sx={{ maxWidth: '100%', overflowX: 'scroll' }}
-            >
-              <Table
-                sx={{ maxWidth: '100%', overflowX: 'scroll' }}
-                aria-label='customized table'
-              >
-                {order.length === 0 ? null : (
+            <TableContainer component={Paper}>
+              {order.length === 0 ? null : (
+                <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>Name</StyledTableCell>
@@ -136,47 +133,80 @@ const Report = () => {
                       <StyledTableCell align='left'></StyledTableCell>
                     </TableRow>
                   </TableHead>
-                )}
-                <TableBody>
-                  {order
-                    // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => (
-                      <StyledTableRow key={row._id}>
-                        <StyledTableCell>{row.userName}</StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.number}
-                        </StyledTableCell>
+                  <TableBody>
+                    {order
+                      // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => (
+                        <StyledTableRow key={row._id}>
+                          <StyledTableCell>{row.userName}</StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.addressFrom}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.number}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.addressTo}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressFrom}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          <Moment format='D MMM YYYY' withTitle>
-                            {row.createdAt}
-                          </Moment>
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressTo}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.dispatchOrder ? 'True' : 'False'}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            <Moment format='D MMM YYYY' withTitle>
+                              {row.createdAt}
+                            </Moment>
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.totalPrice}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.dispatchOrder ? 'True' : 'False'}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          <OrderDropdown id={row._id} />{' '}
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                </TableBody>
-              </Table>
+                          <StyledTableCell align='left'>
+                            {!row ? null : (
+                              <>
+                                &#8358;{' '}
+                                {row.totalPrice
+                                  .toFixed(2)
+                                  .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                              </>
+                            )}
+                          </StyledTableCell>
+
+                          <StyledTableCell align='left'>
+                            <OrderDropdown id={row._id} />{' '}
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                  </TableBody>
+                  {/* <TableBody>
+                    <StyledTableCell align='left'>Total</StyledTableCell>
+                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                      w
+                    </StyledTableCell>
+                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                      w
+                    </StyledTableCell>
+                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                      w
+                    </StyledTableCell>
+                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                      w
+                    </StyledTableCell>
+                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                      w
+                    </StyledTableCell>
+                    <StyledTableCell align='left'>
+                      {' '}
+                      &#8358;{total}
+                    </StyledTableCell>
+                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                      w
+                    </StyledTableCell>
+                  </TableBody> */}
+                </Table>
+              )}
               {/* <TablePagination
                 component='div'
                 count={order.length}

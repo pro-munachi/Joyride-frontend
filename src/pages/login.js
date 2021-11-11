@@ -70,9 +70,7 @@ const Login = () => {
           toast.success('login successful')
           setEmail('')
           setPassword('')
-          window.setTimeout(() => {
-            History.push('/')
-          }, 2000)
+          History.push('/')
         } else {
           toast.error(res.data.error)
         }

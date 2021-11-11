@@ -8,6 +8,10 @@
   font-size: 11px !important;
 }
 
+.user {
+  min-height: 90vh;
+}
+
 .styles {
   padding: 10px 15px;
   list-style: none;
@@ -19,6 +23,13 @@
 .table {
   background: #05386b;
   color: white !important;
+  width: 100%;
+}
+
+@media (max-width: 1035px) {
+  .table {
+    width: 100vh;
+  }
 }
 
 .addform {

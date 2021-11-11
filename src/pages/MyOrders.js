@@ -130,7 +130,10 @@ const MyOrders = () => {
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.totalPrice}
+                        &#8358;
+                        {row.totalPrice
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
@@ -148,7 +151,6 @@ const MyOrders = () => {
               rowsPerPage={rowsPerPage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               className='table'
-              sx={{ width: '100%' }}
             />
           </TableContainer>
         )}

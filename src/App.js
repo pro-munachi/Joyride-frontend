@@ -53,7 +53,7 @@ function App() {
             isAuth={localStorage.getItem('admin')}
           />
           <ProtectedRoute
-            path='/users/:id'
+            path='/user/:id'
             component={ViewUser}
             isAuth={localStorage.getItem('token')}
           />

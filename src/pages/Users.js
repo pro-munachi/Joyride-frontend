@@ -16,6 +16,7 @@ import '../style/user.css'
 import axios from 'axios'
 import PositionedMenu from '../components/ActiveDropdown'
 import PageLoader from '../components/pageloader'
+import Moment from 'react-moment'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -118,7 +119,9 @@ const Users = () => {
                         {row.displayName}
                       </StyledTableCell>
                       <StyledTableCell align='left'>
-                        {row.createdAt}
+                        <Moment format='D MMM YYYY' withTitle>
+                          {row.createdAt}
+                        </Moment>
                       </StyledTableCell>
                       {row.isAdmin ? (
                         <StyledTableCell align='left'>Yes</StyledTableCell>

@@ -80,10 +80,7 @@ const Orders = () => {
           <PageLoader />
         ) : (
           <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 700, overflowX: 'scroll' }}
-              aria-label='customized table'
-            >
+            <Table aria-label='customized table'>
               <TableHead>
                 <TableRow>
                   <StyledTableCell>Name</StyledTableCell>
@@ -126,7 +123,10 @@ const Orders = () => {
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.totalPrice}.00
+                        &#8358;
+                        {row.totalPrice
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
