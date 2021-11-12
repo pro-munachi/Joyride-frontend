@@ -1,83 +1,100 @@
 import axios from 'axios'
-import { React, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import Divider from '@material-ui/core/Divider'
-// import { styled } from '@mui/material/styles'
-// import Table from '@mui/material/Table'
-// import TableBody from '@mui/material/TableBody'
-// import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-// import TableContainer from '@mui/material/TableContainer'
-// import TableHead from '@mui/material/TableHead'
-// import TableRow from '@mui/material/TableRow'
-// import Paper from '@mui/material/Paper'
-// import VisibilityIcon from '@material-ui/icons/Visibility'
-// import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import { ToastContainer } from 'react-toastify'
+import { React, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import { toast } from 'react-toastify'
 import { withRouter } from 'react-router'
 
-import ResponsiveDrawer from '../components/sidebar'
-import '../style/viewuser.css'
-
-// const StyledTableCell = styled(TableCell)(({ theme }) => ({
-//   [`&.${tableCellClasses.head}`]: {
-//     backgroundColor: theme.palette.common.black,
-//     color: theme.palette.common.white,
-//   },
-//   [`&.${tableCellClasses.body}`]: {
-//     fontSize: 14,
-//   },
-// }))
-
-// const StyledTableRow = styled(TableRow)(({ theme }) => ({
-//   '&:nth-of-type(odd)': {
-//     backgroundColor: theme.palette.action.hover,
-//   },
-//   // hide last border
-//   '&:last-child td, &:last-child th': {
-//     border: 0,
-//   },
-// }))
+import '../style/changepassword.css'
+import CircularIndeterminate from '../components/loader'
 
 const EditUser = () => {
-  const [user, setUser] = useState([])
-  const [displayName, setDisplayName] = useState('')
+  const [displayName, setdisplayName] = useState('')
+  const [number, setNumber] = useState('')
   const [email, setEmail] = useState('')
-  // const [password] = useState('')
-  // const [confirmPassword] = useState('')
-  // const [loading, setLoading] = useState(false)
-  // const [mode, setMode] = useState('password')
-
-  let { id } = useParams()
-  console.log(id)
-
-  useEffect(() => {
-    const headers = {
-      'Content-Type': 'application/json',
-      authorization: `Bearer ${localStorage.getItem('token')}`,
-    }
-    axios
-      .get(`https://kidsio.herokuapp.com/users/${id}`, { headers: headers })
-      .then((res) => {
-        setUser(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [id])
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // const data = {
-    //   displayName: displayName,
-    //   email: email,
-    //   password: password,
-    //   passwordCheck: confirmPassword,
-    // }
+    const data = {
+      displayName: displayName,
+      number: number,
+      email: email,
+    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    setLoading(true)
+    axios
+      .post('http://kidsio.herokuapp.com/users/edit', data, {
+        headers: headers,
+      })
+      .then((res) => {
+        setLoading(false)
+        if (res.data.hasError === false) {
+          setdisplayName('')
+          setNumber('')
+          setEmail('')
+          toast.success(res.data.message)
+        } else {
+          toast.error(res.data.message)
+        }
+      })
+      .catch((err) => {
+        setLoading(true)
+        toast.error('sorry something went wrong')
+      })
   }
 
-  return <ResponsiveDrawer>jhtfg</ResponsiveDrawer>
+  return (
+    <div className='containers'>
+      <form className='forms'>
+        <label className='form-label'>
+          Email
+          <input
+            type='text'
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className='input'
+            placeholder='Email'
+          />
+        </label>
+
+        <label className='form-label'>
+          Name{' '}
+          <input
+            type='text'
+            required
+            value={displayName}
+            onChange={(e) => setdisplayName(e.target.value)}
+            className='input'
+            placeholder='Name'
+          />
+        </label>
+        <label className='form-label'>
+          Phone Number{' '}
+          <input
+            type='number'
+            required
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            className='input'
+            placeholder='Phone number'
+          />
+        </label>
+        <div className='change-button'>
+          <button disabled={loading} onClick={handleSubmit}>
+            {loading ? <CircularIndeterminate /> : 'Change'}
+          </button>
+        </div>
+      </form>
+    </div>
+  )
 }
 
 export default withRouter(EditUser)

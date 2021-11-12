@@ -92,6 +92,13 @@
 .side-image {
   width: 60%;
   margin: auto;
+  position: relative;
+}
+
+.side-image div {
+  position: absolute;
+  bottom: 10%;
+  left: 40%;
 }
 
 .side-image img {

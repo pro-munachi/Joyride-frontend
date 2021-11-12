@@ -18,7 +18,7 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import PersonIcon from '@mui/icons-material/Person'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-// import PasswordIcon from '@mui/icons-material/Password'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
 import CreateIcon from '@mui/icons-material/Create'
 import { NavLink } from 'react-router-dom'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
@@ -31,6 +31,7 @@ import logo from '../images/cover.png'
 import Modals from './modal'
 // import AccordionSummary from './accordion'
 import ChangePassword from '../pages/ChangePassword'
+import EditUser from '../pages/EditUser'
 // import Orders from '../pages/Orders'
 
 const drawerWidth = 240
@@ -118,6 +119,9 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <div className='side-image'>
         <img alt='profile' src={localStorage.getItem('pic')} />
+        <div className='side-add'>
+          <AddCircleIcon />
+        </div>
       </div>
       <div className='user-name'>
         <p>{localStorage.getItem('name')}</p>
@@ -148,28 +152,48 @@ function ResponsiveDrawer(props) {
             </>
           )}
         </span>
+
         <Divider />
-        {[
-          { name: 'Create Order', icon: <CreateIcon />, link: '/create' },
-          { name: 'Dashboard', icon: <DashboardIcon />, link: '/' },
-          { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
-        ].map((text, index) => (
-          <ListItem
-            button
-            key={index}
-            component={NavLink}
-            to={text.link}
-            className={classes.button}
-          >
-            <ListItemIcon className={classes.icon}>{text.icon}</ListItemIcon>
-            <ListItemText primary={text.name} className={classes.name} />
-          </ListItem>
-        ))}
+
+        <ListItem
+          button
+          component={NavLink}
+          to={'/'}
+          className={classes.button}
+        >
+          <ListItemIcon className={classes.icon}>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Dashboard'} className={classes.name} />
+        </ListItem>
+
         <Divider />
+
         <SimpleAccordion
           background={'#031c35'}
-          name={localStorage.getItem('name')}
-          icon={<PersonIcon />}
+          name={'Order'}
+          icon={<CreateIcon />}
+        >
+          <div className='side-accordion'>
+            <div style={{ paddingTop: 15 }}>
+              <NavLink to='/myorders/' className='side-link'>
+                My Orders
+              </NavLink>
+              <div style={{ marginTop: 10 }}>
+                <NavLink to='/create' className='side-link'>
+                  Create Order
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </SimpleAccordion>
+
+        <Divider />
+
+        <SimpleAccordion
+          background={'#031c35'}
+          name={'Setting'}
+          icon={<SettingsIcon />}
         >
           <div className='side-accordion'>
             <div>
@@ -183,20 +207,28 @@ function ResponsiveDrawer(props) {
                   <ChangePassword />
                 </Modals>
               </div>
-              <NavLink to='/myorders/' className='side-link'>
-                My Orders
-              </NavLink>
-              <div style={{ marginTop: 10 }}>
-                <NavLink to={`/users/edit/${id}`} className='side-link'>
-                  Edit Profile
-                </NavLink>
-              </div>
-              <div className='side-link1' onClick={logout}>
-                Logout
+              <div className='modal-div1'>
+                <Modals
+                  head={'Edit Profile'}
+                  text={'Edit Profile'}
+                  secondaryText={'Fill details to edit your profile'}
+                  color={'white'}
+                >
+                  <EditUser />
+                </Modals>
               </div>
             </div>
           </div>
         </SimpleAccordion>
+
+        <Divider />
+
+        <ListItem button className={classes.button} onClick={logout}>
+          <ListItemIcon className={classes.icon}>
+            <ExitToAppIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Logout'} className={classes.name} />
+        </ListItem>
       </List>
     </div>
   )

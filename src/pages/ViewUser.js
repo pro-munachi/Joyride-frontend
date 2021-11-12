@@ -149,6 +149,9 @@ const ViewUser = () => {
                     Email: <span>{user.email}</span>
                   </p>
                   <p>
+                    Number: <span>{user.phoneNumber}</span>
+                  </p>
+                  <p>
                     Is Admin: <span>{user.isAdmin ? 'True' : 'False'}</span>
                   </p>
                   <p>
