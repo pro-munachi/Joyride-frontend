@@ -67,10 +67,12 @@ const Login = () => {
           localStorage.setItem('pic', res.data.profilePic)
           localStorage.setItem('email', res.data.phoneNumber)
           localStorage.setItem('admin', res.data.isAdmin)
-          toast.success('login successful')
           setEmail('')
           setPassword('')
-          History.push('/')
+          window.setTimeout(() => {
+            window.location.href = '/'
+          }, 1000)
+          toast.success('login successful')
         } else {
           toast.error(res.data.error)
         }

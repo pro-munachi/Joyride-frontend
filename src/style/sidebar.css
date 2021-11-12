@@ -40,6 +40,15 @@
   font-size: 16px;
 }
 
+.side-link1 {
+  text-decoration: none;
+  color: white;
+  margin-left: 17px;
+  margin-top: 9px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .modal-container {
   width: 87%;
   margin: auto;

@@ -32,6 +32,11 @@ function App() {
           <Route path='/auth/forgot-password' component={Forgot} />
           <Route path='/create' component={CreateOrder} />
           <ProtectedRoute
+            path='/users/edit/:id'
+            component={EditUser}
+            isAuth={localStorage.getItem('token')}
+          />
+          <ProtectedRoute
             path='/'
             component={Dashboards}
             isAuth={localStorage.getItem('token')}
@@ -58,15 +63,11 @@ function App() {
             isAuth={localStorage.getItem('token')}
           />
           <ProtectedRoute
-            path='/users/:id/edit'
-            component={EditUser}
-            isAuth={localStorage.getItem('token')}
-          />
-          <ProtectedRoute
             path='/orders/:id'
             component={ViewOrder}
             isAuth={localStorage.getItem('token')}
           />
+
           <ProtectedRoute
             path='/myorders'
             component={MyOrders}

@@ -169,7 +169,8 @@ const CreateOrder = () => {
           </form>
           <div className='box'>
             {' '}
-            {JSON.parse(!localStorage.getItem('order')) ? (
+            {JSON.parse(!localStorage.getItem('order')) ||
+            JSON.parse(localStorage.getItem('order')).length === 0 ? (
               <div style={{ margin: '12px auto' }}>No order Yet</div>
             ) : (
               JSON.parse(localStorage.getItem('order')).map((single) => (

@@ -22,6 +22,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CreateIcon from '@mui/icons-material/Create'
 import { NavLink } from 'react-router-dom'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import { useHistory } from 'react-router-dom'
 
 import SimpleAccordion from './accordion'
 import BasicMenu from './dropdown'
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   name: {
-    fontSize: theme.typography.pxToRem(14),
+    fontSize: theme.typography.pxToRem(17),
     marginLeft: '-3px',
   },
 
@@ -81,8 +82,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     background: '#f5f5f5',
     width: '100%',
-    overflowX: 'scroll',
-    height: '100%',
+    overflow: 'scroll',
+    height: '100vh',
   },
 }))
 
@@ -92,9 +93,25 @@ function ResponsiveDrawer(props) {
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
+  const history = useHistory()
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
+
+  const logout = () => {
+    localStorage.setItem('token', null)
+    localStorage.setItem('name', null)
+    localStorage.setItem('id', null)
+    localStorage.setItem('email', null)
+    localStorage.setItem('pic', null)
+    localStorage.setItem('email', null)
+    localStorage.setItem('admin', null)
+
+    history.push('/auth/login')
+  }
+
+  const id = localStorage.getItem('id')
 
   const drawer = (
     <div>
@@ -136,7 +153,6 @@ function ResponsiveDrawer(props) {
           { name: 'Create Order', icon: <CreateIcon />, link: '/create' },
           { name: 'Dashboard', icon: <DashboardIcon />, link: '/' },
           { name: 'Settings', icon: <SettingsIcon />, link: '/auth/login' },
-          { name: 'Logout', icon: <ExitToAppIcon />, link: '/auth/signup' },
         ].map((text, index) => (
           <ListItem
             button
@@ -170,6 +186,14 @@ function ResponsiveDrawer(props) {
               <NavLink to='/myorders/' className='side-link'>
                 My Orders
               </NavLink>
+              <div style={{ marginTop: 10 }}>
+                <NavLink to={`/users/edit/${id}`} className='side-link'>
+                  Edit Profile
+                </NavLink>
+              </div>
+              <div className='side-link1' onClick={logout}>
+                Logout
+              </div>
             </div>
           </div>
         </SimpleAccordion>

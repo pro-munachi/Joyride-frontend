@@ -77,72 +77,7 @@ const EditUser = () => {
     // }
   }
 
-  return (
-    <ResponsiveDrawer>
-      {' '}
-      <div className='user-container'>
-        <div className='user-profile'>
-          <div className='h2'>{user.displayName}'s Profile</div>
-          <div className='user-contact'>
-            <div className='user-image'>
-              <img src={user.profilePic} alt='user' />
-            </div>
-            <div className='empty' />
-            <div className='user-details'>
-              <div>
-                Display Name: <span>{user.displayName}</span>
-              </div>
-              <p>
-                Email: <span>{user.email}</span>
-              </p>
-              <p>
-                Is Admin: <span>{user.isAdmin ? 'True' : 'False'}</span>
-              </p>
-              <p>
-                Created At: <span>{user.createdAt}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <Divider />
-        <div className='user-orders'>
-          <div className='h2'>{user.displayName}'s Latest Orders</div>
-          <div className='form'>
-            <form onSubmit={handleSubmit}>
-              <h2>Signup</h2>
-              <label className='label'>
-                Name
-                <input
-                  type='text'
-                  required
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  className='input'
-                  placeholder={user.displayName}
-                />
-              </label>
-              <label className='label'>
-                Email
-                <input
-                  type='email'
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className='input'
-                  placeholder={user.email}
-                />
-              </label>
-              <ToastContainer />
-
-              <div>
-                <button className='button'>Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </ResponsiveDrawer>
-  )
+  return <ResponsiveDrawer>jhtfg</ResponsiveDrawer>
 }
 
 export default withRouter(EditUser)

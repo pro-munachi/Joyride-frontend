@@ -74,7 +74,9 @@ const Signup = () => {
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('email', res.data.phoneNumber)
           localStorage.setItem('pic', res.data.profilePic)
-          History.push('/')
+          window.setTimeout(() => {
+            window.location.href = '/'
+          }, 1000)
           toast.success('login successful')
         } else {
           toast.error(res.data.message)
