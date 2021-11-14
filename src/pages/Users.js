@@ -53,8 +53,8 @@ const Users = () => {
     axios
       .get('https://kidsio.herokuapp.com/users/', { headers: headers })
       .then((res) => {
-        console.log(res.data)
-        setUsers(res.data.allUsers)
+        let rev = res.data.allUsers.reverse()
+        setUsers(rev)
         setLoading(false)
       })
       .catch((err) => {
@@ -62,22 +62,6 @@ const Users = () => {
         setLoading(false)
       })
   }, [])
-
-  const reload = () => {
-    const headers = {
-      'Content-Type': 'application/json',
-      authorization: `Bearer ${localStorage.getItem('token')}`,
-    }
-    axios
-      .get('https://kidsio.herokuapp.com/users/', { headers: headers })
-      .then((res) => {
-        console.log(res.data)
-        setUsers(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -96,7 +80,7 @@ const Users = () => {
           <PageLoader />
         ) : (
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+            <Table aria-label='customized table'>
               <TableHead>
                 <TableRow>
                   <StyledTableCell>User Email</StyledTableCell>
@@ -109,7 +93,6 @@ const Users = () => {
 
               <TableBody>
                 {users
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <StyledTableRow key={row._id}>
                       <StyledTableCell component='th' scope='row'>
@@ -130,10 +113,11 @@ const Users = () => {
                       )}
 
                       <StyledTableCell align='left' typeof='button'>
-                        <PositionedMenu id={row._id} func={reload} />
+                        <PositionedMenu id={row._id} />
                       </StyledTableCell>
                     </StyledTableRow>
-                  ))}
+                  ))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
               </TableBody>
             </Table>
             <TablePagination

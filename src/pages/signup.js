@@ -72,7 +72,7 @@ const Signup = () => {
           localStorage.setItem('name', res.data.displayName)
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
-          localStorage.setItem('email', res.data.phoneNumber)
+          localStorage.setItem('phone', res.data.phoneNumber)
           localStorage.setItem('pic', res.data.profilePic)
           window.setTimeout(() => {
             window.location.href = '/'

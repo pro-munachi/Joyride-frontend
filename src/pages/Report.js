@@ -43,8 +43,8 @@ const Report = () => {
   const [end, setEnd] = useState('')
   const [order, setOrder] = useState([])
   const [total, setTotal] = useState(null)
-  //   const [page, setPage] = React.useState(0)
-  //   const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = () => {
@@ -72,14 +72,14 @@ const Report = () => {
       })
   }
 
-  //   const handleChangePage = (event, newPage) => {
-  //     setPage(newPage)
-  //   }
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
 
-  //   const handleChangeRowsPerPage = (event) => {
-  //     setRowsPerPage(parseInt(event.target.value, 10))
-  //     setPage(0)
-  //   }
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(0)
+  }
 
   return (
     <ResponsiveDrawer>
@@ -135,8 +135,48 @@ const Report = () => {
                   </TableHead>
 
                   <TableBody>
+                    <StyledTableRow>
+                      <StyledTableCell
+                        align='left'
+                        sx={{ fontWeight: 700, fontSize: 20 }}
+                      >
+                        Total
+                      </StyledTableCell>
+                      <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                        w
+                      </StyledTableCell>
+                      <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                        w
+                      </StyledTableCell>
+                      <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                        w
+                      </StyledTableCell>
+                      <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                        w
+                      </StyledTableCell>
+                      <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                        w
+                      </StyledTableCell>
+                      <StyledTableCell
+                        align='left'
+                        sx={{ fontWeight: 700, fontSize: 20 }}
+                      >
+                        {' '}
+                        &#8358;
+                        {total}.00
+                      </StyledTableCell>
+                      <StyledTableCell align='left' sx={{ opacity: 0 }}>
+                        w
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  </TableBody>
+
+                  <TableBody>
                     {order
-                      // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
                       .map((row) => (
                         <StyledTableRow key={row._id}>
                           <StyledTableCell>{row.userName}</StyledTableCell>
@@ -180,42 +220,22 @@ const Report = () => {
                         </StyledTableRow>
                       ))}
                   </TableBody>
-                  {/* <TableBody>
-                    <StyledTableCell align='left'>Total</StyledTableCell>
-                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
-                      w
-                    </StyledTableCell>
-                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
-                      w
-                    </StyledTableCell>
-                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
-                      w
-                    </StyledTableCell>
-                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
-                      w
-                    </StyledTableCell>
-                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
-                      w
-                    </StyledTableCell>
-                    <StyledTableCell align='left'>
-                      {' '}
-                      &#8358;{total}
-                    </StyledTableCell>
-                    <StyledTableCell align='left' sx={{ opacity: 0 }}>
-                      w
-                    </StyledTableCell>
-                  </TableBody> */}
                 </Table>
               )}
-              {/* <TablePagination
-                component='div'
-                count={order.length}
-                page={page}
-                onPageChange={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                className='table'
-              /> */}
+              {!order ||
+              order.length === 0 ||
+              order === null ||
+              order === undefined ? null : (
+                <TablePagination
+                  component='div'
+                  count={order.length}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  rowsPerPage={rowsPerPage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  className='table'
+                />
+              )}
             </TableContainer>
           )}
         </div>

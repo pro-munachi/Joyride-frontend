@@ -61,7 +61,7 @@ const EditUser = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className='input'
-            placeholder='Email'
+            placeholder={localStorage.getItem('email')}
           />
         </label>
 
@@ -73,7 +73,7 @@ const EditUser = () => {
             value={displayName}
             onChange={(e) => setdisplayName(e.target.value)}
             className='input'
-            placeholder='Name'
+            placeholder={localStorage.getItem('name')}
           />
         </label>
         <label className='form-label'>
@@ -84,7 +84,7 @@ const EditUser = () => {
             value={number}
             onChange={(e) => setNumber(e.target.value)}
             className='input'
-            placeholder='Phone number'
+            placeholder={localStorage.getItem('phone')}
           />
         </label>
         <div className='change-button'>

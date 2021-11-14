@@ -114,13 +114,31 @@ function ResponsiveDrawer(props) {
 
   const id = localStorage.getItem('id')
 
+  const addPic = (urlImg) => {
+    var img = new Image()
+    img.src = urlImg
+    img.crossOrigin = 'Anonymous'
+
+    console.log(img)
+
+    var canvas = document.createElement('canvas'),
+      ctx = canvas.getContext('2d')
+
+    canvas.height = img.naturalHeight
+    canvas.width = img.naturalWidth
+    ctx.drawImage(img, 0, 0)
+
+    var b64 = canvas.toDataURL('image/png').replace(/^data:image.+;base64,/, '')
+    return b64
+  }
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <div className='side-image'>
         <img alt='profile' src={localStorage.getItem('pic')} />
         <div className='side-add'>
-          <AddCircleIcon />
+          <AddCircleIcon onClick={addPic} />
         </div>
       </div>
       <div className='user-name'>

@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  mode: {
+    padding: '10px 20px',
+  },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
@@ -24,16 +27,18 @@ const useStyles = makeStyles((theme) => ({
     height: 250,
   },
   button: {
-    height: '50px',
     cursor: 'pointer',
+    padding: '0 0',
   },
 
   list: {
     height: '100%',
+    padding: '0 0',
   },
 
   listItems: {
     margin: 'auto',
+    padding: '0 0',
   },
 }))
 
@@ -85,7 +90,7 @@ export default function Modals(props) {
                 </span>
               </div>
             </div>
-            <div>{props.children}</div>
+            <div className={classes.mode}>{props.children}</div>
           </div>
         </Fade>
       </Modal>

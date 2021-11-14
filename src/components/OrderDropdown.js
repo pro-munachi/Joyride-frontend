@@ -40,7 +40,7 @@ export default function OrderDropdown({ id }) {
       })
       .then((res) => {
         console.log(res.data)
-        toast.success('Order Deleted Successfully')
+        toast.success('Order deleted successfully')
       })
       .catch((err) => {
         console.log(err)

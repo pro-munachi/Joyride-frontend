@@ -65,10 +65,11 @@ const Login = () => {
           localStorage.setItem('id', res.data._id)
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('pic', res.data.profilePic)
-          localStorage.setItem('email', res.data.phoneNumber)
+          localStorage.setItem('phone', res.data.phoneNumber)
           localStorage.setItem('admin', res.data.isAdmin)
           setEmail('')
           setPassword('')
+          console.log(res.data)
           window.setTimeout(() => {
             window.location.href = '/'
           }, 1000)
