@@ -22,7 +22,7 @@
 }
 
 .MuiSvgIcon-root {
-  color: white;
+  color: #fff;
 }
 
 .side-accordion {
@@ -68,7 +68,6 @@
 }
 
 .side-header {
-  color: black;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -152,4 +151,19 @@
 
 .logo {
   height: 30px;
+  margin: auto 0;
+}
+
+.hamburg {
+  color: #05386b;
+}
+
+@media (max-width: 600px) {
+  .MuiAppBar-colorPrimary {
+    color: #05386b !important;
+    background-color: #fff !important;
+  }
+  .logo {
+    margin: auto auto;
+  }
 }

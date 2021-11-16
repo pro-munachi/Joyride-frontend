@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
   menuButton: {
     marginRight: theme.spacing(2),
+    backgroundColor: '#fff',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -266,7 +267,7 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MenuIcon />
+            <MenuIcon className='hamburg' />
           </IconButton>
           <Typography variant='h6' noWrap className='side-header'>
             <img src={logo} alt='logo' className='logo' />
