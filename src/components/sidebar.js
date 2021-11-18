@@ -150,14 +150,9 @@ function ResponsiveDrawer(props) {
           getBase64(e)
             .then((result) => {
               e['base64'] = result
-              console.log('File Is', e)
-              console.log('result', result)
-              setFile(result)
               let data = {
                 profilePic: result,
               }
-              console.log(data)
-              console.log(file)
               let headers = {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -170,6 +165,7 @@ function ResponsiveDrawer(props) {
                   if (res.data.hasError === false) {
                     toast.success('Profile has been updated successfully')
                     localStorage.setItem('pic', res.data.pic)
+                    setFile(res.data.pic)
                     setProfile(!profile)
                   } else {
                     toast.error(res.data.message)
@@ -195,10 +191,14 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <div className='side-image'>
-        <img alt='profile' src={localStorage.getItem('pic')} />
+        <img alt='profile' src={file || localStorage.getItem('pic')} />
         <div className='side-add'>
-          <AddCircleIcon onClick={addPic} />
-          <input type='file' onChange={(e) => addPic(e.target.files[0])} />
+          <AddCircleIcon className='add-icon' />
+          <input
+            type='file'
+            onChange={(e) => addPic(e.target.files[0])}
+            className='file'
+          />
         </div>
       </div>
       <div className='user-name'>

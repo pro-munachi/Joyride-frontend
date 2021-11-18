@@ -101,9 +101,28 @@
 }
 
 .side-image img {
+  max-width: 60%;
   width: 60%;
+  height: 90px;
+  max-height: 90px;
   margin: auto;
   border-radius: 49%;
+}
+
+.side-add {
+  position: relative;
+}
+
+.side-add input {
+  opacity: 0;
+  width: 25px;
+  position: absolute;
+  bottom: 45%;
+}
+
+.add-icon {
+  position: absolute;
+  bottom: 45%;
 }
 
 /* Notification styles */
