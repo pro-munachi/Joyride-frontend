@@ -10,7 +10,7 @@ export default function PageLoader() {
         display: 'flex',
         justifyContent: 'center',
         position: 'relative',
-        top: '100%',
+        top: '40%',
       }}
     >
       <CircularProgress />

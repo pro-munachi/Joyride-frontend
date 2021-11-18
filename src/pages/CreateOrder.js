@@ -80,9 +80,6 @@ const CreateOrder = () => {
       orderItems: orderItems,
     }
 
-    console.log(allItems)
-    console.log(data)
-
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -114,86 +111,96 @@ const CreateOrder = () => {
   return (
     <ResponsiveDrawer>
       <div className='forms'>
-        <div className='form-containers'>
-          <form>
-            <h2>Create Orders</h2>
-            <label>
-              Address From
-              <input
-                type='text'
-                required
-                value={addressFrom}
-                onChange={(e) => setAddressFrom(e.target.value)}
-                placeholder='Address From'
-              />
-            </label>
-            <label>
-              Address To
-              <input
-                type='text'
-                required
-                value={addressTo}
-                onChange={(e) => setAddressTo(e.target.value)}
-                placeholder='Address To'
-              />
-            </label>
-            <label>
-              Payment Method
-              <input
-                type='text'
-                required
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                placeholder='Payment Method'
-              />
-            </label>
-          </form>
-        </div>
-        <div className='form-container2'>
-          <form>
-            <label>
-              Order Name
-              <input
-                type='text'
-                required
-                placeholder='Name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </label>
-            <div className='div1'>
-              <button className='button1' type='button' onClick={onclick}>
-                Add
-              </button>
-            </div>
-          </form>
-          <div className='box'>
-            {' '}
-            {JSON.parse(!localStorage.getItem('order')) ||
-            JSON.parse(localStorage.getItem('order')).length === 0 ? (
-              <div style={{ margin: '12px auto' }}>No order Yet</div>
-            ) : (
-              JSON.parse(localStorage.getItem('order')).map((single) => (
-                <Stack
-                  direction='row'
-                  spacing={1}
-                  key={single.name}
-                  sx={{ margin: '3px 7px' }}
+        <div className='shadow'>
+          <div className='form-containers'>
+            <form>
+              <h2>Create Orders</h2>
+              <label>
+                Address From
+                <input
+                  type='text'
+                  required
+                  value={addressFrom}
+                  onChange={(e) => setAddressFrom(e.target.value)}
+                  placeholder='Address From'
+                />
+              </label>
+              <label>
+                Address To
+                <input
+                  type='text'
+                  required
+                  value={addressTo}
+                  onChange={(e) => setAddressTo(e.target.value)}
+                  placeholder='Address To'
+                />
+              </label>
+              <label>
+                Payment Method
+                <input
+                  type='text'
+                  required
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  placeholder='Payment Method'
+                />
+              </label>
+            </form>
+          </div>
+          <div className='form-container2'>
+            <form>
+              <label>
+                Order Name
+                <input
+                  type='text'
+                  required
+                  placeholder='Name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <div className='div1'>
+                <button
+                  className='button1'
+                  type='button'
+                  disabled={
+                    name === null || name.length === 0 || name === undefined
+                  }
+                  onClick={onclick}
                 >
-                  <Chip
-                    label={single.name}
-                    onDelete={() => deleteItem(single.name)}
-                  />
-                </Stack>
-              ))
-            )}
+                  Add
+                </button>
+              </div>
+            </form>
+            <div className='box'>
+              {' '}
+              {JSON.parse(!localStorage.getItem('order')) ||
+              JSON.parse(localStorage.getItem('order')).length === 0 ? (
+                <div style={{ margin: '12px auto' }}>No order Yet</div>
+              ) : (
+                JSON.parse(localStorage.getItem('order')).map((single) => (
+                  <Stack
+                    direction='row'
+                    spacing={1}
+                    key={single.name}
+                    sx={{ margin: '3px 7px' }}
+                  >
+                    <Chip
+                      label={single.name}
+                      onDelete={() => deleteItem(single.name)}
+                    />
+                  </Stack>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div className='create'>
+            <button disabled={loading} type='button' onClick={handleSubmit}>
+              {loading ? <CircularIndeterminate /> : 'Create Order'}
+            </button>
           </div>
         </div>
-      </div>
-      <div className='create'>
-        <button disabled={loading} type='button' onClick={handleSubmit}>
-          {loading ? <CircularIndeterminate /> : 'Create Order'}
-        </button>
       </div>
     </ResponsiveDrawer>
   )

@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 // import Divider from '@material-ui/core/Divider'
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
+import Badge from '@mui/material/Badge'
 import MessageIcon from '@mui/icons-material/Message'
 import { toast } from 'react-toastify'
 
@@ -55,6 +56,10 @@ export default function BasicMenu() {
       .catch((err) => {
         toast.error('cannot load notifications')
       })
+
+    localStorage.setItem('notification', parseInt(notification.length))
+    console.log(notification.length)
+    console.log(localStorage.getItem('notification'))
   }
 
   const handleClose = () => {
@@ -85,6 +90,8 @@ export default function BasicMenu() {
     fetch()
   }
 
+  let not = localStorage.getItem('notification')
+
   const updateAll = (e) => {
     e.preventDefault()
     const headers = {
@@ -97,11 +104,11 @@ export default function BasicMenu() {
       })
       .then((res) => {
         toast.success('All notifications have been marked as read')
+        fetch()
       })
       .catch((err) => {
         toast.error('sorry something went wrong')
       })
-    fetch()
   }
 
   return (
@@ -113,7 +120,13 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <NotificationsNoneIcon className='side-icon' onClick={fetch} />
+        {notification.length == not ? (
+          <NotificationsNoneIcon className='side-icon' onClick={fetch} />
+        ) : (
+          <Badge variant='dot' color='primary' onClick={fetch}>
+            <NotificationsNoneIcon className='side-icon' />
+          </Badge>
+        )}
       </Button>
       <Menu
         id='basic-menu'

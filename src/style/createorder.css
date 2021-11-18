@@ -3,8 +3,18 @@
   flex-direction: column;
 }
 
+.shadow {
+  width: 80%;
+  margin: 30px auto;
+  background-color: white;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
 .form-containers {
-  width: 70%;
+  width: 100%;
   margin: auto;
 }
 
@@ -25,7 +35,7 @@
   flex-direction: column;
   font-weight: 600;
   margin: 12px auto;
-  width: 90%;
+  width: 70%;
   font-size: 16px;
 }
 
@@ -74,12 +84,13 @@
 }
 
 .form-container2 {
-  width: 70%;
+  width: 100%;
   margin: auto;
 }
 
 .form-container2 form {
   display: flex;
+  width: 70%;
 }
 
 .form-container2 form label {
@@ -88,7 +99,7 @@
   flex-direction: column;
   font-weight: 600;
   margin: 12px auto;
-  width: 60%;
+  width: 70%;
   font-size: 16px;
 }
 
@@ -97,30 +108,32 @@
   margin: auto;
   height: 35px;
   border: 2px solid #05386b;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   padding-left: 5px;
   outline: none;
 }
 
 .form-container2 form .div1 {
-  width: 20%;
+  width: 30%;
   margin: auto;
 }
 
 .form-container2 form .div1 .button1 {
   margin: auto;
   width: 100%;
-  height: 33px;
+  height: 35px;
   background-color: #05386b;
-  border-radius: 4px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   color: white;
   border: none;
   font-size: 13px;
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .box {
-  width: 90%;
+  width: 70%;
   height: 150px;
   overflow-y: scroll;
   border: 1px solid #05386b;
@@ -128,16 +141,19 @@
   display: flex;
   flex-wrap: wrap;
   margin: 17px auto;
-  background: white;
 }
 
 .create {
-  width: 50%;
-  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 16px 0;
+  padding: 20px 0 20px 0;
 }
 
 .create button {
-  width: 100%;
+  width: 60%;
+  margin: auto;
   height: 40px;
   background: #05386b;
   color: white;
@@ -149,9 +165,13 @@
 }
 
 @media (max-width: 900px) {
-  .form-containers,
-  .form-container2 {
+  .shadow {
     width: 100%;
     margin: auto;
+  }
+  .form-container2 form,
+  .form-containers form label,
+  .box {
+    width: 85%;
   }
 }

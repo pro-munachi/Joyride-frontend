@@ -220,13 +220,6 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={6}>
-                    {timeValue ? (
-                      <Chart {...ChartDataMonth} />
-                    ) : (
-                      <Chart {...ChartDataYear} />
-                    )}
-                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

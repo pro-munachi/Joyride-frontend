@@ -68,6 +68,7 @@ const Signup = () => {
           setEmail('')
           setPassword('')
           setConfirmPassword('')
+          setNumber('')
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('name', res.data.displayName)
           localStorage.setItem('id', res.data._id)

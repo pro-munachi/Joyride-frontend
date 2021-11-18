@@ -23,6 +23,7 @@ import CreateIcon from '@mui/icons-material/Create'
 import { NavLink } from 'react-router-dom'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 import SimpleAccordion from './accordion'
 import BasicMenu from './dropdown'
@@ -32,6 +33,7 @@ import Modals from './modal'
 // import AccordionSummary from './accordion'
 import ChangePassword from '../pages/ChangePassword'
 import EditUser from '../pages/EditUser'
+import { toast } from 'react-toastify'
 // import Orders from '../pages/Orders'
 
 const drawerWidth = 240
@@ -94,6 +96,8 @@ function ResponsiveDrawer(props) {
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [profile, setProfile] = React.useState(false)
+  const [file, setFile] = React.useState('')
 
   const history = useHistory()
 
@@ -115,22 +119,76 @@ function ResponsiveDrawer(props) {
 
   const id = localStorage.getItem('id')
 
-  const addPic = (urlImg) => {
-    var img = new Image()
-    img.src = urlImg
-    img.crossOrigin = 'Anonymous'
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let fileInfo
+      let baseURL = ''
+      // Make new FileReader
+      let reader = new FileReader()
 
-    console.log(img)
+      // Convert the file to base64 text
+      reader.readAsDataURL(file)
 
-    var canvas = document.createElement('canvas'),
-      ctx = canvas.getContext('2d')
-
-    canvas.height = img.naturalHeight
-    canvas.width = img.naturalWidth
-    ctx.drawImage(img, 0, 0)
-
-    var b64 = canvas.toDataURL('image/png').replace(/^data:image.+;base64,/, '')
-    return b64
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        console.log('Called', reader)
+        baseURL = reader.result
+        resolve(baseURL)
+      }
+    })
+  }
+  const addPic = (e) => {
+    console.log(e)
+    if (e) {
+      if (
+        e.type.includes('png') ||
+        e.type.includes('jpg') ||
+        e.type.includes('jpeg')
+      ) {
+        if (e.size <= 500000) {
+          getBase64(e)
+            .then((result) => {
+              e['base64'] = result
+              console.log('File Is', e)
+              console.log('result', result)
+              setFile(result)
+              let data = {
+                profilePic: result,
+              }
+              console.log(data)
+              console.log(file)
+              let headers = {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+              }
+              axios
+                .post('http://kidsio.herokuapp.com/users/changepic', data, {
+                  headers: headers,
+                })
+                .then((res) => {
+                  if (res.data.hasError === false) {
+                    toast.success('Profile has been updated successfully')
+                    localStorage.setItem('pic', res.data.pic)
+                    setProfile(!profile)
+                  } else {
+                    toast.error(res.data.message)
+                  }
+                })
+                .catch((err) => {
+                  toast.error('sorry something went wrong')
+                })
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        } else {
+          toast.warn('Image should be less than 500kb')
+        }
+      } else {
+        toast.warn('Image must be PNG or JPG format')
+      }
+    }
   }
 
   const drawer = (
@@ -140,6 +198,7 @@ function ResponsiveDrawer(props) {
         <img alt='profile' src={localStorage.getItem('pic')} />
         <div className='side-add'>
           <AddCircleIcon onClick={addPic} />
+          <input type='file' onChange={(e) => addPic(e.target.files[0])} />
         </div>
       </div>
       <div className='user-name'>
@@ -194,16 +253,12 @@ function ResponsiveDrawer(props) {
           icon={<CreateIcon />}
         >
           <div className='side-accordion'>
-            <div style={{ paddingTop: 15 }}>
-              <NavLink to='/myorders/' className='side-link'>
-                My Orders
-              </NavLink>
-              <div style={{ marginTop: 10 }}>
-                <NavLink to='/create' className='side-link'>
-                  Create Order
-                </NavLink>
-              </div>
-            </div>
+            <NavLink to='/create' className='side-link'>
+              Create Order
+            </NavLink>
+            <NavLink to='/myorders/' className='side-link'>
+              My Orders
+            </NavLink>
           </div>
         </SimpleAccordion>
 
