@@ -230,20 +230,29 @@ function ResponsiveDrawer(props) {
             </>
           )}
         </span>
+        {[
+          { name: 'Dashboard', link: '/', icon: <DashboardIcon /> },
+          {
+            name: 'Profile',
+            link: '/profile',
+            icon: <PersonIcon />,
+          },
+        ].map((item) => (
+          <React.Fragment key={item.name}>
+            <Divider />
 
-        <Divider />
-
-        <ListItem
-          button
-          component={NavLink}
-          to={'/'}
-          className={classes.button}
-        >
-          <ListItemIcon className={classes.icon}>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary={'Dashboard'} className={classes.name} />
-        </ListItem>
+            <ListItem
+              button
+              component={NavLink}
+              to={item.link}
+              className={classes.button}
+            >
+              <ListItemIcon className={classes.icon}>{item.icon} </ListItemIcon>
+              <ListItemText primary={item.name} className={classes.name} />
+            </ListItem>
+            <Divider />
+          </React.Fragment>
+        ))}
 
         <Divider />
 
@@ -261,9 +270,7 @@ function ResponsiveDrawer(props) {
             </NavLink>
           </div>
         </SimpleAccordion>
-
         <Divider />
-
         <SimpleAccordion
           background={'#031c35'}
           name={'Setting'}
@@ -294,9 +301,7 @@ function ResponsiveDrawer(props) {
             </div>
           </div>
         </SimpleAccordion>
-
         <Divider />
-
         <ListItem button className={classes.button} onClick={logout}>
           <ListItemIcon className={classes.icon}>
             <ExitToAppIcon />

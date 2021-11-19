@@ -2,45 +2,20 @@ import * as React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { styled } from '@mui/material/styles'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import TablePagination from '@mui/material/TablePagination'
 import { withRouter } from 'react-router'
+import Moment from 'react-moment'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 // import PositionedMenu from '../components/ActiveDropdown'
 import PageLoader from '../components/pageloader'
 import { useParams } from 'react-router'
-import ViewUser from './ViewUser'
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}))
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}))
+import '../style/vieworder.css'
 
 const Orders = () => {
   const [order, setOrder] = useState([])
+  const [orderItems, setOrderItems] = useState([])
   const [loading, setLoading] = useState(false)
 
   const { id } = useParams()
@@ -58,6 +33,7 @@ const Orders = () => {
       .then((res) => {
         console.log(res.data.order)
         setOrder(res.data.order)
+        setOrderItems(res.data.order.orderItems)
         setLoading(false)
       })
       .catch((err) => {
@@ -73,78 +49,60 @@ const Orders = () => {
         {loading ? (
           <PageLoader />
         ) : (
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ maxWidth: '100%', overflowX: 'scroll' }}
-              aria-label='customized table'
-            >
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Order Name</StyledTableCell>
-                  <StyledTableCell align='left'>Order Price</StyledTableCell>
-                  <StyledTableCell align='left'>Address From</StyledTableCell>
-                  <StyledTableCell align='left'>Address To</StyledTableCell>
-                  <StyledTableCell align='left'>Time Of Order</StyledTableCell>
-                  <StyledTableCell align='left'>
-                    Is Order Delivered?
-                  </StyledTableCell>
-                  <StyledTableCell align='left'>Is Order Paid?</StyledTableCell>
-                  <StyledTableCell align='left'>Is Order Paid?</StyledTableCell>
-                  <StyledTableCell align='left'>Total Price</StyledTableCell>
-                  <StyledTableCell align='left'>Payment Method</StyledTableCell>
-                  <StyledTableCell align='left'>Tax Price</StyledTableCell>
-                  <StyledTableCell align='left'>
-                    {order.totalPrice}
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {order.orderItems.map((item) => (
-                  <StyledTableRow key={item._id}>
-                    <StyledTableCell>{item.name}</StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.totalPrice}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.addressFrom}
-                    </StyledTableCell>
-                    <StyledTableCell align='left'>
-                      {order.addressTo}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.createdAt}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.dispatchOrder ? 'Delivered' : 'Not delivered'}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.ispaid ? 'Paid' : 'Not Paid'}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.dispatchOrder ? 'Dispatched' : 'Not Dispatched'}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.totalPrice}
-                    </StyledTableCell>
-
-                    <StyledTableCell align='left'>
-                      {order.paymentMethod}
-                    </StyledTableCell>
-                    <StyledTableCell align='left'>
-                      {order.taxPrice}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <div className='order-container'>
+            <h2>Order Details</h2>
+            <div className='details'>
+              <div>
+                <span>User:</span>
+                <span className='span1'>{order.userName}</span>
+              </div>
+              <div>
+                <span>Number:</span>
+                <span className='span1'>{order.number}</span>
+              </div>
+              <div>
+                <span>Payment Method:</span>
+                <span className='span1'>{order.paymentMethod}</span>
+              </div>
+              <div>
+                <span>Shipping Price:</span>
+                <span className='span1'>{order.shippingPrice}</span>
+              </div>
+              <div>
+                <span>Time:</span>
+                <span className='span1'>
+                  <Moment format='D MMM YYYY' withTitle>
+                    {order.createdAt}
+                  </Moment>
+                </span>
+              </div>
+              <div>
+                <span>Delivered:</span>
+                <span className='span1'>
+                  {order.isDelivered ? 'Yes' : 'No'}
+                </span>
+              </div>
+              <div>
+                <span>Price:</span>
+                {order.totalPrice && (
+                  <span className='span1'>
+                    {order.totalPrice
+                      .toFixed(2)
+                      .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className='order-name'>
+              <h2>Order Name</h2>
+              {orderItems.map((item) => (
+                <div key={item._id}>
+                  <span>Name:</span>
+                  <span className='span1'>{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </ResponsiveDrawer>
     </div>

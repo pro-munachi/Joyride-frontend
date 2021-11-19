@@ -91,7 +91,7 @@ const MyOrders = () => {
               <TableHead>
                 <TableRow>
                   <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell align='left'>Phone</StyledTableCell>
+                  <StyledTableCell align='left'>User</StyledTableCell>
                   <StyledTableCell align='left'>From</StyledTableCell>
                   <StyledTableCell align='left'>To</StyledTableCell>
                   <StyledTableCell align='left'>Time</StyledTableCell>
@@ -105,10 +105,17 @@ const MyOrders = () => {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <StyledTableRow key={row._id}>
-                      <StyledTableCell>{row.userName}</StyledTableCell>
+                      <StyledTableCell align='left'>
+                        {row.orderItems.map((item) => (
+                          <React.Fragment key={item._id}>
+                            <>{item.name}</>
+                            <br />
+                          </React.Fragment>
+                        ))}
+                      </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.number}
+                        {row.userName}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>

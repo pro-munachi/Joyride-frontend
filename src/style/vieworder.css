@@ -1,0 +1,93 @@
+.order-container {
+  width: 70%;
+  background-color: white;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  min-height: 70%;
+  text-align: center;
+  padding: 30px;
+  margin: 30px auto;
+}
+
+.order-container h2 {
+  font-size: 23px;
+  color: #05386b;
+}
+
+.order-container .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 80%;
+  margin: auto;
+}
+
+.order-container .details div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.order-container .details div span {
+  text-align: left;
+  font-size: 17px;
+  text-align: left;
+}
+.order-container .details div .span1 {
+  text-align: right;
+  font-size: 17px;
+  width: 50%;
+}
+
+.order-container .order-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 80%;
+  margin: auto;
+}
+
+.order-container .order-name div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.order-container .order-name div span {
+  text-align: left;
+  font-size: 17px;
+  width: 50%;
+}
+.order-container .order-name div .span1 {
+  text-align: right;
+  font-size: 17px;
+  width: 50%;
+}
+
+@media (max-width: 1000px) {
+  .order-container {
+    width: 85%;
+  }
+
+  .order-container .details div span {
+    font-size: 15px;
+  }
+  .order-container .details div .span1 {
+    font-size: 15px;
+  }
+
+  .order-container .order-name div span {
+    font-size: 15px;
+  }
+  .order-container .order-name div .span1 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .order-container {
+    width: 100%;
+  }
+}

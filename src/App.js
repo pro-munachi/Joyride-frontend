@@ -10,7 +10,7 @@ import Reset from './pages/ResetPassword'
 import Orders from './pages/Orders'
 import Users from './pages/Users'
 import ViewUser from './pages/ViewUser'
-import EditUser from './pages/EditUser'
+import Profile from './pages/Profile'
 import ViewOrder from './pages/ViewOrder'
 import MyOrders from './pages/MyOrders'
 import CreateOrder from './pages/CreateOrder'
@@ -31,40 +31,46 @@ function App() {
           <Route path='/auth/reset-password/:token' component={Reset} />
           <Route path='/auth/forgot-password' component={Forgot} />
           <Route path='/create' component={CreateOrder} />
-          <ProtectedRoute
-            path='/users/edit/:id'
-            component={EditUser}
-            isAuth={localStorage.getItem('token')}
-          />
+
           <ProtectedRoute
             path='/'
             component={Dashboards}
             isAuth={localStorage.getItem('token')}
             exact
           />
+
           <ProtectedRoute
             path='/orders'
             component={Orders}
             isAuth={localStorage.getItem('admin')}
           />
           <ProtectedRoute
+            path='/order/:id'
+            component={ViewOrder}
+            isAuth={localStorage.getItem('token')}
+          />
+
+          <ProtectedRoute
             path='/users'
             component={Users}
             isAuth={localStorage.getItem('admin')}
           />
+
           <ProtectedRoute
             path='/report'
             component={Report}
             isAuth={localStorage.getItem('admin')}
           />
+
           <ProtectedRoute
             path='/user/:id'
             component={ViewUser}
             isAuth={localStorage.getItem('token')}
           />
+
           <ProtectedRoute
-            path='/orders/:id'
-            component={ViewOrder}
+            path='/profile'
+            component={Profile}
             isAuth={localStorage.getItem('token')}
           />
 

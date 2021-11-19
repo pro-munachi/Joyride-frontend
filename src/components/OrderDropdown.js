@@ -93,6 +93,7 @@ export default function OrderDropdown({ id }) {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{ fontWeight: 700, fontSize: 20 }}
       >
         ...
       </Button>
@@ -126,7 +127,7 @@ export default function OrderDropdown({ id }) {
           Delete Order
         </Button>
         <Divider />
-        <Button component={NavLink} to={`/orders/${id}`} className='styles'>
+        <Button component={NavLink} to={`/order/${id}`} className='styles'>
           View Order
         </Button>
         <Divider />

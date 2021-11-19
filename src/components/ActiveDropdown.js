@@ -47,6 +47,7 @@ export default function PositionedMenu({ id }) {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{ fontWeight: 700, fontSize: 20 }}
       >
         ...
       </Button>
