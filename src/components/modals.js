@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Modals(props) {
+export default function Modal(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
 

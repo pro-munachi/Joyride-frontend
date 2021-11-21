@@ -106,13 +106,13 @@ function ResponsiveDrawer(props) {
   }
 
   const logout = () => {
-    localStorage.setItem('token', null)
-    localStorage.setItem('name', null)
-    localStorage.setItem('id', null)
-    localStorage.setItem('email', null)
-    localStorage.setItem('pic', null)
-    localStorage.setItem('email', null)
-    localStorage.setItem('admin', null)
+    localStorage.setItem('token', '')
+    localStorage.setItem('name', '')
+    localStorage.setItem('id', '')
+    localStorage.setItem('email', '')
+    localStorage.setItem('pic', '')
+    localStorage.setItem('email', '')
+    localStorage.setItem('admin', '')
 
     history.push('/auth/login')
   }
@@ -223,6 +223,9 @@ function ResponsiveDrawer(props) {
                   </NavLink>
                   <NavLink to='/report' className='side-link'>
                     Report
+                  </NavLink>
+                  <NavLink to='/dispatch' className='side-link'>
+                    Dispatchers
                   </NavLink>
                 </div>
               </SimpleAccordion>

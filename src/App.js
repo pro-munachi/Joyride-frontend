@@ -18,6 +18,7 @@ import Dashboards from './pages/Default/index'
 import { ToastContainer } from 'react-toastify'
 import ProtectedRoute from './components/ProtectedRoute'
 import Report from './pages/Report'
+import Dispatch from './pages/Dispatch'
 
 function App() {
   const [state, setstate] = React.useState(true)
@@ -47,7 +48,7 @@ function App() {
           <ProtectedRoute
             path='/order/:id'
             component={ViewOrder}
-            isAuth={localStorage.getItem('token')}
+            isAuth={localStorage.getItem('admin')}
           />
 
           <ProtectedRoute
@@ -63,9 +64,15 @@ function App() {
           />
 
           <ProtectedRoute
+            path='/dispatch'
+            component={Dispatch}
+            isAuth={localStorage.getItem('admin')}
+          />
+
+          <ProtectedRoute
             path='/user/:id'
             component={ViewUser}
-            isAuth={localStorage.getItem('token')}
+            isAuth={localStorage.getItem('admin')}
           />
 
           <ProtectedRoute
