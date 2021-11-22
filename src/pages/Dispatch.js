@@ -19,7 +19,8 @@ import Moment from 'react-moment'
 import '../style/dispatch.css'
 import DispatchMenu from '../components/DispatchDropdown'
 import ActivateMenu from '../components/InactiveDropdown'
-import Modals from '../components/modal'
+import Mode from '../components/modals'
+import CreateDispatcher from './CreateDispatcher'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -144,14 +145,14 @@ const Dispatch = () => {
         ) : (
           <div className='dispatch'>
             <div className='create'>
-              <Modals
+              <Mode
                 head={'Create Dispatcher'}
                 text={'Create'}
                 secondaryText={'Fill in the details of the dispatcher'}
                 background={'#05386b'}
               >
-                hgsgsg
-              </Modals>
+                <CreateDispatcher />
+              </Mode>
             </div>
             <div className='contain'>
               <div className='toggle-button-cover'>
@@ -227,7 +228,7 @@ const Dispatch = () => {
                       <TableBody>
                         {dispatcher
                           .map((row) => (
-                            <StyledTableRow key={row._id}>
+                            <StyledTableRow key={row._id} className='green'>
                               <StyledTableCell component='th' scope='row'>
                                 {row.displayName}
                               </StyledTableCell>
@@ -293,7 +294,7 @@ const Dispatch = () => {
                       <TableBody>
                         {filteredActive
                           .map((row) => (
-                            <StyledTableRow key={row._id}>
+                            <StyledTableRow key={row._id} className='green'>
                               <StyledTableCell component='th' scope='row'>
                                 {row.displayName}
                               </StyledTableCell>
@@ -363,7 +364,7 @@ const Dispatch = () => {
                       <TableBody>
                         {inactive
                           .map((row) => (
-                            <StyledTableRow key={row._id}>
+                            <StyledTableRow key={row._id} className='red'>
                               <StyledTableCell component='th' scope='row'>
                                 {row.displayName}
                               </StyledTableCell>
@@ -429,7 +430,7 @@ const Dispatch = () => {
                       <TableBody>
                         {filteredInactive
                           .map((row) => (
-                            <StyledTableRow key={row._id}>
+                            <StyledTableRow key={row._id} className='red'>
                               <StyledTableCell component='th' scope='row'>
                                 {row.displayName}
                               </StyledTableCell>

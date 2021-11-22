@@ -1,18 +1,15 @@
 import axios from 'axios'
 import { React, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { toast } from 'react-toastify'
-import { withRouter } from 'react-router'
 
 import '../style/changepassword.css'
 import CircularIndeterminate from '../components/loader'
 
-const EditUser = () => {
-  const [displayName, setdisplayName] = useState(localStorage.getItem('name'))
-  const [number, setNumber] = useState(localStorage.getItem('phone'))
-  const [email, setEmail] = useState(localStorage.getItem('email'))
+const CreateDispatcher = () => {
+  const [bikeNumber, setBikeNumber] = useState('')
+  const [displayName, setDisplayName] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
@@ -20,8 +17,8 @@ const EditUser = () => {
 
     const data = {
       displayName: displayName,
-      number: number,
-      email: email,
+      phoneNumber: phoneNumber,
+      bikeNumber: bikeNumber,
     }
 
     const headers = {
@@ -30,16 +27,16 @@ const EditUser = () => {
     }
     setLoading(true)
     axios
-      .post('http://kidsio.herokuapp.com/users/edit', data, {
+      .post('http://kidsio.herokuapp.com/dispatch/create', data, {
         headers: headers,
       })
       .then((res) => {
         setLoading(false)
         if (res.data.hasError === false) {
-          setdisplayName('')
-          setNumber('')
-          setEmail('')
-          toast.success(res.data.message)
+          setDisplayName('')
+          setPhoneNumber('')
+          setBikeNumber('')
+          toast.success('dispatcher successfully created')
         } else {
           toast.error(res.data.message)
         }
@@ -54,26 +51,26 @@ const EditUser = () => {
     <div className='containers'>
       <form className='forms'>
         <label className='form-label'>
-          Email
+          Bike Number
           <input
             type='text'
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={bikeNumber}
+            onChange={(e) => setBikeNumber(e.target.value)}
             className='input'
-            placeholder={localStorage.getItem('email')}
+            placeholder="Input dispatcher's bike number"
           />
         </label>
 
         <label className='form-label'>
-          Name{' '}
+          Name
           <input
             type='text'
             required
             value={displayName}
-            onChange={(e) => setdisplayName(e.target.value)}
+            onChange={(e) => setDisplayName(e.target.value)}
             className='input'
-            placeholder={localStorage.getItem('name')}
+            placeholder="Input dispatcher's name"
           />
         </label>
         <label className='form-label'>
@@ -81,15 +78,15 @@ const EditUser = () => {
           <input
             type='number'
             required
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             className='input'
-            placeholder={localStorage.getItem('phone')}
+            placeholder="Input dispatcher's number"
           />
         </label>
         <div className='change-button'>
-          <button disabled={loading} onClick={handleSubmit}>
-            {loading ? <CircularIndeterminate /> : 'Change'}
+          <button disabled={loading} onClick={handleSubmit} type='button'>
+            {loading ? <CircularIndeterminate /> : 'Submit'}
           </button>
         </div>
       </form>
@@ -97,4 +94,4 @@ const EditUser = () => {
   )
 }
 
-export default withRouter(EditUser)
+export default CreateDispatcher

@@ -83,6 +83,10 @@ const Orders = () => {
                 </span>
               </div>
               <div>
+                <span>Dispatched</span>
+                <span className='span1'>{order.dispatched ? 'Yes' : 'No'}</span>
+              </div>
+              <div>
                 <span>Price:</span>
                 {order.totalPrice && (
                   <span className='span1'>

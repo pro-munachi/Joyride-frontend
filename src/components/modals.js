@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   button: {
     cursor: 'pointer',
     padding: '0 0',
+    backgroundColor: '#05386b',
+    color: 'white',
+    borderRadius: '5px',
+    outline: 'none',
   },
 
   list: {
@@ -42,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Modal(props) {
+export default function Mode(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
 

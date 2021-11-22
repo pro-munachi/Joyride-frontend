@@ -88,7 +88,8 @@ const Orders = () => {
                   <StyledTableCell align='left'>From</StyledTableCell>
                   <StyledTableCell align='left'>To</StyledTableCell>
                   <StyledTableCell align='left'>Time</StyledTableCell>
-                  <StyledTableCell align='left'>Is Delivered?</StyledTableCell>
+                  <StyledTableCell align='left'>Delivered</StyledTableCell>
+                  <StyledTableCell align='left'>Dispatched</StyledTableCell>
                   <StyledTableCell align='left'>Price</StyledTableCell>
                   <StyledTableCell align='left'></StyledTableCell>
                 </TableRow>
@@ -98,7 +99,10 @@ const Orders = () => {
                 {order
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
-                    <StyledTableRow key={row._id}>
+                    <StyledTableRow
+                      key={row._id}
+                      className={row.isDelivered ? 'green' : 'red'}
+                    >
                       <StyledTableCell>{row.userName}</StyledTableCell>
 
                       <StyledTableCell align='left'>
@@ -119,7 +123,11 @@ const Orders = () => {
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.dispatchOrder ? 'True' : 'False'}
+                        {row.isDelivered ? 'Yes' : 'No'}
+                      </StyledTableCell>
+
+                      <StyledTableCell align='left'>
+                        {row.dispatchOrder ? 'Yes' : 'No'}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>

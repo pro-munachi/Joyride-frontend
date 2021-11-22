@@ -5,7 +5,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useHistory, NavLink } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import '../style/login.css'
+import '../style/signup.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import CircularIndeterminate from '../components/loader'
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing(2),
-    marginTop: '30%',
 
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -100,7 +99,7 @@ const Signup = () => {
   return (
     <div className='container'>
       <div className='img'></div>
-      <div className='form'>
+      <div className='forms'>
         <form className={classes.root} onSubmit={handleSubmit}>
           <h2>Signup</h2>
           <label className='label'>

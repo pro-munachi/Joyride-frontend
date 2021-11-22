@@ -14,7 +14,7 @@
   height: auto;
 }
 
-.form {
+.forms {
   width: 40%;
   margin: auto;
   background-color: #05386b;
@@ -22,12 +22,13 @@
   overflow: scroll;
 }
 
-form {
+.forms form {
   margin: auto;
-  height: 50%;
+  height: 90%;
+  width: 90%;
 }
 
-.form input {
+.forms input {
   height: 40px;
   left: 941px;
   top: 448px;
@@ -40,11 +41,11 @@ form {
   color: black;
 }
 
-.form h2 {
+.forms h2 {
   color: white;
 }
 
-.label {
+.forms .label {
   position: relative;
   color: white;
   text-align: left;
@@ -89,7 +90,7 @@ form {
     width: 50%;
   }
 
-  .form {
+  .forms {
     width: 50%;
   }
 }
@@ -99,7 +100,7 @@ form {
     display: none;
   }
 
-  .form {
+  .forms {
     width: 100%;
   }
 

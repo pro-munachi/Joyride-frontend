@@ -191,9 +191,8 @@ const ViewUser = () => {
                       </StyledTableCell>
                       <StyledTableCell align='left'>Address To</StyledTableCell>
                       <StyledTableCell align='left'>Created At</StyledTableCell>
-                      <StyledTableCell align='left'>
-                        Dispatched Order
-                      </StyledTableCell>
+                      <StyledTableCell align='left'>Delivered</StyledTableCell>
+                      <StyledTableCell align='left'>Dispatched</StyledTableCell>
                       <StyledTableCell align='left'>
                         Total Price
                       </StyledTableCell>
@@ -201,7 +200,10 @@ const ViewUser = () => {
                   </TableHead>
                   <TableBody>
                     {order.map((row) => (
-                      <StyledTableRow key={row._id}>
+                      <StyledTableRow
+                        key={row._id}
+                        className={row.isDelivered ? 'green' : 'red'}
+                      >
                         <StyledTableCell>
                           {row.orderItems.map((item) => {
                             return (
@@ -238,7 +240,11 @@ const ViewUser = () => {
                         </StyledTableCell>
 
                         <StyledTableCell align='left'>
-                          {row.dispatchOrder ? 'True' : 'False'}
+                          {row.isDelivered ? 'Yes' : 'No'}
+                        </StyledTableCell>
+
+                        <StyledTableCell align='left'>
+                          {row.dispatchOrder ? 'Yes' : 'No'}
                         </StyledTableCell>
 
                         <StyledTableCell align='left'>

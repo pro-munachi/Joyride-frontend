@@ -21,8 +21,8 @@
 .toggle-button-cover {
   display: table-cell;
   position: relative;
-  width: 200px;
-  height: 140px;
+  width: 100px;
+  height: 60px;
   box-sizing: border-box;
 }
 
@@ -154,7 +154,6 @@
 }
 
 .dispatch .create {
-  border: 2px solid #05386b;
   width: 200px;
   font-size: 17px;
   margin: auto;
@@ -170,7 +169,7 @@
 }
 
 .dispatch .contain .head {
-  margin-top: 55px;
+  margin-top: 35px;
 }
 
 .dispatch .contain .head h2 {
@@ -178,7 +177,7 @@
 }
 
 .dispatch .contain .search {
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 .dispatch .contain .search form {
@@ -204,10 +203,10 @@
   }
 
   .dispatch .contain .head {
-    margin-top: 15px;
+    margin-top: 55px;
   }
 
   .dispatch .contain .search {
-    margin: 35px auto;
+    margin: 15px auto;
   }
 }

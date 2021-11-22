@@ -43,36 +43,46 @@ function App() {
           <ProtectedRoute
             path='/orders'
             component={Orders}
-            isAuth={localStorage.getItem('admin')}
+            isAuth={
+              localStorage.getItem('token') && localStorage.getItem('admin')
+            }
           />
           <ProtectedRoute
             path='/order/:id'
             component={ViewOrder}
-            isAuth={localStorage.getItem('admin')}
+            isAuth={localStorage.getItem('token')}
           />
 
           <ProtectedRoute
             path='/users'
             component={Users}
-            isAuth={localStorage.getItem('admin')}
+            isAuth={
+              localStorage.getItem('token') && localStorage.getItem('admin')
+            }
           />
 
           <ProtectedRoute
             path='/report'
             component={Report}
-            isAuth={localStorage.getItem('admin')}
+            isAuth={
+              localStorage.getItem('token') && localStorage.getItem('admin')
+            }
           />
 
           <ProtectedRoute
             path='/dispatch'
             component={Dispatch}
-            isAuth={localStorage.getItem('admin')}
+            isAuth={
+              localStorage.getItem('token') && localStorage.getItem('admin')
+            }
           />
 
           <ProtectedRoute
             path='/user/:id'
             component={ViewUser}
-            isAuth={localStorage.getItem('admin')}
+            isAuth={
+              localStorage.getItem('token') && localStorage.getItem('admin')
+            }
           />
 
           <ProtectedRoute
