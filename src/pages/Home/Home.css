@@ -1,0 +1,14 @@
+.home {
+  margin: 0;
+  /* background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(248, 250, 252)
+  ); */
+
+  background: linear-gradient(rgba(248, 250, 252), transparent),
+    linear-gradient(to top left, lime, transparent),
+    linear-gradient(to top right, blue, transparent);
+  background-blend-mode: screen;
+  overflow: hidden;
+}

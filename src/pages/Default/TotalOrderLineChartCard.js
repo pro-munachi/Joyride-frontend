@@ -18,6 +18,7 @@ import ChartDataYear from './chart-data/total-order-year-line-chart'
 // assets
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import axios from 'axios'
+import CircularIndeterminate from '../../components/loader'
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -70,8 +71,10 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
   const [month, setMonth] = useState([])
   const [year, setYear] = useState([])
   const [total, setTotal] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -87,10 +90,11 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
           setMonth(res.data.totalMonth)
           setYear(res.data.totalYear)
           setTotal(res.data.total)
+          setLoading(false)
         }
       })
       .catch((err) => {
-        console.log(err)
+        setLoading(false)
       })
   }, [])
 
@@ -168,7 +172,14 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                               mb: 0.75,
                             }}
                           >
-                            &#8358;{month}.00
+                            {/* {loading ? (
+                              <CircularIndeterminate />
+                            ) : ( */}
+                            <>
+                              {' '}
+                              &#8358;{month && month.toLocaleString('en-US')}
+                              .00
+                            </>
                           </Typography>
                         )}
                       </Grid>
@@ -184,7 +195,13 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                               mb: 0.75,
                             }}
                           >
-                            &#8358;{year}.00
+                            {/* {loading ? (
+                              <CircularIndeterminate />
+                            ) : ( */}
+                            <>
+                              {' '}
+                              &#8358;{year && year.toLocaleString('en-US')}.00
+                            </>
                           </Typography>
                         )}
                       </Grid>
@@ -200,7 +217,14 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                               mb: 0.75,
                             }}
                           >
-                            &#8358;{total}.00
+                            {/* {loading ? (
+                              <CircularIndeterminate />
+                            ) : ( */}
+                            <>
+                              &#8358;{total && total.toLocaleString('en-US')}
+                              .00
+                            </>
+                            {/* )} */}
                           </Typography>
                         )}
                       </Grid>

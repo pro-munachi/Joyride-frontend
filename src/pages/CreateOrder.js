@@ -110,7 +110,7 @@ const CreateOrder = () => {
 
   return (
     <ResponsiveDrawer>
-      <div className='forms'>
+      <div className='create-form'>
         <div className='shadow'>
           <div className='form-containers'>
             <form>

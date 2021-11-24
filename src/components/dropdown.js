@@ -8,6 +8,7 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
 import Badge from '@mui/material/Badge'
 import MessageIcon from '@mui/icons-material/Message'
 import { toast } from 'react-toastify'
+import { useHistory } from 'react-router'
 
 import '../style/sidebar.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -17,6 +18,8 @@ export default function BasicMenu() {
   const [notification, setNotification] = useState([])
 
   const open = Boolean(anchorEl)
+
+  const history = useHistory()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -33,6 +36,18 @@ export default function BasicMenu() {
         headers: headers,
       })
       .then((res) => {
+        if (res.data.message === 'Not authorized, token failed') {
+          localStorage.setItem('token', '')
+          localStorage.setItem('name', '')
+          localStorage.setItem('id', '')
+          localStorage.setItem('email', '')
+          localStorage.setItem('pic', '')
+          localStorage.setItem('email', '')
+          localStorage.setItem('admin', '')
+
+          history.push('/auth/login')
+        }
+
         setNotification(res.data.notify)
       })
       .catch((err) => {

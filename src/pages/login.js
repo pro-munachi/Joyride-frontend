@@ -71,7 +71,7 @@ const Login = () => {
           setPassword('')
           console.log(res.data)
           window.setTimeout(() => {
-            window.location.href = '/'
+            window.location.href = '/dashboard'
           }, 1000)
           toast.success('login successful')
         } else {
@@ -135,8 +135,8 @@ const Login = () => {
             </NavLink>
           </div>
 
-          <div>
-            <button className='button' disabled={loading}>
+          <div className='button'>
+            <button disabled={loading}>
               {loading ? <CircularIndeterminate /> : 'Submit'}
             </button>
           </div>

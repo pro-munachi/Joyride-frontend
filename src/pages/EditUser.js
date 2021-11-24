@@ -51,8 +51,8 @@ const EditUser = () => {
   }
 
   return (
-    <div className='containers'>
-      <form className='forms'>
+    <div className='modal-container'>
+      <form className='formal'>
         <label className='form-label'>
           Email
           <input

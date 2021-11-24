@@ -193,7 +193,9 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant='h4'>&#8358;{value}.00</Typography>
+                      <Typography variant='h4'>
+                        &#8358;{value.toLocaleString('en-US')}.00
+                      </Typography>
                     </Grid>
                   </Grid>
                 </Grid>

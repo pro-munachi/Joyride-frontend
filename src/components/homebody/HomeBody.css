@@ -1,0 +1,128 @@
+/* First dIV  */
+
+.home-body {
+  margin: 0;
+}
+
+.home-body .first {
+  display: flex;
+  font-family: Inter;
+  align-items: center;
+}
+
+.home-body .first div {
+  width: 50%;
+  height: auto;
+}
+
+.home-body .first div div {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(59, 130, 246, 0.5)
+  );
+  width: 100%;
+  padding: 25px 0;
+}
+
+.home-body .first div h1 {
+  font-size: 54px;
+  width: 75%;
+  margin: 25px auto;
+}
+
+.home-body .first div p {
+  width: 75%;
+  margin: 25px auto;
+}
+
+.home-body .first div .heroButton {
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  height: auto;
+  margin: 0 auto;
+}
+
+.home-body .first div .heroButton button {
+  height: 40px;
+  width: 100px;
+  border-radius: 8px;
+  border: none;
+  background-color: #05386b;
+  color: white;
+}
+
+/* Second Div */
+
+.home-body .second {
+  display: flex;
+  font-family: Inter;
+  align-items: center;
+}
+
+.home-body .second div {
+  width: 50%;
+  height: auto;
+  padding: 30px 0;
+}
+
+.home-body .second .homebodysecondimage {
+  width: 50%;
+  height: auto;
+  padding: 30px 0;
+}
+
+.home-body .second div div {
+  width: 100%;
+  padding: 25px 0;
+}
+
+.home-body .second div h1 {
+  font-size: 54px;
+  width: 75%;
+  margin: 25px auto;
+}
+
+.home-body .second div p {
+  width: 75%;
+  margin: 25px auto;
+}
+
+/* Third Div */
+
+.home-body .third {
+  display: flex;
+  font-family: Inter;
+  align-items: center;
+}
+
+.home-body .third div {
+  width: 50%;
+  height: auto;
+}
+.home-body .third .img {
+  width: 50%;
+  height: auto;
+}
+
+.home-body .third div div {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(59, 130, 246, 0.5)
+  );
+  width: 100%;
+  padding: 25px 0;
+}
+
+.home-body .third div h1 {
+  font-size: 54px;
+  width: 75%;
+  margin: 25px auto;
+}
+
+.home-body .third div p {
+  width: 75%;
+  margin: 25px auto;
+}

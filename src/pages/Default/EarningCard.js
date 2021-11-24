@@ -17,6 +17,8 @@ import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined'
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined'
 import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined'
 import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined'
+import { CircularProgress } from '@material-ui/core'
+import CircularIndeterminate from '../../components/loader'
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
@@ -59,8 +61,10 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 const EarningCard = ({ isLoading }) => {
   const theme = useTheme()
   const [price, setPrice] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const headers = {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -74,10 +78,12 @@ const EarningCard = ({ isLoading }) => {
         if (res.data.hasError === false) {
           console.log(res.data)
           setPrice(res.data.test)
+          setLoading(false)
         }
       })
       .catch((err) => {
         console.log(err)
+        setLoading(false)
       })
   }, [])
 
@@ -165,33 +171,22 @@ const EarningCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems='center'>
                   <Grid item>
-                    <Typography
-                      sx={{
-                        fontSize: '2.125rem',
-                        fontWeight: 500,
-                        mr: 1,
-                        mt: 1.75,
-                        mb: 0.75,
-                      }}
-                    >
-                      &#8358;{price}.00
-                    </Typography>
+                    {loading ? (
+                      <CircularIndeterminate />
+                    ) : (
+                      <Typography
+                        sx={{
+                          fontSize: '2.125rem',
+                          fontWeight: 500,
+                          mr: 1,
+                          mt: 1.75,
+                          mb: 0.75,
+                        }}
+                      >
+                        {price && price.toLocaleString()}.00
+                      </Typography>
+                    )}
                   </Grid>
-                  {/* <Grid item>
-                    <Avatar
-                      sx={{
-                        cursor: 'pointer',
-                        ...theme.typography.smallAvatar,
-                        backgroundColor: theme.palette.secondary[200],
-                        color: theme.palette.secondary.dark,
-                      }}
-                    >
-                      <ArrowUpwardIcon
-                        fontSize='inherit'
-                        sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
-                      />
-                    </Avatar>
-                  </Grid> */}
                 </Grid>
               </Grid>
               <Grid item sx={{ mb: 1.25 }}>

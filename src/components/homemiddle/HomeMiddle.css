@@ -1,0 +1,60 @@
+.homemiddle {
+  margin-top: 100px;
+}
+
+.homemiddle .first {
+  display: flex;
+  font-family: Inter;
+  align-items: center;
+}
+
+.homemiddle .first div {
+  width: 40%;
+  height: auto;
+  padding: 30px 0;
+}
+
+.homemiddle .first .homemiddle-firstimg {
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.homemiddle .first .homemiddle-firstimg .secondcircle {
+  height: 350px;
+  width: 100%;
+  position: absolute;
+  bottom: 50%;
+  z-index: 2;
+}
+
+.homemiddle .first .homemiddle-firstimg .secondcircle img {
+  height: 100%;
+  width: 90%;
+}
+
+.homemiddle .first .homemiddle-firstimg .thirdcircle {
+  height: 200px;
+  width: 70%;
+  position: absolute;
+  bottom: 60%;
+  left: 30%;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.homemiddle .first div div {
+  width: 100%;
+  padding: 25px 0;
+}
+
+.homemiddle .first div h1 {
+  font-size: 54px;
+  width: 75%;
+  margin: 25px auto;
+}
+
+.homemiddle .first div p {
+  width: 75%;
+  margin: 25px auto;
+}

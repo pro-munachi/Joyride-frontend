@@ -75,7 +75,7 @@ const Signup = () => {
           localStorage.setItem('phone', res.data.phoneNumber)
           localStorage.setItem('pic', res.data.profilePic)
           window.setTimeout(() => {
-            window.location.href = '/'
+            window.location.href = '/dashboard'
           }, 1000)
           toast.success('login successful')
         } else {
@@ -174,8 +174,8 @@ const Signup = () => {
             </NavLink>
           </div>
 
-          <div>
-            <button className='button' disabled={loading}>
+          <div className='buttons'>
+            <button disabled={loading}>
               {loading ? <CircularIndeterminate /> : 'Submit'}
             </button>
           </div>

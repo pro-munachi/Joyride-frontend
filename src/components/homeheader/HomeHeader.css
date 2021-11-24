@@ -1,0 +1,10 @@
+.home-header {
+  height: 120px;
+  margin: 0;
+}
+
+.home-header img {
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 40px;
+}

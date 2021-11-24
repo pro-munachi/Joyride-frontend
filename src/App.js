@@ -15,6 +15,7 @@ import ViewOrder from './pages/ViewOrder'
 import MyOrders from './pages/MyOrders'
 import CreateOrder from './pages/CreateOrder'
 import Dashboards from './pages/Default/index'
+import Home from './pages/Home/Home.js'
 import { ToastContainer } from 'react-toastify'
 import ProtectedRoute from './components/ProtectedRoute'
 import Report from './pages/Report'
@@ -27,6 +28,11 @@ function App() {
       <BrowserRouter>
         <div>
           <ToastContainer />
+          <Route
+            path='/'
+            component={localStorage.getItem('token') ? Dashboards : Home}
+            exact
+          />
           <Route path='/auth/login' exact component={Login} />
           <Route path='/auth/signup' component={Signup} />
           <Route path='/auth/reset-password/:token' component={Reset} />
@@ -34,7 +40,7 @@ function App() {
           <Route path='/create' component={CreateOrder} />
 
           <ProtectedRoute
-            path='/'
+            path='/dashboard'
             component={Dashboards}
             isAuth={localStorage.getItem('token')}
             exact

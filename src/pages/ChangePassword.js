@@ -63,8 +63,8 @@ const ChangePassword = () => {
   }
 
   return (
-    <div className='containers'>
-      <form onSubmit={handleSubmit} className='forms'>
+    <div className='modal-container'>
+      <form onSubmit={handleSubmit} className='formal'>
         <label className='form-label'>
           Current Password
           <input

@@ -17,6 +17,8 @@ import ResponsiveDrawer from '../components/sidebar'
 import '../style/report.css'
 import PageLoader from '../components/pageloader'
 import OrderDropdown from '../components/OrderDropdown'
+import { CircularProgress } from '@material-ui/core'
+import CircularIndeterminate from '../components/loader'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -106,7 +108,7 @@ const Report = () => {
             </label>
             <div>
               <button type='button' onClick={handleSubmit}>
-                Search
+                {loading ? <CircularIndeterminate /> : 'Search'}{' '}
               </button>
             </div>
           </form>
@@ -167,7 +169,7 @@ const Report = () => {
                       >
                         {' '}
                         &#8358;
-                        {total}.00
+                        {total && total.toLocaleString('en-US')}.00
                       </StyledTableCell>
                       <StyledTableCell align='left' sx={{ opacity: 0 }}>
                         w

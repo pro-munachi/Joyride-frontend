@@ -82,8 +82,8 @@ const Forgot = () => {
               Login
             </NavLink>
           </div>
-          <div>
-            <button className='button'>
+          <div className='button'>
+            <button disabled={loading}>
               {loading ? <CircularIndeterminate /> : 'Submit'}
             </button>
           </div>

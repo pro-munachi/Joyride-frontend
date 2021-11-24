@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   height: 100vh;
-  overflow: scroll;
 }
 
 .img {
@@ -18,13 +17,7 @@
   width: 40%;
   margin: auto;
   background-color: #05386b;
-  height: 100vh;
-  overflow: scroll;
-}
-
-form {
-  margin: auto;
-  height: 50%;
+  height: 100%;
 }
 
 .form input {
@@ -55,15 +48,22 @@ form {
   font-size: 13px;
 }
 
-.button {
-  width: 110px;
-  height: 40px;
-  margin: 19px;
-  border-radius: 5px;
+.form .button {
+  width: 80%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.form .button button {
+  width: 150px;
+  height: 35px;
   background: #379683;
   border: none;
   outline: none;
   color: white;
+  text-align: center;
 }
 
 .write {

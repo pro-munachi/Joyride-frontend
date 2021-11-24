@@ -234,7 +234,7 @@ function ResponsiveDrawer(props) {
           )}
         </span>
         {[
-          { name: 'Dashboard', link: '/', icon: <DashboardIcon /> },
+          { name: 'Dashboard', link: '/dashboard', icon: <DashboardIcon /> },
           {
             name: 'Profile',
             link: '/profile',

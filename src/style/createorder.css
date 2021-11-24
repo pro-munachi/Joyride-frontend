@@ -1,9 +1,9 @@
-.forms {
+.create-form {
   display: flex;
   flex-direction: column;
 }
 
-.shadow {
+.create-form .shadow {
   width: 80%;
   margin: 30px auto;
   background-color: white;
@@ -13,23 +13,23 @@
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-.form-containers {
+.create-form .form-containers {
   width: 100%;
   margin: auto;
 }
 
-.form-containers form {
+.create-form .form-containers form {
   display: flex;
   flex-direction: column;
 }
 
-.form-containers form h2 {
+.create-form .form-containers form h2 {
   text-align: center;
   color: #05386b;
   font-size: 30px;
 }
 
-.form-containers form label {
+.create-form .form-containers form label {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
   font-size: 16px;
 }
 
-.form-containers form label input {
+.create-form .form-containers form label input {
   width: 100%;
   margin: auto;
   height: 35px;
@@ -49,7 +49,7 @@
   outline: none;
 }
 
-.form-containers form .add-order {
+.create-form .form-containers form .add-order {
   width: 40%;
   margin: 9px auto;
   height: 25px;
@@ -59,19 +59,19 @@
   background-color: #05386b;
 }
 
-.form-containers form div {
+.create-form .form-containers form div {
   display: flex;
   justify-content: space-between;
   width: 70%;
   margin: 20px auto;
 }
 
-.form-containers form div {
+.create-form .form-containers form div {
   width: 45%;
   margin: 20px auto;
 }
 
-.form-containers form div button {
+.create-form .form-containers form div button {
   width: 100%;
   margin: auto;
   height: 35px;
@@ -83,17 +83,18 @@
   cursor: pointer;
 }
 
-.form-container2 {
+.create-form .form-container2 {
   width: 100%;
   margin: auto;
 }
 
-.form-container2 form {
+.create-form .form-container2 form {
   display: flex;
   width: 70%;
+  margin: auto;
 }
 
-.form-container2 form label {
+.create-form .form-container2 form label {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -103,7 +104,7 @@
   font-size: 16px;
 }
 
-.form-container2 form label input {
+.create-form .form-container2 form label input {
   width: 100%;
   margin: auto;
   height: 35px;
@@ -114,12 +115,12 @@
   outline: none;
 }
 
-.form-container2 form .div1 {
+.create-form .form-container2 form .div1 {
   width: 30%;
   margin: auto;
 }
 
-.form-container2 form .div1 .button1 {
+.create-form .form-container2 form .div1 .button1 {
   margin: auto;
   width: 100%;
   height: 35px;
@@ -132,7 +133,7 @@
   margin-top: 22px;
 }
 
-.box {
+.create-form .box {
   width: 70%;
   height: 150px;
   overflow-y: scroll;
@@ -143,7 +144,7 @@
   margin: 17px auto;
 }
 
-.create {
+.create-form .create {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -151,7 +152,7 @@
   padding: 20px 0 20px 0;
 }
 
-.create button {
+.create-form .create button {
   width: 60%;
   margin: auto;
   height: 40px;
@@ -165,13 +166,13 @@
 }
 
 @media (max-width: 900px) {
-  .shadow {
+  .create-form .shadow {
     width: 100%;
     margin: auto;
   }
-  .form-container2 form,
-  .form-containers form label,
-  .box {
+  .create-form .form-container2 form,
+  .create-form .form-containers form label,
+  .create-form .box {
     width: 85%;
   }
 }

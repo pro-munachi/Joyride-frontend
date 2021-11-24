@@ -198,7 +198,10 @@ const PopularCard = ({ isLoading }) => {
                             variant='subtitle2'
                             sx={{ color: 'success.dark' }}
                           >
-                            Total price: &#8358;{item.totalPrice}.00
+                            Total price: &#8358;
+                            {item.totalPrice &&
+                              item.totalPrice.toLocaleString('en-US')}
+                            .00
                           </Typography>
                         </Grid>
                         <Grid item>

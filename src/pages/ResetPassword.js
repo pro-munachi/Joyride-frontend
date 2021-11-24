@@ -122,8 +122,8 @@ const Reset = () => {
             )}
           </label>
 
-          <div>
-            <button className='button' disabled={loading}>
+          <div className='button'>
+            <button disabled={loading}>
               {loading ? <CircularIndeterminate /> : 'Submit'}
             </button>
           </div>

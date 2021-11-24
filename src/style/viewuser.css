@@ -42,23 +42,26 @@
 }
 
 .user-container .user-profile .user-image img {
-  width: 100%;
+  width: 220px;
+  height: 220px;
+  max-width: 230px;
+  max-height: 220px;
   border-radius: 50%;
 }
 
 .user-container .user-profile .user-details div {
-  font-size: 18px;
+  font-size: 16px;
   color: #05386b;
 }
 
 .user-container .user-profile .user-details div span {
-  font-size: 18px;
+  font-size: 16px;
   text-transform: capitalize;
   color: black;
 }
 
 .user-container .user-profile .user-details p {
-  font-size: 13px;
+  font-size: 16px;
   color: #05386b;
 }
 

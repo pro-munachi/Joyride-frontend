@@ -48,8 +48,8 @@ const CreateDispatcher = () => {
   }
 
   return (
-    <div className='containers'>
-      <form className='forms'>
+    <div className='modal-container'>
+      <form className='formal'>
         <label className='form-label'>
           Bike Number
           <input
@@ -84,7 +84,7 @@ const CreateDispatcher = () => {
             placeholder="Input dispatcher's number"
           />
         </label>
-        <div className='change-button'>
+        <div className='change-button' style={{ height: 30 }}>
           <button disabled={loading} onClick={handleSubmit} type='button'>
             {loading ? <CircularIndeterminate /> : 'Submit'}
           </button>

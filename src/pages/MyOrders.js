@@ -88,8 +88,8 @@ const MyOrders = () => {
               sx={{ maxWidth: '100%', overflowX: 'scroll' }}
               aria-label='customized table'
             >
-              <TableHead>
-                <TableRow>
+              <TableHead sx={{ background: '#05386b' }}>
+                <TableRow sx={{ background: '#05386b' }}>
                   <StyledTableCell>Name</StyledTableCell>
                   <StyledTableCell align='left'>User</StyledTableCell>
                   <StyledTableCell align='left'>From</StyledTableCell>
@@ -110,16 +110,11 @@ const MyOrders = () => {
                       className={row.isDelivered ? 'green' : 'red'}
                     >
                       <StyledTableCell align='left'>
-                        {row.orderItems.map((item) => (
-                          <React.Fragment key={item._id}>
-                            <>{item.name}</>
-                            <br />
-                          </React.Fragment>
-                        ))}
+                        {row.userName}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
-                        {row.userName}
+                        {row.number}
                       </StyledTableCell>
 
                       <StyledTableCell align='left'>
