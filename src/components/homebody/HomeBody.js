@@ -55,7 +55,7 @@ const HomeBody = () => {
       </div>
 
       <div className='third'>
-        <div>
+        <div className='third-img'>
           <img src={third} alt='hero' />
         </div>
         <div className='third-text'>

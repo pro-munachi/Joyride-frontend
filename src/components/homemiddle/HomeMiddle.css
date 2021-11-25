@@ -4,6 +4,8 @@
   width: 100%;
 }
 
+/* First Div */
+
 .homemiddle .homemiddle-first {
   display: flex;
   font-family: Inter;
@@ -37,10 +39,10 @@
 }
 
 .homemiddle .homemiddle-first .homemiddle-firstimg .thirdcircle {
-  height: 60%;
+  height: 100px;
   width: 80%;
   position: absolute;
-  bottom: 10%;
+  top: 30%;
   left: 30%;
   opacity: 0.6;
   z-index: 1;
@@ -62,6 +64,93 @@
   margin: 25px auto;
   font: 18px inter;
 }
+
+@media (max-width: 1000px) {
+  .homemiddle .homemiddle-first div h1 {
+    font: 45px Gilroy;
+    width: 90%;
+    margin: auto;
+  }
+
+  .homemiddle .homemiddle-first div p {
+    width: 90%;
+    margin: 25px auto;
+    font: 18px inter;
+  }
+
+  .homemiddle .homemiddle-first {
+    flex-direction: column;
+  }
+
+  .homemiddle .homemiddle-first div {
+    width: 100%;
+  }
+
+  .homemiddle .homemiddle-first .homemiddle-firstimg {
+    width: 90%;
+    margin: auto;
+  }
+
+  .homemiddle .homemiddle-first .homemiddle-firstimg .secondcircle {
+    height: 450px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .homemiddle .homemiddle-first .homemiddle-firstimg .thirdcircle {
+    height: 100px;
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    opacity: 0.6;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 800px) {
+  .homemiddle .homemiddle-first .homemiddle-firstimg .secondcircle {
+    height: 350px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .homemiddle .homemiddle-first .homemiddle-firstimg .thirdcircle {
+    height: 60%;
+    width: 80%;
+    position: absolute;
+    left: 20%;
+    opacity: 0.6;
+    z-index: 1;
+  }
+}
+@media (max-width: 550px) {
+  .homemiddle .homemiddle-first .homemiddle-firstimg .secondcircle {
+    height: 250px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .homemiddle .homemiddle-first .homemiddle-firstimg .thirdcircle {
+    height: 60%;
+    width: 80%;
+    position: absolute;
+    left: 20%;
+    opacity: 0.6;
+    z-index: 1;
+  }
+}
+
+/* Second Div */
 
 .homemiddle .homemiddle-second {
   background-image: url('../../assets/svgs/wind.svg');
@@ -138,7 +227,6 @@
   .homemiddle-secondcontainer2img {
   width: 65px;
   height: 65px;
-  margin: 40 px;
   border-radius: 50%;
   filter: none;
   border: 2px solid white;
@@ -150,7 +238,45 @@
   .homemiddle-secondcontainer2img1 {
   width: 65px;
   height: 65px;
-  margin: 40;
   border-radius: 50%;
   filter: grayscale(100%);
+}
+
+/* Media Query */
+
+@media (max-width: 700px) {
+  .homemiddle .homemiddle-second .homemiddle-secondcontainer1 h4 {
+    font: 13px inter;
+    margin: 18px 0;
+  }
+
+  .homemiddle .homemiddle-second .homemiddle-secondcontainer1 p {
+    margin: 18px 0;
+    font: 13px inter;
+  }
+
+  .homemiddle .homemiddle-second .homemiddle-secondcontainer1 h2 {
+    font: 40px Gilroy;
+    font-weight: 700;
+    margin: 16px 0;
+  }
+
+  .homemiddle .homemiddle-second .homemiddle-secondcontainer2 {
+    text-align: center;
+    width: 100%;
+  }
+
+  .homemiddle .homemiddle-second .homemiddle-secondcontainer2 p {
+    font: 16px Gilroy;
+  }
+
+  .homemiddle
+    .homemiddle-second
+    .homemiddle-secondcontainer2
+    .homemiddle-secondcontainer2-imgcontainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px auto auto auto;
+    width: 100%;
+  }
 }

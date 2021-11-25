@@ -57,6 +57,7 @@ const HomeMiddle = () => {
           </div>
         </div>
       </div>
+
       <div className='homemiddle-second'>
         <div className='homemiddle-secondcontainer'>
           <div className='homemiddle-secondcontainer1'>
