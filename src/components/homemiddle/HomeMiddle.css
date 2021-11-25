@@ -1,60 +1,156 @@
 .homemiddle {
   margin-top: 100px;
+  margin-bottom: 0;
+  width: 100%;
 }
 
-.homemiddle .first {
+.homemiddle .homemiddle-first {
   display: flex;
   font-family: Inter;
   align-items: center;
 }
 
-.homemiddle .first div {
+.homemiddle .homemiddle-first div {
   width: 40%;
   height: auto;
   padding: 30px 0;
 }
 
-.homemiddle .first .homemiddle-firstimg {
+.homemiddle .homemiddle-first .homemiddle-firstimg {
   width: 50%;
   height: 100%;
   position: relative;
 }
 
-.homemiddle .first .homemiddle-firstimg .secondcircle {
+.homemiddle .homemiddle-first .homemiddle-firstimg .secondcircle {
   height: 350px;
   width: 100%;
   position: absolute;
-  bottom: 50%;
+  bottom: 40%;
+  left: 10%;
   z-index: 2;
 }
 
-.homemiddle .first .homemiddle-firstimg .secondcircle img {
+.homemiddle .homemiddle-first .homemiddle-firstimg .secondcircle img {
   height: 100%;
-  width: 90%;
+  width: 100%;
 }
 
-.homemiddle .first .homemiddle-firstimg .thirdcircle {
-  height: 200px;
-  width: 70%;
+.homemiddle .homemiddle-first .homemiddle-firstimg .thirdcircle {
+  height: 60%;
+  width: 80%;
   position: absolute;
-  bottom: 60%;
+  bottom: 10%;
   left: 30%;
   opacity: 0.6;
   z-index: 1;
 }
 
-.homemiddle .first div div {
+.homemiddle .homemiddle-first div div {
   width: 100%;
   padding: 25px 0;
 }
 
-.homemiddle .first div h1 {
-  font-size: 54px;
+.homemiddle .homemiddle-first div h1 {
+  font: 45px Gilroy;
   width: 75%;
   margin: 25px auto;
 }
 
-.homemiddle .first div p {
+.homemiddle .homemiddle-first div p {
   width: 75%;
   margin: 25px auto;
+  font: 18px inter;
+}
+
+.homemiddle .homemiddle-second {
+  background-image: url('../../assets/svgs/wind.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 90%;
+  margin: auto auto 35px auto;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+}
+
+.homemiddle .homemiddle-second .homemiddle-secondcontainer {
+  width: 90%;
+  margin: auto;
+  color: white;
+}
+
+.homemiddle .homemiddle-second .homemiddle-secondcontainer1 {
+  text-align: center;
+}
+
+.homemiddle .homemiddle-second .homemiddle-secondcontainer1 h4 {
+  font: 13px inter;
+  margin: 18px 0;
+}
+.homemiddle .homemiddle-second .homemiddle-secondcontainer1 p {
+  margin: 18px 0;
+  font: 16px inter;
+}
+.homemiddle .homemiddle-second .homemiddle-secondcontainer1 h2 {
+  font: 40px Gilroy;
+  font-weight: 700;
+  margin: 18px 0;
+}
+
+.homemiddle .homemiddle-second .homemiddle-secondcontainer2 {
+  text-align: center;
+  width: 70%;
+  margin: 60px auto auto auto;
+}
+
+.homemiddle .homemiddle-second .homemiddle-secondcontainer2 p {
+  font: 24px Gilroy;
+}
+
+.homemiddle
+  .homemiddle-second
+  .homemiddle-secondcontainer2
+  .homemiddle-secondcontainer2-imgcontainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px auto auto auto;
+  width: 70%;
+}
+
+.frag {
+  display: flex;
+  flex-direction: column;
+}
+
+.fragp {
+  font-size: 13px;
+}
+
+.fragp1 {
+  opacity: 0;
+}
+
+.homemiddle
+  .homemiddle-second
+  .homemiddle-secondcontainer2
+  .homemiddle-secondcontainer2img {
+  width: 65px;
+  height: 65px;
+  margin: 40 px;
+  border-radius: 50%;
+  filter: none;
+  border: 2px solid white;
+}
+
+.homemiddle
+  .homemiddle-second
+  .homemiddle-secondcontainer2
+  .homemiddle-secondcontainer2img1 {
+  width: 65px;
+  height: 65px;
+  margin: 40;
+  border-radius: 50%;
+  filter: grayscale(100%);
 }

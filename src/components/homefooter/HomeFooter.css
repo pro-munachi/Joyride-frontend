@@ -1,0 +1,69 @@
+.homefooter {
+  margin: 0;
+  width: 100%;
+}
+
+.homefooter .homefooter-first {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 90%;
+  margin: 0 auto;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('../../assets/svgs/magic.svg');
+  color: white;
+  text-align: center;
+}
+
+.homefooter .homefooter-first .homefooter-first-div1 {
+  margin: 80px 0;
+}
+
+.homefooter .homefooter-first .homefooter-first-div1 h2 {
+  font: 48px Gilroy;
+  margin: 0 0 16px;
+}
+.homefooter .homefooter-first .homefooter-first-div1 p {
+  font: 16px inter;
+  margin: 0 0 16px;
+}
+
+.homefooter .homefooter-first .homefooter-first-div2 {
+  margin: 20px 0;
+}
+
+.homefooter .homefooter-first .homefooter-first-div2 p {
+  font: 16px inter;
+  margin: 24px 0;
+}
+
+.homefooter .homefooter-first .homefooter-first-div2 button {
+  background-color: white;
+  font: 16px Gilroy;
+  padding: 17px 42px;
+  border: none;
+  border-radius: 7px;
+  margin: 25px 0;
+}
+
+.homefooter .homefooter-second {
+  background-color: white;
+  margin: 40px 0 0 0;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.homefooter .homefooter-second p {
+  font: 16px inter;
+}
+
+.homefooter .homefooter-second h2 {
+  font: 14px inter;
+  color: #9da4ae;
+}

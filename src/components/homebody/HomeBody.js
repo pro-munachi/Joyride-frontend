@@ -12,9 +12,9 @@ const HomeBody = () => {
       <div className='first'>
         <div>
           <div>
-            <h1 class='heroHeading'>Brand Personality & Identity</h1>
+            <h1>Brand Personality & Identity</h1>
 
-            <p class='heroText'>
+            <p>
               Your brand’s identity demonstrates your personality,
               professionalism and expertise.When you strengthen your identity
               you increase the chances of getting paid on-time. Midrapay
@@ -24,13 +24,13 @@ const HomeBody = () => {
             </p>
 
             <span className='heroButton'>
-              <NavLink to='/dashboard'>
+              <NavLink to='/dashboard' className='heronav'>
                 <button>Try Joyride</button>
               </NavLink>
             </span>
           </div>
         </div>
-        <div>
+        <div className='first-img'>
           <img src={first} alt='hero' />
         </div>
       </div>
@@ -38,7 +38,7 @@ const HomeBody = () => {
       <div className='second'>
         <div>
           <div>
-            <h1 c>Customized Invoice template</h1>
+            <h1>Customized Invoice template</h1>
 
             <p>
               Midrapay provides a Perfectly formatted invoice with a good layout
@@ -47,8 +47,10 @@ const HomeBody = () => {
             </p>
           </div>
         </div>
-        <div>
-          <img src={second} alt='hero' />
+        <div className='homebodysecondimage'>
+          <div>
+            <img src={second} alt='hero' />
+          </div>
         </div>
       </div>
 
@@ -56,9 +58,9 @@ const HomeBody = () => {
         <div>
           <img src={third} alt='hero' />
         </div>
-        <div>
+        <div className='third-text'>
           <div>
-            <h1 c>Customized Invoice template</h1>
+            <h1>Customized Invoice template</h1>
 
             <p>
               Midrapay provides a Perfectly formatted invoice with a good layout
