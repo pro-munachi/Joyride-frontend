@@ -12,6 +12,8 @@ import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
 import Moment from 'react-moment'
 import { withRouter } from 'react-router'
+import Alert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -45,6 +47,7 @@ const Orders = () => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const headers = {
@@ -61,6 +64,7 @@ const Orders = () => {
       .catch((err) => {
         console.log(err)
         setLoading(false)
+        setError(true)
       })
   }, [])
 
@@ -78,82 +82,102 @@ const Orders = () => {
       <ResponsiveDrawer>
         {loading ? (
           <PageLoader />
+        ) : error ? (
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert variant='filled' severity='error'>
+              Sorry something went wrong{' '}
+            </Alert>
+          </Stack>
         ) : (
-          <TableContainer component={Paper}>
-            <Table aria-label='customized table'>
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell align='left'>Number</StyledTableCell>
-                  <StyledTableCell align='left'>From</StyledTableCell>
-                  <StyledTableCell align='left'>To</StyledTableCell>
-                  <StyledTableCell align='left'>Time</StyledTableCell>
-                  <StyledTableCell align='left'>Delivered</StyledTableCell>
-                  <StyledTableCell align='left'>Dispatched</StyledTableCell>
-                  <StyledTableCell align='left'>Price</StyledTableCell>
-                  <StyledTableCell align='left'></StyledTableCell>
-                </TableRow>
-              </TableHead>
+          <>
+            {' '}
+            {!order || order.length === 0 ? (
+              <Stack sx={{ width: '100%' }} spacing={2}>
+                <Alert variant='filled' severity='info'>
+                  There is no order at the moment{' '}
+                </Alert>
+              </Stack>
+            ) : (
+              <TableContainer component={Paper}>
+                <Table aria-label='customized table'>
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>Name</StyledTableCell>
+                      <StyledTableCell align='left'>Number</StyledTableCell>
+                      <StyledTableCell align='left'>From</StyledTableCell>
+                      <StyledTableCell align='left'>To</StyledTableCell>
+                      <StyledTableCell align='left'>Time</StyledTableCell>
+                      <StyledTableCell align='left'>Delivered</StyledTableCell>
+                      <StyledTableCell align='left'>Dispatched</StyledTableCell>
+                      <StyledTableCell align='left'>Price</StyledTableCell>
+                      <StyledTableCell align='left'></StyledTableCell>
+                    </TableRow>
+                  </TableHead>
 
-              <TableBody>
-                {order
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <StyledTableRow
-                      key={row._id}
-                      className={row.isDelivered ? 'green' : 'red'}
-                    >
-                      <StyledTableCell>{row.userName}</StyledTableCell>
+                  <TableBody>
+                    {order
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((row) => (
+                        <StyledTableRow
+                          key={row._id}
+                          className={row.isDelivered ? 'green' : 'red'}
+                        >
+                          <StyledTableCell>{row.userName}</StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        {row.number}
-                      </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.number}
+                          </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        {row.addressFrom}
-                      </StyledTableCell>
-                      <StyledTableCell align='left'>
-                        {row.addressTo}
-                      </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressFrom}
+                          </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressTo}
+                          </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        <Moment format='D MMM YYYY' withTitle>
-                          {row.createdAt}
-                        </Moment>
-                      </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            <Moment format='D MMM YYYY' withTitle>
+                              {row.createdAt}
+                            </Moment>
+                          </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        {row.isDelivered ? 'Yes' : 'No'}
-                      </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.isDelivered ? 'Yes' : 'No'}
+                          </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        {row.dispatchOrder ? 'Yes' : 'No'}
-                      </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.dispatchOrder ? 'Yes' : 'No'}
+                          </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        &#8358;
-                        {row.totalPrice
-                          .toFixed(2)
-                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                      </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            &#8358;
+                            {row.totalPrice
+                              .toFixed(2)
+                              .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                          </StyledTableCell>
 
-                      <StyledTableCell align='left'>
-                        <OrderDropdown id={row._id} />
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-              </TableBody>
-            </Table>
-            <TablePagination
-              component='div'
-              count={order.length}
-              page={page}
-              onPageChange={handleChangePage}
-              rowsPerPage={rowsPerPage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              className='table'
-            />
-          </TableContainer>
+                          <StyledTableCell align='left'>
+                            <OrderDropdown id={row._id} />
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+                <TablePagination
+                  component='div'
+                  count={order.length}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  rowsPerPage={rowsPerPage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  className='table'
+                />
+              </TableContainer>
+            )}
+          </>
         )}
       </ResponsiveDrawer>
     </div>

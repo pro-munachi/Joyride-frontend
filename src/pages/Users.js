@@ -10,6 +10,8 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
 import { withRouter } from 'react-router'
+import Alert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
@@ -43,6 +45,7 @@ const Users = () => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -59,6 +62,7 @@ const Users = () => {
       })
       .catch((err) => {
         console.log(err)
+        setError(true)
         setLoading(false)
       })
   }, [])
@@ -78,58 +82,80 @@ const Users = () => {
         {' '}
         {loading ? (
           <PageLoader />
+        ) : error ? (
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert variant='filled' severity='error'>
+              Sorry something went wrong{' '}
+            </Alert>
+          </Stack>
         ) : (
-          <TableContainer component={Paper}>
-            <Table aria-label='customized table'>
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>User Email</StyledTableCell>
-                  <StyledTableCell align='left'>Display Name</StyledTableCell>
-                  <StyledTableCell align='left'>Created At</StyledTableCell>
-                  <StyledTableCell align='left'>Is Admin</StyledTableCell>
-                  <StyledTableCell align='left'>Action</StyledTableCell>
-                </TableRow>
-              </TableHead>
+          <>
+            {' '}
+            {!users || users.length === 0 ? (
+              <Stack sx={{ width: '100%' }} spacing={2}>
+                <Alert variant='filled' severity='info'>
+                  You don't have any user at the moment{' '}
+                </Alert>
+              </Stack>
+            ) : (
+              <TableContainer component={Paper}>
+                <Table aria-label='customized table'>
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>User Email</StyledTableCell>
+                      <StyledTableCell align='left'>
+                        Display Name
+                      </StyledTableCell>
+                      <StyledTableCell align='left'>Created At</StyledTableCell>
+                      <StyledTableCell align='left'>Is Admin</StyledTableCell>
+                      <StyledTableCell align='left'>Action</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
 
-              <TableBody>
-                {users
-                  .map((row) => (
-                    <StyledTableRow key={row._id}>
-                      <StyledTableCell component='th' scope='row'>
-                        {row.email}
-                      </StyledTableCell>
-                      <StyledTableCell align='left'>
-                        {row.displayName}
-                      </StyledTableCell>
-                      <StyledTableCell align='left'>
-                        <Moment format='D MMM YYYY' withTitle>
-                          {row.createdAt}
-                        </Moment>
-                      </StyledTableCell>
-                      {row.isAdmin ? (
-                        <StyledTableCell align='left'>Yes</StyledTableCell>
-                      ) : (
-                        <StyledTableCell align='left'>No</StyledTableCell>
+                  <TableBody>
+                    {users
+                      .map((row) => (
+                        <StyledTableRow key={row._id}>
+                          <StyledTableCell component='th' scope='row'>
+                            {row.email}
+                          </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.displayName}
+                          </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            <Moment format='D MMM YYYY' withTitle>
+                              {row.createdAt}
+                            </Moment>
+                          </StyledTableCell>
+                          {row.isAdmin ? (
+                            <StyledTableCell align='left'>Yes</StyledTableCell>
+                          ) : (
+                            <StyledTableCell align='left'>No</StyledTableCell>
+                          )}
+
+                          <StyledTableCell align='left' typeof='button'>
+                            <PositionedMenu id={row._id} />
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
                       )}
-
-                      <StyledTableCell align='left' typeof='button'>
-                        <PositionedMenu id={row._id} />
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
-              </TableBody>
-            </Table>
-            <TablePagination
-              component='div'
-              count={users.length}
-              page={page}
-              onPageChange={handleChangePage}
-              rowsPerPage={rowsPerPage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              className='table'
-            />
-          </TableContainer>
+                  </TableBody>
+                </Table>
+                <TablePagination
+                  component='div'
+                  count={users.length}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  rowsPerPage={rowsPerPage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  className='table'
+                />
+              </TableContainer>
+            )}
+          </>
         )}
       </ResponsiveDrawer>
     </div>

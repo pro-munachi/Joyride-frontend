@@ -19,10 +19,12 @@
   background-image: linear-gradient(
     to right,
     rgba(255, 0, 0, 0),
-    rgba(59, 130, 246, 0.5)
+    rgba(59, 130, 246, 0.5),
+    rgba(255, 0, 0, 0)
   );
   width: 100%;
   padding: 25px 0;
+  border: 3px solid rgba(255, 0, 0, 0);
 }
 
 .home-body .first div h1 {

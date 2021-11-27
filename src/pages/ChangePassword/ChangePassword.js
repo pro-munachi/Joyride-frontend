@@ -6,8 +6,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { toast } from 'react-toastify'
 import { withRouter } from 'react-router'
 
-import '../style/changepassword.css'
-import CircularIndeterminate from '../components/loader'
+import './ChangePassword.css'
+import CircularIndeterminate from '../../components/loader'
 
 const ChangePassword = () => {
   const [password, setPassword] = useState('')

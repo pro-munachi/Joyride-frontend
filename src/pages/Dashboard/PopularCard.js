@@ -161,6 +161,7 @@ const PopularCard = ({ isLoading }) => {
                                           <KeyboardArrowDownOutlinedIcon
                                             fontSize='small'
                                             color='inherit'
+                                            sx={{ backgroundColor: 'red' }}
                                           />
                                         </Avatar>
                                       </Grid>

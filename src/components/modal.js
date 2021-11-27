@@ -11,6 +11,9 @@ import ListItemText from '@material-ui/core/ListItemText'
 import '../style/modal.css'
 
 const useStyles = makeStyles((theme) => ({
+  all: {
+    height: 'auto',
+  },
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -39,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   listItems: {
     margin: 'auto',
     padding: '0 0',
+    fontSize: '12px',
   },
 }))
 
@@ -55,7 +59,7 @@ export default function Modals(props) {
   }
 
   return (
-    <div>
+    <div className={classes.all}>
       <List
         className={classes.button}
         sx={{ backgroundColor: props.background }}

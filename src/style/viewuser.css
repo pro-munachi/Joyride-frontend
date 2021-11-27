@@ -88,6 +88,10 @@
 }
 
 @media (max-width: 950px) {
+  .user-container {
+    width: 100%;
+  }
+
   .user-container .user-profile {
     padding-bottom: 59px;
   }

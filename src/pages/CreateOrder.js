@@ -5,11 +5,11 @@ import { toast } from 'react-toastify'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import { withRouter } from 'react-router'
+import Alert from '@mui/material/Alert'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/createorder.css'
 import CircularIndeterminate from '../components/loader'
-import { TextField, InputLabel } from '@mui/material'
 
 const CreateOrder = () => {
   const [addressFrom, setAddressFrom] = useState('')
@@ -53,20 +53,6 @@ const CreateOrder = () => {
 
     toast.error('Item has been removed successfully')
   }
-
-  // let totalPrice = 0
-
-  // if (JSON.parse(localStorage.getItem('order')).length === 0) {
-  //   totalPrice += 0
-  // } else {
-  //   totalPrice = JSON.parse(localStorage.getItem('order')).reduce(function (
-  //     acc,
-  //     curr
-  //   ) {
-  //     return acc + curr.price
-  //   },
-  //   0)
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -176,7 +162,11 @@ const CreateOrder = () => {
               {' '}
               {JSON.parse(!localStorage.getItem('order')) ||
               JSON.parse(localStorage.getItem('order')).length === 0 ? (
-                <div style={{ margin: '12px auto' }}>No order Yet</div>
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                  <Alert variant='filled' severity='info'>
+                    You don't have an order
+                  </Alert>
+                </Stack>
               ) : (
                 JSON.parse(localStorage.getItem('order')).map((single) => (
                   <Stack

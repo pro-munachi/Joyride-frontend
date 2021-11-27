@@ -97,14 +97,18 @@ export default function OrderDropdown({ id }) {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
-
     axios
       .post('https://kidsio.herokuapp.com/orders/orderIsPaid', body, {
         headers: headers,
       })
+
       .then((res) => {
-        toast.success('price added successfully')
-        setMode(false)
+        if (res.data.message === 'Price has already been added by an admin') {
+          toast.error(res.data.message)
+        } else {
+          toast.success('price added successfully')
+          setMode(false)
+        }
       })
       .catch((err) => {
         toast.error(err)
@@ -127,8 +131,12 @@ export default function OrderDropdown({ id }) {
         headers: headers,
       })
       .then((res) => {
-        toast.success('Order dispatched successfully')
-        setDrop(false)
+        if (res.data.message === 'Order has already been dispatched') {
+          toast.error(res.data.message)
+        } else {
+          toast.success('Order dispatched successfully')
+          setDrop(false)
+        }
       })
       .catch((err) => {
         toast.error(err)

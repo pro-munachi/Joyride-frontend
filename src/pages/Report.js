@@ -12,6 +12,8 @@ import Paper from '@mui/material/Paper'
 import Divider from '@mui/material/Divider'
 import TablePagination from '@mui/material/TablePagination'
 import Moment from 'react-moment'
+import Alert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/report.css'
@@ -119,7 +121,13 @@ const Report = () => {
             <PageLoader />
           ) : (
             <TableContainer component={Paper}>
-              {order.length === 0 ? null : (
+              {order.length === 0 ? (
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                  <Alert variant='filled' severity='info'>
+                    No order was created within the dates chosen above{' '}
+                  </Alert>
+                </Stack>
+              ) : (
                 <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow>

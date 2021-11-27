@@ -13,6 +13,8 @@ import Paper from '@mui/material/Paper'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { withRouter } from 'react-router'
+import Alert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
@@ -43,6 +45,7 @@ const Profile = () => {
   const [user, setUser] = useState([])
   const [order, setOrder] = useState([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const id = localStorage.getItem('id')
 
@@ -65,6 +68,7 @@ const Profile = () => {
       .catch((err) => {
         setLoading(false)
         console.log(err)
+        setError(true)
       })
   }, [id])
 
@@ -93,12 +97,14 @@ const Profile = () => {
                   <p>
                     Number: <span>{localStorage.getItem('phone')}</span>
                   </p>
-                  <p>
-                    Is Admin:{' '}
-                    <span>
-                      {localStorage.getItem('admin') ? 'True' : 'False'}
-                    </span>
-                  </p>
+                  {localStorage.getItem('admin') && (
+                    <p>
+                      Admin:{' '}
+                      <span>
+                        {localStorage.getItem('admin') ? 'True' : 'False'}
+                      </span>
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -107,67 +113,82 @@ const Profile = () => {
               <div className='h2'>
                 {localStorage.getItem('name')}'s Latest Orders
               </div>
-
-              <TableContainer component={Paper}>
-                <Table
-                  sx={{ maxWidth: '100%', overflowX: 'scroll' }}
-                  aria-label='customized table'
-                >
-                  <TableHead sx={{ background: '#05386b' }}>
-                    <TableRow sx={{ background: '#05386b' }}>
-                      <StyledTableCell>Name</StyledTableCell>
-                      <StyledTableCell align='left'>
-                        Address From
-                      </StyledTableCell>
-                      <StyledTableCell align='left'>Address To</StyledTableCell>
-                      <StyledTableCell align='left'>Created At</StyledTableCell>
-                      <StyledTableCell align='left'>Delivered</StyledTableCell>
-                      <StyledTableCell align='left'>Dispatched</StyledTableCell>
-                      <StyledTableCell align='left'>
-                        Total Price
-                      </StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {order.map((row) => (
-                      <StyledTableRow
-                        key={row._id}
-                        className={row.isDelivered ? 'green' : 'red'}
-                      >
-                        <StyledTableCell>{row.userName}</StyledTableCell>
-
+              {!order || order.length === 0 ? (
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                  <Alert variant='filled' severity='info'>
+                    You don't have any order at the moment{' '}
+                  </Alert>
+                </Stack>
+              ) : (
+                <TableContainer component={Paper}>
+                  <Table
+                    sx={{ maxWidth: '100%', overflowX: 'scroll' }}
+                    aria-label='customized table'
+                  >
+                    <TableHead sx={{ background: '#05386b' }}>
+                      <TableRow sx={{ background: '#05386b' }}>
+                        <StyledTableCell>Name</StyledTableCell>
                         <StyledTableCell align='left'>
-                          {row.addressFrom}
+                          Address From
                         </StyledTableCell>
                         <StyledTableCell align='left'>
-                          {row.addressTo}
+                          Address To
                         </StyledTableCell>
-
                         <StyledTableCell align='left'>
-                          <Moment format='D MMM YYYY' withTitle>
-                            {row.createdAt}
-                          </Moment>
+                          Created At
                         </StyledTableCell>
-
                         <StyledTableCell align='left'>
-                          {row.isDelivered ? 'True' : 'False'}
+                          Delivered
                         </StyledTableCell>
-
                         <StyledTableCell align='left'>
-                          {row.dispatchOrder ? 'True' : 'False'}
+                          Dispatched
                         </StyledTableCell>
-
                         <StyledTableCell align='left'>
-                          &#8358;
-                          {row.totalPrice
-                            .toFixed(2)
-                            .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                          Total Price
                         </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {order.map((row) => (
+                        <StyledTableRow
+                          key={row._id}
+                          className={row.isDelivered ? 'green' : 'red'}
+                        >
+                          <StyledTableCell>{row.userName}</StyledTableCell>
+
+                          <StyledTableCell align='left'>
+                            {row.addressFrom}
+                          </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressTo}
+                          </StyledTableCell>
+
+                          <StyledTableCell align='left'>
+                            <Moment format='D MMM YYYY' withTitle>
+                              {row.createdAt}
+                            </Moment>
+                          </StyledTableCell>
+
+                          <StyledTableCell align='left'>
+                            {row.isDelivered ? 'True' : 'False'}
+                          </StyledTableCell>
+
+                          <StyledTableCell align='left'>
+                            {row.dispatchOrder ? 'True' : 'False'}
+                          </StyledTableCell>
+
+                          <StyledTableCell align='left'>
+                            &#8358;
+                            {row.totalPrice
+                              .toFixed(2)
+                              .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
             </div>
           </div>
         )}

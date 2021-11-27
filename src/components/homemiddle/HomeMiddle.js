@@ -1,8 +1,11 @@
 import { React, useState, Fragment } from 'react'
+import Zoom from 'react-reveal/Zoom'
+import Bounce from 'react-reveal/Bounce'
+import Rotate from 'react-reveal/Rotate'
+import Roll from 'react-reveal/Roll'
 
 import './HomeMiddle.css'
 import circles from '../../assets/svgs/boxcircles.svg'
-import boxbackground from '../../assets/svgs/boxbackground.svg'
 import fourth from '../../assets/images/fourth.PNG'
 import user1 from '../../assets/images/muna.jpg'
 import user2 from '../../assets/images/bobby.jpg'
@@ -37,23 +40,26 @@ const HomeMiddle = () => {
     <div className='homemiddle'>
       <div className='homemiddle-first'>
         <div>
-          <h1>Customized Invoice template</h1>
+          <Zoom>
+            <h1>Customized Invoice template</h1>
+          </Zoom>
 
-          <p>
-            Midrapay provides a Perfectly formatted invoice with a good layout
-            that highlight the details such as price, product, etc. to the
-            customer easily.
-          </p>
+          <Zoom>
+            <p>
+              Midrapay provides a Perfectly formatted invoice with a good layout
+              that highlight the details such as price, product, etc. to the
+              customer easily.
+            </p>
+          </Zoom>
         </div>
         <div className='homemiddle-firstimg'>
           <div className='firstcircle'>
             <img src={circles} alt='hero' />{' '}
           </div>
           <div className='secondcircle'>
-            <img src={fourth} alt='hero' />{' '}
-          </div>
-          <div className='thirdcircle'>
-            <img src={boxbackground} alt='hero' />{' '}
+            <Bounce>
+              <img src={fourth} alt='hero' />{' '}
+            </Bounce>
           </div>
         </div>
       </div>
@@ -61,19 +67,27 @@ const HomeMiddle = () => {
       <div className='homemiddle-second'>
         <div className='homemiddle-secondcontainer'>
           <div className='homemiddle-secondcontainer1'>
-            <h4>TESTIMONIALS</h4>
-            <h2>We Love To Hear From Our Users</h2>
-            <p>
-              Joyride has taken the dispatch community by storm, but dont just
-              take our word for it
-            </p>
+            <Bounce>
+              <h4>TESTIMONIALS</h4>
+            </Bounce>
+
+            <Bounce>
+              <h2>We Love To Hear From Our Users</h2>
+            </Bounce>
+
+            <Bounce>
+              <p>
+                Joyride has taken the dispatch community by storm, but dont just
+                take our word for it
+              </p>
+            </Bounce>
           </div>
 
           <div className='homemiddle-secondcontainer2'>
             <div>
               {users.map((user) => (
                 <Fragment key={user.id}>
-                  {show === user.text && <p>{user.text}</p>}
+                  <Rotate>{show === user.text && <p>{user.text}</p>}</Rotate>
                 </Fragment>
               ))}
             </div>
@@ -81,15 +95,17 @@ const HomeMiddle = () => {
             <div className='homemiddle-secondcontainer2-imgcontainer'>
               {users.map((user) => (
                 <div key={user.id} className='frag'>
-                  <img
-                    src={user.Image}
-                    onClick={() => setShow(user.text)}
-                    className={
-                      show === user.text
-                        ? 'homemiddle-secondcontainer2img'
-                        : 'homemiddle-secondcontainer2img1'
-                    }
-                  />
+                  <Roll>
+                    <img
+                      src={user.Image}
+                      onClick={() => setShow(user.text)}
+                      className={
+                        show === user.text
+                          ? 'homemiddle-secondcontainer2img'
+                          : 'homemiddle-secondcontainer2img1'
+                      }
+                    />
+                  </Roll>
                   <p className={show === user.text ? 'fragp' : 'fragp1'}>
                     {user.name}
                   </p>

@@ -43,7 +43,8 @@
 .addform {
   position: absolute;
   top: 20%;
-  right: 100px;
+  right: 90%;
+  z-index: 1001;
   height: 35px;
   display: flex;
 }
@@ -60,7 +61,7 @@
 .cancel {
   position: absolute;
   color: red;
-  right: 107px;
+  right: 100%;
   bottom: 21px;
   font-size: 20px;
 }
@@ -80,7 +81,7 @@
 .dropdown {
   width: 350px;
   position: absolute;
-  right: 100px;
+  right: 90%;
   top: 20%;
   background: white;
   display: flex;
