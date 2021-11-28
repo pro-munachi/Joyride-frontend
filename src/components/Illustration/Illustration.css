@@ -1,0 +1,15 @@
+.illustration {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.illustration img {
+  margin: auto;
+}
+
+.illustration h2 {
+  margin: 10px auto;
+  text-align: center;
+  color: #05386b;
+}

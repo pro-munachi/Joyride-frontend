@@ -12,15 +12,14 @@ import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
 import Moment from 'react-moment'
 import { withRouter } from 'react-router'
-import Alert from '@mui/material/Alert'
-import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
-// import PositionedMenu from '../components/ActiveDropdown'
-// import PageLoader from '../components/pageloader'
 import OrderUserDropdown from '../components/OrderUserDropdown'
 import PageLoader from '../components/pageloader'
+import Illustration from '../components/Illustration/Illustration'
+import empty from '../assets/svgs/empty.svg'
+import errorsvg from '../assets/svgs/networkerror.svg'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -72,6 +71,28 @@ const MyOrders = () => {
       })
   }, [])
 
+  const reload = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get('https://kidsio.herokuapp.com/orders/deleteByUser', {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log(res.data)
+        const reverse = res.data.order.reverse()
+        setOrder(reverse)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+        setError(true)
+      })
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -87,19 +108,21 @@ const MyOrders = () => {
         {loading ? (
           <PageLoader />
         ) : error ? (
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert variant='filled' severity='error'>
-              Sorry something went wrong
-            </Alert>
-          </Stack>
+          <Illustration
+            svg={errorsvg}
+            text={'Sorry cannot load the page at the moment'}
+            height={'30%'}
+            width={'30%'}
+          />
         ) : (
           <>
             {!order || order.length === 0 ? (
-              <Stack sx={{ width: '100%' }} spacing={2}>
-                <Alert variant='filled' severity='info'>
-                  You haven't created an order
-                </Alert>
-              </Stack>
+              <Illustration
+                svg={empty}
+                text={'You do not have an order'}
+                height={'30%'}
+                width={'30%'}
+              />
             ) : (
               <TableContainer component={Paper}>
                 <Table
@@ -168,7 +191,7 @@ const MyOrders = () => {
                           </StyledTableCell>
 
                           <StyledTableCell align='left'>
-                            <OrderUserDropdown id={row._id} />
+                            <OrderUserDropdown id={row._id} refresh={reload} />
                           </StyledTableCell>
                         </StyledTableRow>
                       ))}

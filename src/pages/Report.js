@@ -14,6 +14,8 @@ import TablePagination from '@mui/material/TablePagination'
 import Moment from 'react-moment'
 import Alert from '@mui/material/Alert'
 import Stack from '@mui/material/Stack'
+import Illustration from '../components/Illustration/Illustration'
+import empty from '../assets/svgs/empty.svg'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/report.css'
@@ -122,11 +124,12 @@ const Report = () => {
           ) : (
             <TableContainer component={Paper}>
               {order.length === 0 ? (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                  <Alert variant='filled' severity='info'>
-                    No order was created within the dates chosen above{' '}
-                  </Alert>
-                </Stack>
+                <Illustration
+                  svg={empty}
+                  text={'Input the dates you want to search in the field above'}
+                  height={'30%'}
+                  width={'30%'}
+                />
               ) : (
                 <Table aria-label='customized table'>
                   <TableHead>

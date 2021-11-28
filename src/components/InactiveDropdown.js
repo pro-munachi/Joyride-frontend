@@ -10,7 +10,7 @@ import '../style/user.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function ActivateMenu({ id }) {
+export default function ActivateMenu({ id, refresh }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -32,6 +32,7 @@ export default function ActivateMenu({ id }) {
       .then((res) => {
         console.log(res.data)
         toast.success('Dispatcher has been reactivated')
+        refresh()
       })
       .catch((err) => {
         console.log(err)
@@ -51,6 +52,7 @@ export default function ActivateMenu({ id }) {
       .then((res) => {
         console.log(res.data)
         toast.success(res.data.message)
+        refresh()
       })
       .catch((err) => {
         console.log(err)

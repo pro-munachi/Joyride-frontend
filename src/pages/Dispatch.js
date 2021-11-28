@@ -90,6 +90,75 @@ const Dispatch = () => {
       })
   }, [])
 
+  const activeReload = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+
+    axios
+      .get('https://kidsio.herokuapp.com/dispatch/active', { headers: headers })
+      .then((res) => {
+        console.log(res.data)
+        let rev = res.data.dispatcher
+        setDispatcher(rev)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(true)
+      })
+
+    axios
+      .get('https://kidsio.herokuapp.com/dispatch/inactive', {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log(res.data)
+        let rev = res.data.dispatcher
+        setInactive(rev)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(true)
+      })
+  }
+
+  const inactiveReload = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get('https://kidsio.herokuapp.com/dispatch/inactive', {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log(res.data)
+        let rev = res.data.dispatcher
+        setInactive(rev)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(true)
+      })
+
+    axios
+      .get('https://kidsio.herokuapp.com/dispatch/active', { headers: headers })
+      .then((res) => {
+        console.log(res.data)
+        let rev = res.data.dispatcher
+        setDispatcher(rev)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(true)
+      })
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -249,7 +318,10 @@ const Dispatch = () => {
                               </StyledTableCell>
 
                               <StyledTableCell align='left' typeof='button'>
-                                <DispatchMenu id={row._id} />
+                                <DispatchMenu
+                                  id={row._id}
+                                  refresh={activeReload}
+                                />
                               </StyledTableCell>
                             </StyledTableRow>
                           ))
@@ -315,7 +387,10 @@ const Dispatch = () => {
                               </StyledTableCell>
 
                               <StyledTableCell align='left' typeof='button'>
-                                <DispatchMenu id={row._id} />
+                                <DispatchMenu
+                                  id={row._id}
+                                  refresh={activeReload}
+                                />
                               </StyledTableCell>
                             </StyledTableRow>
                           ))
@@ -385,7 +460,10 @@ const Dispatch = () => {
                               </StyledTableCell>
 
                               <StyledTableCell align='left' typeof='button'>
-                                <ActivateMenu id={row._id} />
+                                <ActivateMenu
+                                  id={row._id}
+                                  refresh={inactiveReload}
+                                />
                               </StyledTableCell>
                             </StyledTableRow>
                           ))
@@ -451,7 +529,10 @@ const Dispatch = () => {
                               </StyledTableCell>
 
                               <StyledTableCell align='left' typeof='button'>
-                                <ActivateMenu id={row._id} />
+                                <ActivateMenu
+                                  id={row._id}
+                                  refresh={inactiveReload}
+                                />
                               </StyledTableCell>
                             </StyledTableRow>
                           ))

@@ -10,6 +10,8 @@ import Alert from '@mui/material/Alert'
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/createorder.css'
 import CircularIndeterminate from '../components/loader'
+import Illustration from '../components/Illustration/Illustration'
+import empty from '../assets/svgs/empty.svg'
 
 const CreateOrder = () => {
   const [addressFrom, setAddressFrom] = useState('')
@@ -38,9 +40,8 @@ const CreateOrder = () => {
       localStorage.setItem('order', JSON.stringify([item]))
       setAdd(!add)
     }
-    console.log(JSON.parse(localStorage.getItem('order')))
-
     toast.success('Item has been added successfully')
+    setName('')
   }
 
   const deleteItem = (name) => {
@@ -145,6 +146,7 @@ const CreateOrder = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </label>
+
               <div className='div1'>
                 <button
                   className='button1'
@@ -162,11 +164,12 @@ const CreateOrder = () => {
               {' '}
               {JSON.parse(!localStorage.getItem('order')) ||
               JSON.parse(localStorage.getItem('order')).length === 0 ? (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                  <Alert variant='filled' severity='info'>
-                    You don't have an order
-                  </Alert>
-                </Stack>
+                <Illustration
+                  svg={empty}
+                  text={'No Item Selected'}
+                  width={'100px'}
+                  height={'80px'}
+                />
               ) : (
                 JSON.parse(localStorage.getItem('order')).map((single) => (
                   <Stack

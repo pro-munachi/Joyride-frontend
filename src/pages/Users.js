@@ -10,14 +10,15 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import TablePagination from '@mui/material/TablePagination'
 import { withRouter } from 'react-router'
-import Alert from '@mui/material/Alert'
-import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/user.css'
 import axios from 'axios'
 import PositionedMenu from '../components/ActiveDropdown'
 import PageLoader from '../components/pageloader'
+import Illustration from '../components/Illustration/Illustration'
+import empty from '../assets/svgs/empty.svg'
+import errorsvg from '../assets/svgs/networkerror.svg'
 import Moment from 'react-moment'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -67,6 +68,25 @@ const Users = () => {
       })
   }, [])
 
+  const reload = () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get('https://kidsio.herokuapp.com/users/', { headers: headers })
+      .then((res) => {
+        let rev = res.data.allUsers.reverse()
+        setUsers(rev)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setError(true)
+        setLoading(false)
+      })
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -83,20 +103,22 @@ const Users = () => {
         {loading ? (
           <PageLoader />
         ) : error ? (
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert variant='filled' severity='error'>
-              Sorry something went wrong{' '}
-            </Alert>
-          </Stack>
+          <Illustration
+            svg={errorsvg}
+            text={'Sorry cannot load the page at the moment'}
+            height={'30%'}
+            width={'30%'}
+          />
         ) : (
           <>
             {' '}
             {!users || users.length === 0 ? (
-              <Stack sx={{ width: '100%' }} spacing={2}>
-                <Alert variant='filled' severity='info'>
-                  You don't have any user at the moment{' '}
-                </Alert>
-              </Stack>
+              <Illustration
+                svg={empty}
+                text={'There are no users at the moment'}
+                height={'30%'}
+                width={'30%'}
+              />
             ) : (
               <TableContainer component={Paper}>
                 <Table aria-label='customized table'>
@@ -134,7 +156,7 @@ const Users = () => {
                           )}
 
                           <StyledTableCell align='left' typeof='button'>
-                            <PositionedMenu id={row._id} />
+                            <PositionedMenu id={row._id} refresh={reload} />
                           </StyledTableCell>
                         </StyledTableRow>
                       ))

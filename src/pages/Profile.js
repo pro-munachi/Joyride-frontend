@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { Fragment, React, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { React, useEffect, useState } from 'react'
 import Divider from '@material-ui/core/Divider'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -10,15 +9,14 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { withRouter } from 'react-router'
-import Alert from '@mui/material/Alert'
-import Stack from '@mui/material/Stack'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
 import PageLoader from '../components/pageloader'
+import Illustration from '../components/Illustration/Illustration'
+import empty from '../assets/svgs/empty.svg'
 import Moment from 'react-moment'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,10 +40,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }))
 
 const Profile = () => {
-  const [user, setUser] = useState([])
   const [order, setOrder] = useState([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
 
   const id = localStorage.getItem('id')
 
@@ -68,7 +64,6 @@ const Profile = () => {
       .catch((err) => {
         setLoading(false)
         console.log(err)
-        setError(true)
       })
   }, [id])
 
@@ -97,14 +92,6 @@ const Profile = () => {
                   <p>
                     Number: <span>{localStorage.getItem('phone')}</span>
                   </p>
-                  {localStorage.getItem('admin') && (
-                    <p>
-                      Admin:{' '}
-                      <span>
-                        {localStorage.getItem('admin') ? 'True' : 'False'}
-                      </span>
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
@@ -114,11 +101,12 @@ const Profile = () => {
                 {localStorage.getItem('name')}'s Latest Orders
               </div>
               {!order || order.length === 0 ? (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                  <Alert variant='filled' severity='info'>
-                    You don't have any order at the moment{' '}
-                  </Alert>
-                </Stack>
+                <Illustration
+                  svg={empty}
+                  text={'You do not have any order at the moment'}
+                  height={'30%'}
+                  width={'30%'}
+                />
               ) : (
                 <TableContainer component={Paper}>
                   <Table

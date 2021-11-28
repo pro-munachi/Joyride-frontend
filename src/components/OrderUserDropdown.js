@@ -10,7 +10,7 @@ import '../style/user.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function OrderUserDropdown({ id }) {
+export default function OrderUserDropdown({ id, refresh }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -32,6 +32,7 @@ export default function OrderUserDropdown({ id }) {
       .then((res) => {
         console.log(res.data)
         toast.success('Order Deleted Successfully')
+        refresh()
       })
       .catch((err) => {
         console.log(err)

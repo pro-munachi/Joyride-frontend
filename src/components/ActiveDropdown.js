@@ -10,7 +10,7 @@ import '../style/user.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function PositionedMenu({ id }) {
+export default function PositionedMenu({ id, refresh }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -32,6 +32,7 @@ export default function PositionedMenu({ id }) {
       .then((res) => {
         console.log(res.data)
         toast.success('User deleted successfully')
+        refresh()
       })
       .catch((err) => {
         console.log(err)

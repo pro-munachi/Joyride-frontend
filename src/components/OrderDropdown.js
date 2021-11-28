@@ -2,20 +2,15 @@ import * as React from 'react'
 import { useState, useEffect } from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
 import axios from 'axios'
 import Divider from '@material-ui/core/Divider'
 import { NavLink } from 'react-router-dom'
-import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
-import Modal from '@material-ui/core/Modal'
-import TextField from '@mui/material/TextField'
 
 import '../style/user.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function OrderDropdown({ id }) {
+export default function OrderDropdown({ id, refresh }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const [dispatcher, setDispatcher] = useState([])
@@ -64,6 +59,7 @@ export default function OrderDropdown({ id }) {
       })
       .then((res) => {
         toast.success('Order deleted successfully')
+        refresh()
       })
       .catch((err) => {
         console.log(err)
@@ -82,6 +78,7 @@ export default function OrderDropdown({ id }) {
       })
       .then((res) => {
         toast.success('Order delivered successfully')
+        refresh()
       })
       .catch((err) => {
         toast.error('Sorry something went wrong')
@@ -108,6 +105,7 @@ export default function OrderDropdown({ id }) {
         } else {
           toast.success('price added successfully')
           setMode(false)
+          refresh()
         }
       })
       .catch((err) => {
@@ -131,11 +129,13 @@ export default function OrderDropdown({ id }) {
         headers: headers,
       })
       .then((res) => {
-        if (res.data.message === 'Order has already been dispatched') {
-          toast.error(res.data.message)
-        } else {
+        if (res.data.hasError === false) {
           toast.success('Order dispatched successfully')
           setDrop(false)
+          refresh()
+        } else {
+          toast.error(res.data.message)
+          console.log(res.data)
         }
       })
       .catch((err) => {

@@ -17,6 +17,8 @@ import { withRouter } from 'react-router'
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/viewuser.css'
 import PageLoader from '../components/pageloader'
+import Illustration from '../components/Illustration/Illustration'
+import empty from '../assets/svgs/empty.svg'
 import Moment from 'react-moment'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -175,89 +177,106 @@ const ViewUser = () => {
             <div className='user-orders'>
               <div className='h2'>{user.displayName}'s Latest Orders</div>
 
-              <TableContainer component={Paper}>
-                <Table
-                  sx={{ maxWidth: '100%', overflowX: 'scroll' }}
-                  aria-label='customized table'
-                >
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell>Order Name</StyledTableCell>
-                      <StyledTableCell align='left'>
-                        Order Price
-                      </StyledTableCell>
-                      <StyledTableCell align='left'>
-                        Address From
-                      </StyledTableCell>
-                      <StyledTableCell align='left'>Address To</StyledTableCell>
-                      <StyledTableCell align='left'>Created At</StyledTableCell>
-                      <StyledTableCell align='left'>Delivered</StyledTableCell>
-                      <StyledTableCell align='left'>Dispatched</StyledTableCell>
-                      <StyledTableCell align='left'>
-                        Total Price
-                      </StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {order.map((row) => (
-                      <StyledTableRow
-                        key={row._id}
-                        className={row.isDelivered ? 'green' : 'red'}
-                      >
-                        <StyledTableCell>
-                          {row.orderItems.map((item) => {
-                            return (
-                              <Fragment key={item._id}>
-                                <> {item.name} </>
-                                <br />
-                              </Fragment>
-                            )
-                          })}
+              {!order || order.length === 0 ? (
+                <Illustration
+                  svg={empty}
+                  text={'There is no existing order'}
+                  height={'30%'}
+                  width={'30%'}
+                />
+              ) : (
+                <TableContainer component={Paper}>
+                  <Table
+                    sx={{ maxWidth: '100%', overflowX: 'scroll' }}
+                    aria-label='customized table'
+                  >
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell>Order Name</StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Order Price
                         </StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Address From
+                        </StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Address To
+                        </StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Created At
+                        </StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Delivered
+                        </StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Dispatched
+                        </StyledTableCell>
+                        <StyledTableCell align='left'>
+                          Total Price
+                        </StyledTableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {order.map((row) => (
+                        <StyledTableRow
+                          key={row._id}
+                          className={row.isDelivered ? 'green' : 'red'}
+                        >
+                          <StyledTableCell>
+                            {row.orderItems.map((item) => {
+                              return (
+                                <Fragment key={item._id}>
+                                  <> {item.name} </>
+                                  <br />
+                                </Fragment>
+                              )
+                            })}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.orderItems.map((item) => {
-                            return (
-                              <Fragment key={item._id}>
-                                <> {item.price} </>
-                                <br />
-                              </Fragment>
-                            )
-                          })}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.orderItems.map((item) => {
+                              return (
+                                <Fragment key={item._id}>
+                                  <> {item.price} </>
+                                  <br />
+                                </Fragment>
+                              )
+                            })}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.addressFrom}
-                        </StyledTableCell>
-                        <StyledTableCell align='left'>
-                          {row.addressTo}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressFrom}
+                          </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.addressTo}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          <Moment format='D MMM YYYY' withTitle>
-                            {row.createdAt}
-                          </Moment>
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            <Moment format='D MMM YYYY' withTitle>
+                              {row.createdAt}
+                            </Moment>
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.isDelivered ? 'Yes' : 'No'}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.isDelivered ? 'Yes' : 'No'}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          {row.dispatchOrder ? 'Yes' : 'No'}
-                        </StyledTableCell>
+                          <StyledTableCell align='left'>
+                            {row.dispatchOrder ? 'Yes' : 'No'}
+                          </StyledTableCell>
 
-                        <StyledTableCell align='left'>
-                          &#8358;
-                          {row.totalPrice
-                            .toFixed(2)
-                            .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                          <StyledTableCell align='left'>
+                            &#8358;
+                            {row.totalPrice
+                              .toFixed(2)
+                              .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
             </div>
           </div>
         )}

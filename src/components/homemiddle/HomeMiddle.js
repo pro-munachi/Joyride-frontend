@@ -1,7 +1,5 @@
 import { React, useState, Fragment } from 'react'
-import Zoom from 'react-reveal/Zoom'
 import Bounce from 'react-reveal/Bounce'
-import Rotate from 'react-reveal/Rotate'
 import Roll from 'react-reveal/Roll'
 
 import './HomeMiddle.css'
@@ -40,17 +38,13 @@ const HomeMiddle = () => {
     <div className='homemiddle'>
       <div className='homemiddle-first'>
         <div>
-          <Zoom>
-            <h1>Customized Invoice template</h1>
-          </Zoom>
+          <h1>Customized Invoice template</h1>
 
-          <Zoom>
-            <p>
-              Midrapay provides a Perfectly formatted invoice with a good layout
-              that highlight the details such as price, product, etc. to the
-              customer easily.
-            </p>
-          </Zoom>
+          <p>
+            Midrapay provides a Perfectly formatted invoice with a good layout
+            that highlight the details such as price, product, etc. to the
+            customer easily.
+          </p>
         </div>
         <div className='homemiddle-firstimg'>
           <div className='firstcircle'>
@@ -67,27 +61,21 @@ const HomeMiddle = () => {
       <div className='homemiddle-second'>
         <div className='homemiddle-secondcontainer'>
           <div className='homemiddle-secondcontainer1'>
-            <Bounce>
-              <h4>TESTIMONIALS</h4>
-            </Bounce>
+            <h4>TESTIMONIALS</h4>
 
-            <Bounce>
-              <h2>We Love To Hear From Our Users</h2>
-            </Bounce>
+            <h2>We Love To Hear From Our Users</h2>
 
-            <Bounce>
-              <p>
-                Joyride has taken the dispatch community by storm, but dont just
-                take our word for it
-              </p>
-            </Bounce>
+            <p>
+              Joyride has taken the dispatch community by storm, but dont just
+              take our word for it
+            </p>
           </div>
 
           <div className='homemiddle-secondcontainer2'>
             <div>
               {users.map((user) => (
                 <Fragment key={user.id}>
-                  <Rotate>{show === user.text && <p>{user.text}</p>}</Rotate>
+                  {show === user.text && <p>{user.text}</p>}
                 </Fragment>
               ))}
             </div>
