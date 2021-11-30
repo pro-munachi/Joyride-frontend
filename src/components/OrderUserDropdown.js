@@ -26,7 +26,7 @@ export default function OrderUserDropdown({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/orders/user/${id}/delete`, {
+      .get(`https://joyrideapp.herokuapp.com/orders/user/${id}/delete`, {
         headers: headers,
       })
       .then((res) => {

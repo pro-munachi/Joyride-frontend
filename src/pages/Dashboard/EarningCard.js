@@ -71,7 +71,7 @@ const EarningCard = ({ isLoading }) => {
     }
 
     axios
-      .get('http://kidsio.herokuapp.com/dashboard/today/price', {
+      .get('http://joyrideapp.herokuapp.com/dashboard/today/price', {
         headers: headers,
       })
       .then((res) => {

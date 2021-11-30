@@ -27,7 +27,7 @@ const CreateDispatcher = () => {
     }
     setLoading(true)
     axios
-      .post('http://kidsio.herokuapp.com/dispatch/create', data, {
+      .post('http://joyrideapp.herokuapp.com/dispatch/create', data, {
         headers: headers,
       })
       .then((res) => {

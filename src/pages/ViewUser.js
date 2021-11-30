@@ -55,7 +55,7 @@ const ViewUser = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/users/${id}`, { headers: headers })
+      .get(`https://joyrideapp.herokuapp.com/users/${id}`, { headers: headers })
       .then((res) => {
         setUser(res.data)
         setLoading(false)
@@ -73,7 +73,7 @@ const ViewUser = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/orders/user/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/orders/user/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -94,7 +94,7 @@ const ViewUser = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/orders/user/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/orders/user/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -113,7 +113,7 @@ const ViewUser = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/users/admin/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/users/admin/${id}`, {
         headers: headers,
       })
       .then((res) => {

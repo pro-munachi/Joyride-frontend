@@ -158,7 +158,7 @@ function ResponsiveDrawer(props) {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
               }
               axios
-                .post('http://kidsio.herokuapp.com/users/changepic', data, {
+                .post('http://joyrideapp.herokuapp.com/users/changepic', data, {
                   headers: headers,
                 })
                 .then((res) => {
@@ -333,7 +333,9 @@ function ResponsiveDrawer(props) {
             <MenuIcon className='hamburg' />
           </IconButton>
           <Typography variant='h6' noWrap className='side-header'>
-            <img src={logo} alt='logo' className='logo' />
+            <NavLink to='/' className='logolink'>
+              <img src={logo} alt='logo' className='logo' />
+            </NavLink>
             <BasicMenu />
           </Typography>
         </Toolbar>

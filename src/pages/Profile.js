@@ -52,7 +52,7 @@ const Profile = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/orders/user/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/orders/user/${id}`, {
         headers: headers,
       })
       .then((res) => {

@@ -62,7 +62,9 @@ const Dispatch = () => {
     }
 
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/active', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/dispatch/active', {
+        headers: headers,
+      })
       .then((res) => {
         console.log(res.data)
         let rev = res.data.dispatcher
@@ -75,7 +77,7 @@ const Dispatch = () => {
       })
 
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/inactive', {
+      .get('https://joyrideapp.herokuapp.com/dispatch/inactive', {
         headers: headers,
       })
       .then((res) => {
@@ -97,7 +99,9 @@ const Dispatch = () => {
     }
 
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/active', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/dispatch/active', {
+        headers: headers,
+      })
       .then((res) => {
         console.log(res.data)
         let rev = res.data.dispatcher
@@ -110,7 +114,7 @@ const Dispatch = () => {
       })
 
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/inactive', {
+      .get('https://joyrideapp.herokuapp.com/dispatch/inactive', {
         headers: headers,
       })
       .then((res) => {
@@ -131,7 +135,7 @@ const Dispatch = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/inactive', {
+      .get('https://joyrideapp.herokuapp.com/dispatch/inactive', {
         headers: headers,
       })
       .then((res) => {
@@ -146,7 +150,9 @@ const Dispatch = () => {
       })
 
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/active', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/dispatch/active', {
+        headers: headers,
+      })
       .then((res) => {
         console.log(res.data)
         let rev = res.data.dispatcher

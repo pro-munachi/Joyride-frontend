@@ -46,7 +46,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     }
 
     axios
-      .get('http://kidsio.herokuapp.com/dashboard/chart', {
+      .get('http://joyrideapp.herokuapp.com/dashboard/chart', {
         headers: headers,
       })
       .then((res) => {

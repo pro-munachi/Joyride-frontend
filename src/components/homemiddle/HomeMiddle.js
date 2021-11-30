@@ -1,5 +1,5 @@
 import { React, useState, Fragment } from 'react'
-import Bounce from 'react-reveal/Bounce'
+import Slide from 'react-reveal/Slide'
 import Roll from 'react-reveal/Roll'
 
 import './HomeMiddle.css'
@@ -51,9 +51,9 @@ const HomeMiddle = () => {
             <img src={circles} alt='hero' />{' '}
           </div>
           <div className='secondcircle'>
-            <Bounce>
+            <Slide left>
               <img src={fourth} alt='hero' />{' '}
-            </Bounce>
+            </Slide>
           </div>
         </div>
       </div>

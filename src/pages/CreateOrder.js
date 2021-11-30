@@ -73,7 +73,7 @@ const CreateOrder = () => {
     }
     setLoading(true)
     axios
-      .post('http://kidsio.herokuapp.com/orders/orderProduct', data, {
+      .post('http://joyrideapp.herokuapp.com/orders/orderProduct', data, {
         headers: headers,
       })
       .then((res) => {
@@ -137,7 +137,7 @@ const CreateOrder = () => {
           <div className='form-container2'>
             <form>
               <label>
-                Order Name
+                Order Description
                 <input
                   type='text'
                   required

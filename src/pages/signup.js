@@ -58,7 +58,7 @@ const Signup = () => {
 
     const headers = {}
     axios
-      .post('https://kidsio.herokuapp.com/users/register', data, headers)
+      .post('https://joyrideapp.herokuapp.com/users/register', data, headers)
       .then((res) => {
         setLoading(false)
         if (res.data.hasError === false) {
@@ -77,7 +77,7 @@ const Signup = () => {
           window.setTimeout(() => {
             window.location.href = '/dashboard'
           }, 1000)
-          toast.success('login successful')
+          toast.success('Registration successful')
         } else {
           toast.error(res.data.message)
         }

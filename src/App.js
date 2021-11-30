@@ -29,11 +29,7 @@ function App() {
         <div>
           <ToastContainer />
           <Switch>
-            <Route
-              path='/'
-              component={localStorage.getItem('token') ? Dashboards : Home}
-              exact
-            />
+            <Route path='/' component={Home} exact />
             <Route path='/auth/login' exact component={Login} />
             <Route path='/auth/signup' component={Signup} />
             <Route path='/auth/reset-password/:token' component={Reset} />

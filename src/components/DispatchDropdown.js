@@ -26,7 +26,7 @@ export default function DispatchMenu({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/dispatch/suspend/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/dispatch/suspend/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -46,7 +46,7 @@ export default function DispatchMenu({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/dispatch/delete/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/dispatch/delete/${id}`, {
         headers: headers,
       })
       .then((res) => {

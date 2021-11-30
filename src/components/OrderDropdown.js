@@ -27,7 +27,9 @@ export default function OrderDropdown({ id, refresh }) {
     }
 
     axios
-      .get('https://kidsio.herokuapp.com/dispatch/active', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/dispatch/active', {
+        headers: headers,
+      })
       .then((res) => {
         setDispatcher(res.data.dispatcher)
       })
@@ -54,7 +56,7 @@ export default function OrderDropdown({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .delete(`https://kidsio.herokuapp.com/orders/delete/${id}`, {
+      .delete(`https://joyrideapp.herokuapp.com/orders/delete/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -73,7 +75,7 @@ export default function OrderDropdown({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/orders/deliver/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/orders/deliver/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -95,7 +97,7 @@ export default function OrderDropdown({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .post('https://kidsio.herokuapp.com/orders/orderIsPaid', body, {
+      .post('https://joyrideapp.herokuapp.com/orders/orderIsPaid', body, {
         headers: headers,
       })
 
@@ -125,7 +127,7 @@ export default function OrderDropdown({ id, refresh }) {
     }
 
     axios
-      .post('https://kidsio.herokuapp.com/orders/dispatchorder', body, {
+      .post('https://joyrideapp.herokuapp.com/orders/dispatchorder', body, {
         headers: headers,
       })
       .then((res) => {

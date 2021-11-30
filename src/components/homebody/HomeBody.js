@@ -1,5 +1,5 @@
 import React from 'react'
-import Bounce from 'react-reveal/Bounce'
+import Slide from 'react-reveal/Slide'
 
 import './HomeBody.css'
 import first from '../../assets/images/first.PNG'
@@ -32,9 +32,9 @@ const HomeBody = () => {
           </div>
         </div>
         <div className='first-img'>
-          <Bounce>
+          <Slide right>
             <img src={first} alt='hero' />
-          </Bounce>
+          </Slide>
         </div>
       </div>
 
@@ -52,18 +52,18 @@ const HomeBody = () => {
         </div>
         <div className='homebodysecondimage'>
           <div>
-            <Bounce>
+            <Slide left>
               <img src={second} alt='hero' />
-            </Bounce>
+            </Slide>
           </div>
         </div>
       </div>
 
       <div className='third'>
         <div className='third-img'>
-          <Bounce>
+          <Slide right>
             <img src={third} alt='hero' />
-          </Bounce>
+          </Slide>
         </div>
         <div className='third-text'>
           <div>

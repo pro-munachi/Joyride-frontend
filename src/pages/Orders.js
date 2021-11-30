@@ -54,7 +54,7 @@ const Orders = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/orders/', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/orders/', { headers: headers })
       .then((res) => {
         const ord = res.data.orders.reverse()
         setOrder(ord)
@@ -73,7 +73,7 @@ const Orders = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/orders/', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/orders/', { headers: headers })
       .then((res) => {
         const ord = res.data.orders.reverse()
         setOrder(ord)

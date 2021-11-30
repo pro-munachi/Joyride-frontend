@@ -30,7 +30,7 @@ const EditUser = () => {
     }
     setLoading(true)
     axios
-      .post('http://kidsio.herokuapp.com/users/edit', data, {
+      .post('http://joyrideapp.herokuapp.com/users/edit', data, {
         headers: headers,
       })
       .then((res) => {

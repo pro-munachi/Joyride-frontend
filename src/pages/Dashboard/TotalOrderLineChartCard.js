@@ -81,7 +81,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
     }
 
     axios
-      .get('http://kidsio.herokuapp.com/dashboard/totalprice', {
+      .get('http://joyrideapp.herokuapp.com/dashboard/totalprice', {
         headers: headers,
       })
       .then((res) => {

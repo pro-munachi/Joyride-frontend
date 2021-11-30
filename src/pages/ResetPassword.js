@@ -58,7 +58,7 @@ const Reset = () => {
       'Custom-Header': 'xxxx-xxxx-xxxx-xxxx',
     }
     axios
-      .post('https://kidsio.herokuapp.com/users/reset', data, headers)
+      .post('https://joyrideapp.herokuapp.com/users/reset', data, headers)
       .then((res) => {
         setLoading(false)
         if (res.data.hasError === false) {

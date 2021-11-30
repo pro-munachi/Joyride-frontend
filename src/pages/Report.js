@@ -54,6 +54,8 @@ const Report = () => {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = () => {
+    setLoading(true)
+
     const data = {
       startDate: start,
       endDate: end,
@@ -65,13 +67,14 @@ const Report = () => {
     }
 
     axios
-      .post('http://kidsio.herokuapp.com/admin/report', data, {
+      .post('http://joyrideapp.herokuapp.com/admin/report', data, {
         headers: headers,
       })
       .then((res) => {
         console.log(res.data)
         setOrder(res.data.all)
         setTotal(res.data.total)
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err)
@@ -124,12 +127,16 @@ const Report = () => {
           ) : (
             <TableContainer component={Paper}>
               {order.length === 0 ? (
-                <Illustration
-                  svg={empty}
-                  text={'Input the dates you want to search in the field above'}
-                  height={'30%'}
-                  width={'30%'}
-                />
+                <div style={{ margin: '15px 0' }}>
+                  <Illustration
+                    svg={empty}
+                    text={
+                      'Input the dates you want to search in the field above'
+                    }
+                    height={'30%'}
+                    width={'30%'}
+                  />
+                </div>
               ) : (
                 <Table aria-label='customized table'>
                   <TableHead>

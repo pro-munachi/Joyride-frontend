@@ -44,7 +44,7 @@ const PopularCard = ({ isLoading }) => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/orders/deleteByUser', {
+      .get('https://joyrideapp.herokuapp.com/orders/deleteByUser', {
         headers: headers,
       })
       .then((res) => {

@@ -32,7 +32,7 @@ export default function BasicMenu() {
     }
 
     axios
-      .get('https://kidsio.herokuapp.com/notifications/getUser', {
+      .get('https://joyrideapp.herokuapp.com/notifications/getUser', {
         headers: headers,
       })
       .then((res) => {
@@ -62,7 +62,7 @@ export default function BasicMenu() {
     }
 
     axios
-      .get('https://kidsio.herokuapp.com/notifications/getUser', {
+      .get('https://joyrideapp.herokuapp.com/notifications/getUser', {
         headers: headers,
       })
       .then((res) => {
@@ -87,7 +87,7 @@ export default function BasicMenu() {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/notifications/${id}`, {
+      .get(`https://joyrideapp.herokuapp.com/notifications/${id}`, {
         headers: headers,
       })
       .then((res) => {
@@ -114,7 +114,7 @@ export default function BasicMenu() {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/notifications/updateUsers', {
+      .get('https://joyrideapp.herokuapp.com/notifications/updateUsers', {
         headers: headers,
       })
       .then((res) => {

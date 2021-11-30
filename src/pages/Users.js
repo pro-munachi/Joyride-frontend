@@ -55,7 +55,7 @@ const Users = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/users/', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/users/', { headers: headers })
       .then((res) => {
         let rev = res.data.allUsers.reverse()
         setUsers(rev)
@@ -74,7 +74,7 @@ const Users = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get('https://kidsio.herokuapp.com/users/', { headers: headers })
+      .get('https://joyrideapp.herokuapp.com/users/', { headers: headers })
       .then((res) => {
         let rev = res.data.allUsers.reverse()
         setUsers(rev)

@@ -168,6 +168,11 @@
 
 /* Logo styles */
 
+.logolink {
+  height: 30px;
+  margin: auto 0;
+}
+
 .logo {
   height: 30px;
   margin: auto 0;

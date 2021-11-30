@@ -62,7 +62,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
     }
 
     axios
-      .get('http://kidsio.herokuapp.com/dashboard/today', {
+      .get('http://joyrideapp.herokuapp.com/dashboard/today', {
         headers: headers,
       })
       .then((res) => {

@@ -43,7 +43,7 @@ const Forgot = () => {
       email: email,
     }
     axios
-      .post('http://kidsio.herokuapp.com/users/forgot', data)
+      .post('http://joyrideapp.herokuapp.com/users/forgot', data)
       .then((res) => {
         setLoading(false)
         if (res.data.hasError === false) {

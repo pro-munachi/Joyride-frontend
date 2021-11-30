@@ -2,10 +2,26 @@
   height: 120px;
   margin: 0;
   background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  margin: 30px 10px;
+  text-decoration: none;
+  color: #05386b;
+  font: 18px inter;
+}
+
+.head-cont {
+  margin-right: 20px;
+  width: 150px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .home-header img {
   margin-top: 20px;
-  margin-left: 20px;
   height: 40px;
+  margin-left: 20px;
 }

@@ -31,7 +31,7 @@ const ChangePassword = () => {
     if (newPassword === confirmPassword) {
       setLoading(true)
       axios
-        .post('http://kidsio.herokuapp.com/users/change', data, {
+        .post('http://joyrideapp.herokuapp.com/users/change', data, {
           headers: headers,
         })
         .then((res) => {

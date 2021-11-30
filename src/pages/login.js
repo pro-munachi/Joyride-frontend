@@ -55,7 +55,7 @@ const Login = () => {
       'Custom-Header': 'xxxx-xxxx-xxxx-xxxx',
     }
     axios
-      .post('https://kidsio.herokuapp.com/users/login', data, headers)
+      .post('https://joyrideapp.herokuapp.com/users/login', data, headers)
       .then((res) => {
         console.log(res.data)
         setLoading(false)

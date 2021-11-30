@@ -29,7 +29,9 @@ const Orders = () => {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .get(`https://kidsio.herokuapp.com/orders/${id}`, { headers: headers })
+      .get(`https://joyrideapp.herokuapp.com/orders/${id}`, {
+        headers: headers,
+      })
       .then((res) => {
         console.log(res.data.order)
         setOrder(res.data.order)

@@ -26,7 +26,7 @@ export default function PositionedMenu({ id, refresh }) {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
     axios
-      .delete(`https://kidsio.herokuapp.com/users/delete/${id}`, {
+      .delete(`https://joyrideapp.herokuapp.com/users/delete/${id}`, {
         headers: headers,
       })
       .then((res) => {
