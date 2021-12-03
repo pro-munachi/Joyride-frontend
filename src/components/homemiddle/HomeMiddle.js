@@ -11,7 +11,7 @@ import user3 from '../../assets/images/favour.jpg'
 
 const HomeMiddle = () => {
   const [show, setShow] = useState(
-    'I have been using midrapay and found it fantastic. I usemidrapay to manage my business, the experience has been good.Easy to use software that I would recommend to everyone'
+    'I have been using joyride and found it fantastic. I use joyride to manage my orders, the experience has been good.Easy to use software that I would recommend to everyone'
   )
 
   const users = [
