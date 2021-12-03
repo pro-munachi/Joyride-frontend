@@ -15,9 +15,6 @@ const HomeHeader = () => {
           <NavLink to='/auth/login' className='nav-link'>
             Login
           </NavLink>
-          <NavLink to='/auth/signup' className='nav-link'>
-            Sign up
-          </NavLink>{' '}
         </div>
       ) : (
         <div className='head-cont'>

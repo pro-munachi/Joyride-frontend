@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import { withRouter } from 'react-router'
-import Alert from '@mui/material/Alert'
+import { useHistory } from 'react-router-dom'
 
 import ResponsiveDrawer from '../components/sidebar'
 import '../style/createorder.css'
@@ -17,13 +17,13 @@ const CreateOrder = () => {
   const [addressFrom, setAddressFrom] = useState('')
   const [addressTo, setAddressTo] = useState('')
   const [paymentMethod, setPaymentMethod] = useState('')
-  const [shippingPrice, setShippingPrice] = useState('')
-  const [taxPrice, setTaxPrice] = useState('')
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [loading, setLoading] = useState(false)
   const [add, setAdd] = useState(false)
   const [allItems, setAllItems] = useState([{ name: '', price: 0 }])
+
+  const history = useHistory()
 
   const onclick = () => {
     let item = {
@@ -85,6 +85,7 @@ const CreateOrder = () => {
           setAddressTo('')
           setPaymentMethod('')
           toast.success('Your order has been created successfully')
+          history.push('/dashboard')
         } else {
           toast.error(res.data.message)
         }
@@ -137,11 +138,11 @@ const CreateOrder = () => {
           <div className='form-container2'>
             <form>
               <label>
-                Order Description
+                Item Description
                 <input
                   type='text'
                   required
-                  placeholder='Name'
+                  placeholder='Describe your item'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />

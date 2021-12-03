@@ -9,8 +9,12 @@
 .nav-link {
   margin: 30px 10px;
   text-decoration: none;
-  color: #05386b;
-  font: 18px inter;
+  background-color: #05386b;
+  font: 16px inter;
+  height: 20px;
+  color: white;
+  padding: 7px 25px;
+  border-radius: 5px;
 }
 
 .head-cont {

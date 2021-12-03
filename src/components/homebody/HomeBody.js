@@ -13,15 +13,15 @@ const HomeBody = () => {
       <div className='first'>
         <div>
           <div>
-            <h1>Brand Personality & Identity</h1>
+            <h1>Welcome To Joyride</h1>
 
             <p>
-              Your brand’s identity demonstrates your personality,
-              professionalism and expertise.When you strengthen your identity
-              you increase the chances of getting paid on-time. Midrapay
-              invoicing app allows business owners add their logo, complete
-              company details and other customised messages to improve brand
-              presence and brand engagement with existing customers.
+              Try Joyride to have a smooth and seamless experience for your
+              goods while transporting them from one location to another, <br />
+              We promise safe delivery of both perishable and non parishable
+              goods across the state, with quick response time like you have
+              never seen before <br />
+              Try us, even your goods deserves a smooth ride with Joyride
             </p>
 
             <span className='heroButton'>
@@ -41,12 +41,12 @@ const HomeBody = () => {
       <div className='second'>
         <div>
           <div>
-            <h1>Customized Invoice template</h1>
+            <h1>Creating Orders Seamless</h1>
 
             <p>
-              Midrapay provides a Perfectly formatted invoice with a good layout
-              that highlight the details such as price, product, etc. to the
-              customer easily.
+              Joyride makes it easy to book a dispatcher, through the app, you
+              also get in app notifications and emails through out the process
+              of delivery so you get to relax and worry less about your product.
             </p>
           </div>
         </div>
@@ -67,12 +67,12 @@ const HomeBody = () => {
         </div>
         <div className='third-text'>
           <div>
-            <h1>Customized Invoice template</h1>
+            <h1>Visualize Expenses</h1>
 
             <p>
-              Midrapay provides a Perfectly formatted invoice with a good layout
-              that highlight the details such as price, product, etc. to the
-              customer easily.
+              Joyride provides a Perfectly displayed dashboard with a good
+              layout that highlight details such as expenses in graphs, to
+              monitor daily and all expenses made using the app
             </p>
           </div>
         </div>

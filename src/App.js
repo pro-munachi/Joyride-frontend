@@ -1,5 +1,6 @@
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import React from 'react'
+import './App.css'
 
 import Dashboard from './pages/dashboard'
 // import ClippedDrawer from './components/drawer'

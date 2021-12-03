@@ -333,9 +333,9 @@ function ResponsiveDrawer(props) {
             <MenuIcon className='hamburg' />
           </IconButton>
           <Typography variant='h6' noWrap className='side-header'>
-            <NavLink to='/' className='logolink'>
+            <a href='/' className='logolink'>
               <img src={logo} alt='logo' className='logo' />
-            </NavLink>
+            </a>
             <BasicMenu />
           </Typography>
         </Toolbar>

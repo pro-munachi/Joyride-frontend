@@ -19,31 +19,31 @@ const HomeMiddle = () => {
       id: 1,
       name: 'Muna',
       Image: user1,
-      text: 'I have been using midrapay and found it fantastic. I usemidrapay to manage my business, the experience has been good.Easy to use software that I would recommend to everyone',
+      text: 'I have been using joyride and found it fantastic. I use joyride to manage my orders, the experience has been good.Easy to use software that I would recommend to everyone',
     },
     {
       id: 2,
       name: 'Bobby',
       Image: user2,
-      text: '  With easy to use invoicing solution, Midrapay helps me to track billable hours and generate detailed invoices forclients. I can easily create customized clean invoices whichare a top priority for my business',
+      text: '  With ease to create orders , Joyride helps me to track my expenses. I can easily create orders which are a top priority for my business',
     },
     {
       id: 3,
-      name: 'Favour',
+      name: 'Evangel',
       Image: user3,
-      text: '     I have been using mobile invoicing app Invoice2go for years and i will be lost without it',
+      text: '     I have been using Joyride for years and i will be lost without it, it helps me in getting my orders quickly. it is reliable.',
     },
   ]
   return (
     <div className='homemiddle'>
       <div className='homemiddle-first'>
         <div>
-          <h1>Customized Invoice template</h1>
+          <h1>View All Orders</h1>
 
           <p>
-            Midrapay provides a Perfectly formatted invoice with a good layout
-            that highlight the details such as price, product, etc. to the
-            customer easily.
+            With Joyride, you also have access to all your previous orders, and
+            can always go back in time to review that awsome order you made with
+            us.
           </p>
         </div>
         <div className='homemiddle-firstimg'>
