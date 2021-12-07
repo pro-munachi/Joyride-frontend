@@ -66,6 +66,18 @@ const Orders = () => {
                 <span>Payment Method:</span>
                 <span className='span1'>{order.paymentMethod}</span>
               </div>
+              {!order.dispatcher ? null : (
+                <div>
+                  <span>Dispatcher:</span>
+                  <span className='span1'>{order.dispatcherId}</span>
+                </div>
+              )}
+              {!order.admin ? null : (
+                <div>
+                  <span>Admin:</span>
+                  <span className='span1'>{order.admin}</span>
+                </div>
+              )}
               <div>
                 <span>Shipping Price:</span>
                 <span className='span1'>{order.shippingPrice}</span>

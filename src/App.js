@@ -22,6 +22,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Report from './pages/Report'
 import Dispatch from './pages/Dispatch'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
+import Dispatcher from './pages/Dispatcher/Dispatcher'
 
 function App() {
   return (
@@ -92,6 +93,12 @@ function App() {
             <ProtectedRoute
               path='/profile'
               component={Profile}
+              isAuth={localStorage.getItem('token')}
+            />
+
+            <ProtectedRoute
+              path='/dispatcher/:id'
+              component={Dispatcher}
               isAuth={localStorage.getItem('token')}
             />
 

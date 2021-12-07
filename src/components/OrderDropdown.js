@@ -116,6 +116,7 @@ export default function OrderDropdown({ id, refresh }) {
   }
 
   const handleDispatch = () => {
+    console.log(dispatch)
     const body = {
       id: id,
       amount: amount,
@@ -191,7 +192,7 @@ export default function OrderDropdown({ id, refresh }) {
                 <option value='Select a dispatcher'>Select a dispatcher</option>
                 {dispatcher.map((user) => (
                   <React.Fragment key={user._id}>
-                    <option value={user._id}>{user.displayName}</option>
+                    <option value={user.idNumber}>{user.displayName}</option>
                   </React.Fragment>
                 ))}
               </select>

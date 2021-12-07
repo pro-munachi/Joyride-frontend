@@ -10,7 +10,7 @@ import '../style/user.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function ActivateMenu({ id, refresh }) {
+export default function ActivateMenu({ id, refresh, num }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -102,7 +102,11 @@ export default function ActivateMenu({ id, refresh }) {
           Activate Dispatcher
         </Button>
         <Divider />
-        <Button component={NavLink} to={`/user/${id}`} className='styles'>
+        <Button
+          component={NavLink}
+          to={`/dispatcher/${num}`}
+          className='styles'
+        >
           View Dispatcher
         </Button>
         <Divider />

@@ -325,6 +325,7 @@ const Dispatch = () => {
 
                               <StyledTableCell align='left' typeof='button'>
                                 <DispatchMenu
+                                  num={row.idNumber}
                                   id={row._id}
                                   refresh={activeReload}
                                 />
@@ -394,6 +395,7 @@ const Dispatch = () => {
 
                               <StyledTableCell align='left' typeof='button'>
                                 <DispatchMenu
+                                  num={row.idNumber}
                                   id={row._id}
                                   refresh={activeReload}
                                 />
@@ -467,6 +469,7 @@ const Dispatch = () => {
 
                               <StyledTableCell align='left' typeof='button'>
                                 <ActivateMenu
+                                  num={row.idNumber}
                                   id={row._id}
                                   refresh={inactiveReload}
                                 />
@@ -536,6 +539,7 @@ const Dispatch = () => {
 
                               <StyledTableCell align='left' typeof='button'>
                                 <ActivateMenu
+                                  num={row.idNumber}
                                   id={row._id}
                                   refresh={inactiveReload}
                                 />
